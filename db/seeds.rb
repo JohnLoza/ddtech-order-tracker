@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+if User.find_by(role: User::ROLES[:admin]).blank?
+  User.create(
+    name: 'Admin',
+    email: 'admin@example.com',
+    role: User::ROLES[:admin],
+    password: 'foobar',
+    password_confirmation: 'foobar'
+  )
+end
