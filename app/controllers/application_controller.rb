@@ -4,8 +4,6 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
 
-  before_action :require_active_session
-
   rescue_from ActiveRecord::RecordNotFound do |_e|
     render_404
   end
@@ -31,22 +29,6 @@ class ApplicationController < ActionController::Base
   end
 
   private
-
-  def require_active_session
-    return if logged_in?
-
-    store_location
-    redirect_to new_session_path
-  end
-
-  def deny_access
-    respond_to do |format|
-      format.html { redirect_to admin_home_path, flash: { info: t('labels.access_denied') } }
-      format.any { head :forbidden, content_type: 'text/html' }
-    end
-    true
-  end
-
   def render_parameter_validation_error(msg)
     response = { status: :error, message: 'parameter_validation_error', details: msg }
     render status: 422, json: JSON.pretty_generate(response)

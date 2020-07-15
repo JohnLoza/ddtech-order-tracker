@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%= yield :title %> | DDTech Order Tracker</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+  <!-- ============================================================== -->
+  <!-- main wrapper -->
+  <!-- ============================================================== -->
+  <div class="dashboard-main-wrapper">
+    <%= render "/shared/admin/top_navbar.html.erb" %>
+    <%= render "/shared/admin/left_navbar.html.erb" %>
+
+    <!-- ============================================================== -->
+    <!-- wrapper  -->
+    <!-- ============================================================== -->
+    <div class="dashboard-wrapper">
+      <div class="dashboard-ecommerce">
+        <div class="container-fluid dashboard-content ">
+          <%= render "/shared/admin/page_header.html.erb" %>
+
+          <div class="ecommerce-widget">
+            <%= render "/shared/alerts.html.erb" %>
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+      <%= render "/shared/admin/footer.html.erb" %>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end wrapper  -->
+    <!-- ============================================================== -->
+  </div>
+  <!-- ============================================================== -->
+  <!-- end main wrapper  -->
+  <!-- ============================================================== -->
+</body>
+
+</html>

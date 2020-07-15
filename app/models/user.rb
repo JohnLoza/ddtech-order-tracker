@@ -7,7 +7,12 @@ class User < ApplicationRecord
 
   ROLES = {
     admin: 'admin',
-    admin_staff: 'admin_staff'
+    human_resources: 'human_resources',
+    shipments: 'shipments',
+    warehouse: 'warehouse',
+    packer: 'packer',
+    assembler: 'assembler',
+    parcel_guides_generator: 'parcel_guides_generator'
   }.freeze
 
   before_save { self.email = email.downcase }

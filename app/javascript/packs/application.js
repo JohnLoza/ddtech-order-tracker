@@ -12,6 +12,8 @@ import "@fortawesome/fontawesome-free/js/all";
 import 'jquery';
 import 'bootstrap';
 
+import './custom';
+
 import '../stylesheets/application.scss'
 
 // Uncomment to copy all static images under ../images to the output folder and reference
