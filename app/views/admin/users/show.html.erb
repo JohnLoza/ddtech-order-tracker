@@ -5,7 +5,7 @@
   <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
     <div class="card card-figure">
       <figure class="figure">
-        <%= content_tag(:span, current_user.name[0..1], class: 'user-badge badge-xl') %>
+        <%= content_tag(:span, @user.name[0..1], class: 'user-badge badge-xl') %>
 
         <figcaption class="figure-caption">
           <%= content_tag :h6, @user, class: 'figure-title' %>

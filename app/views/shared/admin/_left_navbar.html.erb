@@ -15,14 +15,16 @@
           </li>
 
           <li class="nav-item">
-            <%= link_to admin_dashboard_index_path, class: "nav-link admin-dashboard-controller" do %>
+            <%= link_to admin_dashboard_index_path,
+              class: "nav-link #{activeClassFor('admin/dashboard')}" do %>
             <i class="fas fa-fw fa-th"></i>
             <%= t('labels.dashboard') %>
             <% end %>
           </li>
 
           <li class="nav-item">
-            <%= link_to admin_users_path, class: "nav-link admin-users-controller" do %>
+            <%= link_to admin_users_path,
+              class: "nav-link #{activeClassFor('admin/users')}" do %>
             <i class="fas fa-users"></i>
             <%= User.model_name.human(count: 2) %>
             <% end if can? :read, User %>
