@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import './bootstrap_custom.scss';
 @import '@fortawesome/fontawesome-free';
 
-@import 'bootstrap';
-@import '../../../vendor/assets/stylesheets/concept.css.erb';
-
-@import './custom';
+@import './concept.scss';
+@import './custom.scss';

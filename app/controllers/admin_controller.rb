@@ -2,8 +2,17 @@
 
 # Base Admin controller
 class AdminController < ApplicationController
+  include AdminHelper
+
   layout 'admin'
   before_action :require_active_session
+
+  check_authorization
+  skip_authorization_check only: :render_404
+
+  rescue_from CanCan::AccessDenied do |_exception|
+    deny_access
+  end
 
   private
 

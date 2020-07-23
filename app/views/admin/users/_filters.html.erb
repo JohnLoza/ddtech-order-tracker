@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <%= content_tag :h5, 'Filtros', class: 'card-header' %>
+      <div class="card-body">
+        <%= form_for :filter, method: :get, html: {class: 'form-inline'} do |f| %>
+        <div class='form-group mx-sm-3'>
+          <%= f.label :role, 'Rol', class: 'sr-only'  %>
+          <%= f.select :role, User.roles_for_select,
+              { prompt: User.human_attribute_name(:role), selected: filter_params(require: :role) },
+              { class: 'form-control' } %>
+        </div>
+
+        <%= f.submit t('labels.search'), class: 'btn btn-primary'%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

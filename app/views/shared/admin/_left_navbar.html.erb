@@ -17,14 +17,22 @@
           <li class="nav-item">
             <%= link_to admin_dashboard_index_path, class: "nav-link admin-dashboard-controller" do %>
             <i class="fas fa-fw fa-th"></i>
-            Dashboard
+            <%= t('labels.dashboard') %>
             <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to admin_users_path, class: "nav-link admin-users-controller" do %>
+            <i class="fas fa-users"></i>
+            <%= User.model_name.human(count: 2) %>
+            <% end if can? :read, User %>
           </li>
 
           <li class="nav-item">
             <%= link_to session_path(current_user),
               class: "nav-link", method: :delete do %>
-            <i class="fas fa-fw fa-power-off mr-2"></i> Cerrar sesión
+            <i class="fas fa-fw fa-power-off mr-2"></i>
+            <%= t('labels.sign_out') %>
             <% end %>
           </li>
         </ul>

@@ -1,0 +1,16 @@
+es:
+  activerecord:
+    models:
+      user:
+        one: Usuario
+        other: Usuarios
+    attributes:
+      user:
+        id: Clave
+        name: Nombre
+        email: Correo electrónico
+        email_confirmation: Confirmación de correo electrónico
+        password: Contraseña
+        password_confirmation: Confirmación de contraseña
+        role: Rol
+        deleted_at: Dado de baja

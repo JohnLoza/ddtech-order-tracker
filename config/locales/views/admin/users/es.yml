@@ -1,0 +1,29 @@
+es:
+  admin:
+    users:
+      index:
+        card_title: Listado de usuarios
+
+      new:
+        title: Nuevo usuario
+
+      create:
+        success: El usuario %{user} se guardo correctamente
+
+      edit:
+        title: Editar usuario %{user}
+
+      update:
+        success: El usuario %{user} se actualizó correctamente
+
+      destroy:
+        success: El usuario %{user} ha sido eliminado, si te equivocaste puedes <a href="%{url}" data-method="post">restaurarlo</a>
+        failure: Ocurrió un error al eliminar el usuario %{user}
+
+      restore:
+        success: El usuario %{user} ha sido restablecido
+        failure: Ocurrió un error al restablecer el usuario %{user}
+
+      # partials
+      user:
+        are_you_sure_to_delete: ¿Estás seguro(a) de eliminar el usuario %{user}?

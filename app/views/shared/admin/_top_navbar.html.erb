@@ -3,7 +3,7 @@
 <!-- ============================================================== -->
 <div class="dashboard-header">
   <nav class="navbar navbar-expand-lg bg-white fixed-top">
-    <%= link_to 'DDTech', admin_dashboard_index_path, class: "navbar-brand" %>
+    <%= link_to t('labels.brand'), admin_dashboard_index_path, class: "navbar-brand" %>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -13,9 +13,8 @@
       <ul class="navbar-nav ml-auto navbar-right-top">
         <li class="nav-item dropdown nav-user">
           <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%#= image_tag current_user.avatar_url(avatar_variant), class: "user-avatar-md rounded-circle" %>
 
-            <span class='user-badge'>
+            <span class='user-badge p-0'>
               <%= current_user.name[0..1] %>
             </span>
 
@@ -23,12 +22,12 @@
           <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
             <div class="nav-user-info">
               <%= content_tag :h5, current_user.name, class: "mb-0 text-white nav-user-name" %>
-              <span class="status"></span><%= content_tag :span, t("labels.active_session"), class: "ml-2" %>
+              <span class="status"></span><%= content_tag :span, current_user.email, class: "ml-2" %>
             </div>
 
             <%= link_to edit_admin_user_path(current_user), class: "dropdown-item" do %>
             <i class="fas fa-user mr-2"></i> <%= t("labels.account") %>
-            <% end if false #can? :update, current_user %>
+            <% end if can? :update, current_user %>
 
             <%= link_to session_path(current_user),
               class: "dropdown-item", method: :delete do %>

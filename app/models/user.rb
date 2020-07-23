@@ -74,7 +74,7 @@ class User < ApplicationRecord
     raise ArgumentError, 'role option is required' unless options[:role].present?
     raise ArgumentError, 'warehouse_id option is required' unless options[:warehouse_id].present?
 
-    User.by_warehouse(options[:warehouse_id]).by_role(ROLES[options[:role]])
+    User.active.by_role(ROLES[options[:role]])
         .map { |user| [user.name, user.id] }
   end
 end

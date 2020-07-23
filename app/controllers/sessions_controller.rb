@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 # Controller for managing user sessions
-class SessionsController < ApplicationController
+class SessionsController < AdminController
   skip_before_action :require_active_session
+  skip_authorization_check
 
   def new
     redirect_to admin_dashboard_index_path and return if logged_in?

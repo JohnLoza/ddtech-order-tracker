@@ -12,17 +12,11 @@
   <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-  <script>
-    $(document).on("turbolinks:load", function() {
-      $("form").parsley();
-    });
-  </script>
-
   <style>
     html,
     body {
       height: 100%;
-      background-image: url('<%= image_url 'login-bg.png' %>');
+      background-image: url("~login-bg.png");
       background-repeat: no-repeat;
       background-position: center;
     }
@@ -45,17 +39,18 @@
       color: #333;
     }
   </style>
-  <title>Iniciar sesión</title>
+
+  <%= content_tag :title, t('labels.sign_in') %>
 </head>
 
 <body>
 
   <div class="splash-container">
-    <%= render "/shared/alerts.html.erb" %>
+    <%= render '/shared/alerts.html.erb' %>
 
     <div class="card ">
       <div class="card-header text-center">
-        <%= content_tag :h1, "DDTech", class: "navbar-brand" %>
+        <%= content_tag :h1, t('labels.brand'), class: 'navbar-brand' %>
       </div>
 
       <div class="card-body">
@@ -63,31 +58,31 @@
         <div class="form-group">
           <i class="fas fa-user"></i>
           <%= f.label :email, User.human_attribute_name(:email) %>
-          <%= f.email_field :email, class: "form-control form-control-lg",
+          <%= f.email_field :email, class: 'form-control form-control-lg',
                 placeholder: User.human_attribute_name(:email), required: true %>
         </div>
 
         <div class="form-group">
           <i class="fas fa-key"></i>
           <%= f.label :password, User.human_attribute_name(:password) %>
-          <%= f.password_field :password, class: "form-control form-control-lg",
-                autocomplete: :off, placeholder: "********", required: :true %>
+          <%= f.password_field :password, class: 'form-control form-control-lg',
+                autocomplete: :off, placeholder: '************', required: :true %>
         </div>
 
         <div class="form-group">
           <label class="custom-control custom-checkbox">
-            <%= f.check_box :remember_me, class: "custom-control-input" %>
-            <%= content_tag :span, t("labels.remember_me"), class: "custom-control-label" %>
+            <%= f.check_box :remember_me, class: 'custom-control-input', checked: true %>
+            <%= content_tag :span, t('labels.remember_me'), class: 'custom-control-label' %>
           </label>
         </div>
 
-        <%= f.submit "Iniciar Sesión", class: "btn btn-primary btn-lg btn-block" %>
+        <%= f.submit t('labels.sign_in'), class: 'btn btn-primary btn-lg btn-block' %>
         <% end %>
       </div>
 
       <div class="card-footer bg-white p-0  ">
         <div class="card-footer-item card-footer-item-bordered">
-          <%= link_to t("labels.forgot_password"), "#", class: "footer-link" %>
+          <%= link_to t('labels.forgot_password'), '#', class: 'footer-link' %>
         </div>
       </div>
     </div>

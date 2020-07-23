@@ -1,0 +1,22 @@
+<tr>
+  <td>
+    <%= link_to admin_user_path(user) do %>
+    <%= content_tag :span, user.name[0..1], class: 'user-badge' %>
+    <% end %>
+  </td>
+  <%= content_tag :td, user.name %>
+  <%= content_tag :td, user.email %>
+  <%= content_tag :td, t("roles.#{user.role}") %>
+  <td>
+    <%= link_to edit_admin_user_path(user),
+      class: 'btn btn-outline-light btn-sm' do %>
+    <i class="fas fa-fw fa-pencil-alt"></i>
+    <% end %>
+
+    <%= link_to admin_user_path(user),
+      method: :delete, class: 'btn btn-danger btn-sm',
+      data: { confirm: t('.you_sure', user: user) } do %>
+    <i class="fas fa-fw fa-trash"></i>
+    <% end %>
+  </td>
+</tr>

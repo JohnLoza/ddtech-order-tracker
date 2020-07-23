@@ -2,7 +2,7 @@ AllCops:
   NewCops: enable
   Exclude:
     - bin/**
-    - db/**
+    - db/**/*
     - node_modules/**/*
     - test/**/*
     - config/**/*
