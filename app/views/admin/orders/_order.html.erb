@@ -1,0 +1,18 @@
+<tr>
+  <%= content_tag :td, link_to(order.ddtech_key, admin_order_path(order)) %>
+  <%= content_tag :td, order.client_email %>
+  <%= content_tag :td, order.user %>
+  <%= content_tag :td, l(order.created_at, format: :short) %>
+  <td>
+    <%= link_to edit_admin_order_path(order),
+      class: 'btn btn-outline-light btn-sm' do %>
+    <i class="fas fa-fw fa-pencil-alt"></i>
+    <% end if can? :update, order %>
+
+    <%= link_to admin_order_path(order),
+      method: :delete, class: 'btn btn-danger btn-sm',
+      data: { confirm: t('.are_you_sure_to_delete', order: order) } do %>
+    <i class="fas fa-fw fa-trash"></i>
+    <% end if can? :destroy, order %>
+  </td>
+</tr>

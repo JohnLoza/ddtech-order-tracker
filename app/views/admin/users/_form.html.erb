@@ -34,7 +34,7 @@
 
     <div class="form-group">
       <%= f.label :role %>
-      <%= f.select :role, User.roles_for_select,
+      <%= f.select :role, roles_for_select(),
           {prompt: t('labels.select')}, {class: 'form-control', required: true} %>
     </div>
 

@@ -1,0 +1,28 @@
+es:
+  admin:
+    orders:
+      index:
+        title: Listado de pedidos
+
+      show:
+        title: Datos del pedido
+
+      new:
+        title: Nuevo pedido
+
+      create:
+        success: El pedido %{order} se guardo correctamente
+
+      edit:
+        title: Editar pedido %{order}
+
+      update:
+        success: El pedido %{order} se actualizó correctamente
+
+      destroy:
+        success: El pedido %{order} ha sido eliminada
+        failure: Ocurrió un error al eliminar el pedido %{order}
+
+      # partials
+      order:
+        are_you_sure_to_delete: ¿Estás seguro(a) de eliminar el pedido %{order}?

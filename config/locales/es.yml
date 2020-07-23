@@ -5,6 +5,7 @@ es:
     badge: Insignia
     brand: Ddtech
     change_password: Cambiar contraseña
+    created_at: Fecha de creación
     close: Cerrar
     dashboard: Tablero de Inicio
     filter: Filtrar
@@ -15,6 +16,7 @@ es:
     select: Selecciona
     sign_in: Iniciar sesión
     sign_out: Cerrar sesión
+    updated_at: Última actualización
   roles:
     admin: Administrador
     assembler: Ensamblador

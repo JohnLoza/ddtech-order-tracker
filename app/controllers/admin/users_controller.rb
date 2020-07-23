@@ -57,6 +57,7 @@ module Admin
       params.require(:user).permit(
         :name,
         :email,
+        :email_confirmation,
         :role,
         :password,
         :password_confirmation
@@ -64,10 +65,8 @@ module Admin
     end
 
     def load_users
-      @users = User.active
-                   .non_admin.not(current_user)
+      @users = User.active.not(current_user).order_by_name
                    .by_role(filter_params(require: :role))
-                   .order_by_name
     end
   end
 end

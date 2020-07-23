@@ -7,24 +7,24 @@
     <div class="card">
       <h5 class="card-header">
         <%= t(".title") %>
-        <%= link_to new_admin_user_path do %>
+        <%= link_to new_admin_order_path do %>
         <i class="fas fa-fw fa-plus-circle fa-2x float-right"></i>
-        <% end if can? :create, User %>
+        <% end if can? :create, Order %>
       </h5>
       <div class="card-body">
         <div class="table-responsive">
           <table class="table">
             <thead class="bg-light">
               <tr class="border-0">
-                <%= content_tag :th, t('labels.badge'), class: 'border-0' %>
-                <%= content_tag :th, User.human_attribute_name(:name), class: 'border-0' %>
-                <%= content_tag :th, User.human_attribute_name(:email), class: 'border-0' %>
-                <%= content_tag :th, User.human_attribute_name(:role), class: 'border-0' %>
+                <%= content_tag :th, Order.human_attribute_name(:ddtech_key), class: 'border-0' %>
+                <%= content_tag :th, Order.human_attribute_name(:client_email), class: 'border-0' %>
+                <%= content_tag :th, Order.human_attribute_name(:user_id), class: 'border-0' %>
+                <%= content_tag :th, t('labels.created_at'), class: 'border-0' %>
                 <%= content_tag :th, t('labels.actions'), class: 'border-0' %>
               </tr>
             </thead>
             <tbody>
-              <%= render @users %>
+              <%= render @orders %>
             </tbody>
           </table>
 

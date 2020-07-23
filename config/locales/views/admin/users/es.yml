@@ -2,7 +2,7 @@ es:
   admin:
     users:
       index:
-        card_title: Listado de usuarios
+        title: Listado de usuarios
 
       new:
         title: Nuevo usuario

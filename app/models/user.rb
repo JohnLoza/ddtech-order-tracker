@@ -15,8 +15,10 @@ class User < ApplicationRecord
     parcel_guides_generator: 'parcel_guides_generator'
   }.freeze
 
-  before_save { self.email = email.downcase }
+  before_save :downcase_email
   has_secure_password
+
+  has_many :orders
 
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, presence: true
@@ -54,27 +56,9 @@ class User < ApplicationRecord
     end
   end
 
-  def self.roles_without(role)
-    if role.is_a?(Array)
-      ROLES.reject { |key, _value| role.include?(key) }
-    elsif role.is_a?(Symbol)
-      ROLES.reject { |key, _value| key == role }
-    else
-      raise ArgumentError, 'Parameter should be a Symbol or an Array'
-    end
-  end
+  private
 
-  def self.roles_for_select
-    roles = roles_without(:admin)
-    roles = roles.map { |key, value| [I18n.t("roles.#{key}"), value] }
-    roles.sort { |a, b| a.first <=> b.first }
-  end
-
-  def self.for_select(options = {})
-    raise ArgumentError, 'role option is required' unless options[:role].present?
-    raise ArgumentError, 'warehouse_id option is required' unless options[:warehouse_id].present?
-
-    User.active.by_role(ROLES[options[:role]])
-        .map { |user| [user.name, user.id] }
+  def downcase_email
+    self.email = email.downcase
   end
 end

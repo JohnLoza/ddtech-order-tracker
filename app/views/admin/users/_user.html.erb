@@ -11,12 +11,12 @@
     <%= link_to edit_admin_user_path(user),
       class: 'btn btn-outline-light btn-sm' do %>
     <i class="fas fa-fw fa-pencil-alt"></i>
-    <% end %>
+    <% end if can? :update, user %>
 
     <%= link_to admin_user_path(user),
       method: :delete, class: 'btn btn-danger btn-sm',
-      data: { confirm: t('.you_sure', user: user) } do %>
+      data: { confirm: t('.are_you_sure_to_delete', user: user) } do %>
     <i class="fas fa-fw fa-trash"></i>
-    <% end %>
+    <% end if can? :destroy, user %>
   </td>
 </tr>

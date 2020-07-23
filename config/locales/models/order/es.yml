@@ -1,0 +1,14 @@
+es:
+  activerecord:
+    models:
+      order:
+        one: Pedido
+        other: Pedidos
+    attributes:
+      order:
+        id: Clave
+        user_id: Creado por
+        ddtech_key: No de Pedido
+        client_email: Email del cliente
+        status: Estado
+        parcel: Paquetera

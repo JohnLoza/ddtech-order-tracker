@@ -16,7 +16,7 @@
 
           <li class="nav-item">
             <%= link_to admin_dashboard_index_path,
-              class: "nav-link #{activeClassFor('admin/dashboard')}" do %>
+              class: "nav-link #{active_class_for('admin/dashboard')}" do %>
             <i class="fas fa-fw fa-th"></i>
             <%= t('labels.dashboard') %>
             <% end %>
@@ -24,10 +24,18 @@
 
           <li class="nav-item">
             <%= link_to admin_users_path,
-              class: "nav-link #{activeClassFor('admin/users')}" do %>
+              class: "nav-link #{active_class_for('admin/users')}" do %>
             <i class="fas fa-users"></i>
             <%= User.model_name.human(count: 2) %>
             <% end if can? :read, User %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to admin_orders_path,
+              class: "nav-link #{active_class_for('admin/orders')}" do %>
+            <i class="fas fa-book"></i>
+            <%= Order.model_name.human(count: 2) %>
+            <% end if can? :read, Order %>
           </li>
 
           <li class="nav-item">
