@@ -9,36 +9,8 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-  <style>
-    html,
-    body {
-      height: 100%;
-      background-image: url("~login-bg.png");
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-
-    body {
-      display: -ms-flexbox;
-      display: flex;
-      -ms-flex-align: center;
-      align-items: center;
-      padding-top: 40px;
-      padding-bottom: 40px;
-    }
-
-    .card-footer-item {
-      width: 100% !important;
-    }
-
-    .navbar-brand {
-      margin-right: 0 !important;
-      color: #333;
-    }
-  </style>
+  <%= stylesheet_pack_tag 'sessions', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'sessions', 'data-turbolinks-track': 'reload' %>
 
   <%= content_tag :title, t('labels.sign_in') %>
 </head>

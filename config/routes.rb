@@ -8,4 +8,6 @@ Rails.application.routes.draw do
     resources :users
     resources :orders
   end
+
+  match '*path', via: :all, to: 'application#render_404'
 end

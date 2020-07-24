@@ -22,6 +22,7 @@ module SessionsHelper
   def log_in(user, remember_me = '0')
     session[:user_id] = user.id
     remember(user) unless remember_me.to_i.zero?
+    @current_user = user
   end
 
   def remember(user)
@@ -40,10 +41,8 @@ module SessionsHelper
       user = authenticate_user(auth_token: auth_token)
       if user
         log_in user
-        @current_user = user
       else
         forget_current_user
-        nil
       end
     end
   end
@@ -54,6 +53,7 @@ module SessionsHelper
 
   def forget_current_user
     cookies.delete(:auth_token)
+    nil
   end
 
   def log_out
