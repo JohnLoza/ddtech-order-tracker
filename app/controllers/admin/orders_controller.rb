@@ -4,8 +4,10 @@ module Admin
   # Admin Orders Controller
   class OrdersController < AdminController
     before_action :load_orders, only: :index
+    before_action :load_and_authorize_order, only: :update
     before_action :set_new_order, only: :create
-    load_and_authorize_resource
+
+    load_and_authorize_resource except: :update
 
     def index; end
 
@@ -25,7 +27,8 @@ module Admin
 
     def update
       if @order.update_attributes order_params
-        redirect_to [:admin, @order], flash: { success: t('.success', order: @order) }
+        url = params[:redirect_url].present? ? params[:redirect_url] : [:admin, @order]
+        redirect_to url, flash: { success: t('.success', order: @order) }
       else
         render :edit
       end
@@ -46,7 +49,9 @@ module Admin
       params.require(:order).permit(
         :ddtech_key,
         :client_email,
-        :parcel
+        :parcel,
+        :assemble,
+        :status
       )
     end
 
@@ -57,5 +62,15 @@ module Admin
     def set_new_order
       @order = current_user.orders.new(order_params)
     end
+
+    def load_and_authorize_order
+      @order = Order.find(params[:id])
+      if params[:order][:status]
+        authorize! :update_status, @order
+      else
+        authorize! :update, @order
+      end
+    end
+
   end
 end

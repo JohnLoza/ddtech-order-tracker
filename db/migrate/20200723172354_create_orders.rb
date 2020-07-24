@@ -6,6 +6,7 @@ class CreateOrders < ActiveRecord::Migration[6.0]
       t.string :client_email
       t.string :status
       t.string :parcel
+      t.boolean :assemble, default: false
       t.timestamps
     end
 

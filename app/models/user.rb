@@ -7,12 +7,12 @@ class User < ApplicationRecord
 
   ROLES = {
     admin: 'admin',
-    human_resources: 'human_resources',
-    shipments: 'shipments',
-    warehouse: 'warehouse',
-    packer: 'packer',
     assembler: 'assembler',
-    parcel_guides_generator: 'parcel_guides_generator'
+    human_resources: 'human_resources',
+    packer: 'packer',
+    parcel_guides_generator: 'parcel_guides_generator',
+    shipments: 'shipments',
+    warehouse: 'warehouse'
   }.freeze
 
   before_save :downcase_email

@@ -17,3 +17,16 @@
   height: 110px;
   padding: 8px;
 }
+
+/* hidden-action for actions in tables for each row */
+a.hidden-action {
+  visibility: hidden;
+}
+tr:hover td a.hidden-action,
+tr:focus td a.hidden-action {
+  visibility: visible !important;
+}
+@media screen and (max-width: 920px) {
+	a.hidden-action { visibility: visible }
+}
+/* hidden-button */

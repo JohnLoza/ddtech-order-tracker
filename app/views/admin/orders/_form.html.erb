@@ -20,6 +20,11 @@
           {prompt: t('labels.select')}, {class: 'form-control', required: true} %>
     </div>
 
+    <div class="form-group">
+      <%= f.label :assemble %>
+      <%= f.check_box :assemble %>
+    </div>
+
     <%= f.submit t('labels.save'), class: 'btn btn-primary btn-lg' %>
     <% end %>
   </div>

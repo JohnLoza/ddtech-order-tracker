@@ -1,21 +1,8 @@
 <%= provide :title, t('.title') %>
 
 <div class="row">
-  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
-    <div class="card card-figure">
-      <figure class="figure">
-        <%= content_tag(:span, @order.user.name[0..1], class: 'user-badge badge-xl') %>
 
-        <figcaption class="figure-caption">
-          <%= content_tag :h6, @order.user, class: 'figure-title' %>
-          <%= content_tag :span, t("roles.#{@order.user.role}"),
-            class: 'badge badge-secondary badge-pill' %>
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-
-  <div class="col-xl-6 col-lg-8 col-md-6 col-sm-12 col-12">
+  <div class="col-lg-4 col-md-6 col-sm-12 col-12">
     <div class="card">
       <div class="card-body">
         <h3 class="card-title"><%= yield :title %></h3>
@@ -28,6 +15,11 @@
           <%= content_tag :span, t('labels.created_at'),
             class: 'font-weight-bold text-uppercase' %><br>
           <%= l(@order.created_at, format: :long) %>
+        </p>
+        <p class="card-text">
+          <%= content_tag :span, Order.human_attribute_name(:assemble),
+            class: 'font-weight-bold text-uppercase' %><br>
+          <%= content_tag :span, t("order.assemble.#{@order.assemble}").html_safe %>
         </p>
         <p class="card-text">
           <%= content_tag :span, Order.human_attribute_name(:user_id),
@@ -43,10 +35,16 @@
         <p class="card-text">
           <%= content_tag :span, Order.human_attribute_name(:status),
             class: 'font-weight-bold text-uppercase' %><br>
-          <%= content_tag :span, @order.status,
+          <%= content_tag :span, t("order.statuses.#{@order.status}"),
             class: 'badge badge-secondary badge-pill' %>
         </p>
+
+        <%= render partial: 'update_status_form',
+          locals: {order: @order, redirect_url: nil} %>
       </div>
     </div>
+  </div>
+
+  <div class="col-lg-8 col-md-6 col-sm-12 col-12">
   </div>
 </div>

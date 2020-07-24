@@ -6,10 +6,14 @@ class Order < ApplicationRecord
 
   PARCELS = %i[ESTAFETA FEDEX ZMG DHL].freeze
   STATUS = {
-    new: 'new'
+    new: 'new',
+    supplied: 'supplied',
+    assembled: 'assembled',
+    packed: 'packed',
+    sent: 'sent'
   }.freeze
 
-  before_validation :set_status
+  before_validation :set_status, on: :create
   before_save :downcase_email
 
   belongs_to :user

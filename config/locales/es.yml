@@ -2,6 +2,7 @@ es:
   labels:
     account: Cuenta
     actions: Acciones
+    are_you_sure_to_proceed: ¿Estás seguro de proceder? Esto no se puede deshacer
     badge: Insignia
     brand: Ddtech
     change_password: Cambiar contraseña
@@ -25,6 +26,20 @@ es:
     parcel_guides_generator: Generador de Guías
     shipments: Embarques
     warehouse: Almacén
+  order:
+    statuses:
+      new: Nuevo
+      supplied: Suminitrado por Almacén
+      assembled: Ensamblado
+      packed: Empaquetado
+      sent: Enviado
+    status_change_msg:
+      supplied: Establecer salida de almacén!
+      assembled: Ensamble realizado!
+      packed: Empaquetado listo!
+    assemble:
+      false: '<span class="badge badge-warning badge-pill">No</span>'
+      true: '<span class="badge badge-success badge-pill">Sí</span>'
 
   activerecord:
     errors:

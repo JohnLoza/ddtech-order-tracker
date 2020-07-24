@@ -1,0 +1,6 @@
+<%= form_for [:admin, order], html: {class: 'text-center'} do |f| %>
+  <%= hidden_field_tag :redirect_url, redirect_url %>
+  <%= f.hidden_field :status, value: next_status_for_order(order) %>
+  <%= f.submit next_status_message(order), class: 'btn btn-primary m-2',
+    data: {confirm: t('labels.are_you_sure_to_proceed')} %>
+<% end if can? :update_status, order %>

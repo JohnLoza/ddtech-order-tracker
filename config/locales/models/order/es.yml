@@ -12,3 +12,4 @@ es:
         client_email: Email del cliente
         status: Estado
         parcel: Paquetera
+        assemble: Requiere Ensamble

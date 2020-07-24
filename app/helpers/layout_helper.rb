@@ -33,4 +33,19 @@ module LayoutHelper
     Order::PARCELS.map{ |value| [value, value] }
   end
 
+  def next_status_for_order(order)
+    case order.status
+    when Order::STATUS[:new]
+      Order::STATUS[:supplied]
+    when Order::STATUS[:supplied]
+      order.assemble ? Order::STATUS[:assembled] : Order::STATUS[:packed]
+    when Order::STATUS[:assembled]
+      Order::STATUS[:packed]
+    end
+  end
+
+  def next_status_message(order)
+    t("order.status_change_msg.#{next_status_for_order(order)}")
+  end
+
 end
