@@ -50,8 +50,9 @@ module Admin
         :ddtech_key,
         :client_email,
         :parcel,
-        :assemble,
-        :status
+        :guide,
+        :status,
+        :assemble
       )
     end
 
@@ -65,7 +66,9 @@ module Admin
 
     def load_and_authorize_order
       @order = Order.find(params[:id])
-      if params[:order][:status]
+      if params[:order][:guide]
+        authorize! :update_guide, @order
+      elsif params[:order][:status]
         authorize! :update_status, @order
       else
         authorize! :update, @order

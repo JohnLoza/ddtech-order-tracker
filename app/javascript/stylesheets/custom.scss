@@ -20,13 +20,13 @@
 
 /* hidden-action for actions in tables for each row */
 a.hidden-action {
-  visibility: hidden;
+  display: none;
 }
-tr:hover td a.hidden-action,
-tr:focus td a.hidden-action {
-  visibility: visible !important;
+tr:hover .hidden-action,
+tr:focus .hidden-action {
+  display: inline-block !important;
 }
 @media screen and (max-width: 920px) {
-	a.hidden-action { visibility: visible }
+	a.hidden-action { display: inline-block }
 }
 /* hidden-button */

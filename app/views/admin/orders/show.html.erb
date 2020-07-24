@@ -11,27 +11,38 @@
             class: 'font-weight-bold text-uppercase' %><br>
           <%= @order.ddtech_key %>
         </p>
+
         <p class="card-text">
           <%= content_tag :span, t('labels.created_at'),
             class: 'font-weight-bold text-uppercase' %><br>
           <%= l(@order.created_at, format: :long) %>
         </p>
-        <p class="card-text">
-          <%= content_tag :span, Order.human_attribute_name(:assemble),
-            class: 'font-weight-bold text-uppercase' %><br>
-          <%= content_tag :span, t("order.assemble.#{@order.assemble}").html_safe %>
-        </p>
+
         <p class="card-text">
           <%= content_tag :span, Order.human_attribute_name(:user_id),
             class: 'font-weight-bold text-uppercase' %><br>
           <%= can?(:read, @order.user) ?
             link_to(@order.user, admin_user_path(@order.user)) : @order.user %>
         </p>
+
         <p class="card-text">
           <%= content_tag :span, Order.human_attribute_name(:client_email),
             class: 'font-weight-bold text-uppercase' %><br>
           <%= @order.client_email %>
         </p>
+
+        <p class="card-text">
+          <%= content_tag :span, Order.human_attribute_name(:assemble),
+            class: 'font-weight-bold text-uppercase' %><br>
+          <%= content_tag :span, t("order.assemble.#{@order.assemble}").html_safe %>
+        </p>
+
+        <p class="card-text">
+          <%= content_tag :span, Order.human_attribute_name(:guide),
+            class: 'font-weight-bold text-uppercase' %><br>
+          <%= content_tag :span, @order.guide, class: 'badge badge-primary badge-pill' %>
+        </p>
+
         <p class="card-text">
           <%= content_tag :span, Order.human_attribute_name(:status),
             class: 'font-weight-bold text-uppercase' %><br>
@@ -41,6 +52,8 @@
 
         <%= render partial: 'update_status_form',
           locals: {order: @order, redirect_url: nil} %>
+
+        <%= render partial: 'update_guide_form', locals: {order: @order} %>
       </div>
     </div>
   </div>

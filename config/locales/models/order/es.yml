@@ -12,4 +12,5 @@ es:
         client_email: Email del cliente
         status: Estado
         parcel: Paquetera
+        guide: Número de rastreo
         assemble: Requiere Ensamble

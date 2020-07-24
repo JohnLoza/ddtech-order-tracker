@@ -37,7 +37,7 @@ class Ability
 
     when User::ROLES[:parcel_guides_generator]
       can :read, Order
-      can :update_status, Order, status: Order::STATUS[:supplied]
+      can :update_guide, Order, status: Order::STATUS[:packed]
     end
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities

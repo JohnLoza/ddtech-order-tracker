@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2020_07_23_172354) do
     t.string "client_email"
     t.string "status"
     t.string "parcel"
+    t.string "guide"
     t.boolean "assemble", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
