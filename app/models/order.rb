@@ -13,10 +13,15 @@ class Order < ApplicationRecord
     sent: 'sent'
   }.freeze
 
+  attr_accessor :updater_id
+
   before_validation :set_status, on: :create
   before_save :downcase_email
 
+  before_save :create_movement
+
   belongs_to :user
+  has_many :movements
 
   validates :client_email, :status, :parcel,
     presence: true,
@@ -28,6 +33,8 @@ class Order < ApplicationRecord
     uniqueness: true
 
   validates :status, inclusion: {in: STATUS.values}
+
+  scope :recent, -> { order(created_at: :desc) }
 
   def to_s
     "##{ddtech_key}"
@@ -45,5 +52,13 @@ class Order < ApplicationRecord
 
   def set_status
     self.status = STATUS[:new]
+  end
+
+  def create_movement
+    if self.status_changed? or self.guide_changed?
+      params = {user_id: self.updater_id ? self.updater_id : self.user_id}
+      params[:data] = self.guide if self.guide_changed?
+      self.movements.build(params)
+    end
   end
 end

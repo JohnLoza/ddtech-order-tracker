@@ -19,16 +19,15 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :orders
+  has_many :movements
 
-  validates :name, presence: true, length: { maximum: 50 }
-  validates :email, presence: true
-  validates :role, presence: true
+  validates :name, :email, presence: true, length: { maximum: 50 }
+  validates :role, presence: true, inclusion: { in: ROLES.values }
 
   validates :password, presence: true, length: { in: 6..20 }, on: :create
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i.freeze
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
-                    uniqueness: { case_sensitive: false }, confirmation: true
+  validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
 
   scope :non_admin, -> { where.not(role: User::ROLES[:admin]) }
   scope :not, ->(ids) { where.not(id: ids) }

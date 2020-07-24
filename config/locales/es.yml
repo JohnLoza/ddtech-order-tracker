@@ -6,7 +6,7 @@ es:
     badge: Insignia
     brand: Ddtech
     change_password: Cambiar contraseña
-    created_at: Fecha de creación
+    created_at: Fecha
     close: Cerrar
     dashboard: Tablero de Inicio
     filter: Filtrar
@@ -40,6 +40,13 @@ es:
     assemble:
       false: '<span class="badge badge-warning badge-pill">No</span>'
       true: '<span class="badge badge-success badge-pill">Sí</span>'
+  movement:
+    descriptions:
+      new_order: Creó el pedido
+      supplied_order: Surtió de almacén
+      assembled_order: Terminó el ensamble
+      packed_order: Empaquetó el pedido
+      sent_order: Registró guía de seguimiento
 
   activerecord:
     errors:
@@ -257,4 +264,5 @@ es:
       default: "%A, %-d de %B de %Y %H:%M:%S %z"
       long: "%-d de %B de %Y %H:%M"
       short: "%-d de %b %H:%M"
+      only_date: "%-d de %b"
     pm: pm

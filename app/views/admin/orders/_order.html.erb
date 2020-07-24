@@ -4,12 +4,9 @@
   <%= content_tag :td, order.user %>
   <td>
     <%= content_tag :span, t("order.statuses.#{order.status}"),
-      class: 'badge badge-secondary badge-pill' %>
+      class: 'badge badge-primary badge-pill' %>
   </td>
-  <td>
-    <%= content_tag :span, order.guide, class: 'badge badge-primary badge-pill' %>
-  </td>
-  <%= content_tag :td, l(order.created_at, format: :short) %>
+  <%= content_tag :td, l(order.created_at, format: :only_date) %>
   <td>
     <%= link_to edit_admin_order_path(order),
       class: 'btn btn-outline-light btn-sm hidden-action' do %>

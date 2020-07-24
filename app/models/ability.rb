@@ -10,9 +10,14 @@ class Ability
     case user.role
     when User::ROLES[:admin]
       can :manage, :all
+
       cannot %i[update destroy], User, role: User::ROLES[:admin]
       can :update, User, id: user.id
+
       cannot :update_status, Order, status: [Order::STATUS[:sent], Order::STATUS[:packed]]
+
+      cannot :update_guide, Order
+      can :update_guide, Order, status: [Order::STATUS[:sent], Order::STATUS[:packed]]
 
     when User::ROLES[:human_resources]
       can :manage, User
@@ -37,7 +42,7 @@ class Ability
 
     when User::ROLES[:parcel_guides_generator]
       can :read, Order
-      can :update_guide, Order, status: Order::STATUS[:packed]
+      can :update_guide, Order, [Order::STATUS[:sent], Order::STATUS[:packed]]
     end
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities

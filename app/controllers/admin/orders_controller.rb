@@ -11,7 +11,9 @@ module Admin
 
     def index; end
 
-    def show; end
+    def show
+      @movements = @order.movements.includes(:user)
+    end
 
     def new; end
 
@@ -57,7 +59,7 @@ module Admin
     end
 
     def load_orders
-      @orders = Order.all.includes(:user)
+      @orders = Order.recent.includes(:user)
     end
 
     def set_new_order
@@ -66,6 +68,7 @@ module Admin
 
     def load_and_authorize_order
       @order = Order.find(params[:id])
+      @order.updater_id = current_user.id
       if params[:order][:guide]
         authorize! :update_guide, @order
       elsif params[:order][:status]

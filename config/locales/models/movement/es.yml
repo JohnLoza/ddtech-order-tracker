@@ -1,0 +1,12 @@
+es:
+  activerecord:
+    models:
+      movement:
+        one: Movimiento
+        other: Movimientos
+    attributes:
+      movement:
+        id: Clave
+        user_id: Usuario
+        order_id: Orden
+        description: Descripción
