@@ -27,7 +27,8 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { in: 6..20 }, on: :create
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i.freeze
-  validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
+  validates :email, format: { with: VALID_EMAIL_REGEX },
+    uniqueness: { case_sensitive: false }, confirmation: true
 
   scope :non_admin, -> { where.not(role: User::ROLES[:admin]) }
   scope :not, ->(ids) { where.not(id: ids) }

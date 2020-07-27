@@ -25,7 +25,7 @@ class Order < ApplicationRecord
 
   validates :client_email, :status, :parcel,
     presence: true,
-    length: {minimum:3, maximum:50}
+    length: {maximum:50}
 
   validates :ddtech_key,
     presence: true,
