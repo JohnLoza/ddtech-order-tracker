@@ -39,6 +39,7 @@
 a.hidden-action {
   display: none;
 }
+tr:hover, tr:focus { background-color: #efefef !important; }
 tr:hover .hidden-action,
 tr:focus .hidden-action {
   display: inline-block !important;

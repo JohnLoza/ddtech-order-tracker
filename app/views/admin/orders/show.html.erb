@@ -28,7 +28,7 @@
         <p class="card-text">
           <%= content_tag :span, Order.human_attribute_name(:client_email),
             class: 'font-weight-bold text-uppercase' %><br>
-          <%= @order.client_email %>
+          <%= link_to @order.client_email, "mailto:#{@order.client_email}" %>
         </p>
 
         <p class="card-text">
@@ -65,7 +65,7 @@
   </div>
 
   <div class="col-lg-8 col-md-6 col-sm-12 col-12">
-    <%= render partial: 'movements_card', locals: {movements: @movements} %>
-    <%= render partial: 'notes_card', locals: {notes: @notes, new_note: @order.notes.build} %>
+    <%= render partial: '/admin/movements/card', locals: {movements: @movements} %>
+    <%= render partial: '/admin/notes/card', locals: {notes: @notes, new_note: @order.notes.build} %>
   </div>
 </div>

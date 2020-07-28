@@ -1,6 +1,6 @@
 <tr>
   <%= content_tag :td, link_to(order.ddtech_key, admin_order_path(order)) %>
-  <%= content_tag :td, order.client_email %>
+  <%= content_tag :td, link_to(order.client_email, "mailto:#{order.client_email}") %>
   <%= content_tag :td, order.user %>
   <td>
     <%= content_tag :span, t("order.statuses.#{order.status}"),
