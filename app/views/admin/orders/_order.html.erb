@@ -18,8 +18,5 @@
       data: { confirm: t('.are_you_sure_to_delete', order: order) } do %>
     <i class="fas fa-fw fa-trash"></i>
     <% end if can? :destroy, order %>
-
-    <%= render partial: 'update_status_form',
-      locals: {order: order, redirect_url: request.original_url} %>
   </td>
 </tr>

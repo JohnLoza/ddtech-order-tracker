@@ -1,0 +1,59 @@
+es:
+  labels:
+    account: Cuenta
+    actions: Acciones
+    are_you_sure_to_proceed: ¿Estás seguro de proceder? Esto no se puede deshacer
+    badge: Insignia
+    brand: Ddtech
+    change_password: Cambiar contraseña
+    created_at: Fecha
+    close: Cerrar
+    dashboard: Tablero de Inicio
+    filter: Filtrar
+    forgot_password: Olvidé mi contraseña
+    remember_me: Recuérdame
+    save: Guardar
+    search: Buscar
+    select: Selecciona
+    sign_in: Iniciar sesión
+    sign_out: Cerrar sesión
+    track_your_package: Rastrea tu paquete
+    updated_at: Última actualización
+  roles:
+    admin: Administrador
+    assembler: Ensamblador
+    human_resources: Recursos Humanos
+    packer: Empacador
+    parcel_guides_generator: Generador de Guías
+    shipments: Embarques
+    warehouse: Almacén
+  order:
+    statuses:
+      new: Nuevo
+      supplied: Suminitrado por Almacén
+      assembled: Ensamblado
+      packed: Empaquetado
+      sent: Enviado
+    status_change_msg:
+      supplied: Establecer salida de almacén!
+      assembled: Ensamble realizado!
+      packed: Empaquetado listo!
+    assemble:
+      false: '<span class="badge badge-warning badge-pill">No</span>'
+      true: '<span class="badge badge-success badge-pill">Sí</span>'
+  movement:
+    descriptions:
+      new_order: Creó el pedido
+      supplied_order: Surtió de almacén
+      assembled_order: Terminó el ensamble
+      packed_order: Empaquetó el pedido
+      sent_order: Registró guía de seguimiento
+  mailer:
+    subjects:
+      order_status_changed: "Actualización de tu pedido DD Tech #%{key}"
+    body:
+      track_urls:
+        estafeta: https://www.estafeta.com/Herramientas/Rastreov1
+        fedex: https://www.fedex.com/es-mx/tracking.html
+        zmg: https://kanguus.com/app/rastreo
+        dhl: http://www.dhl.com.mx/es/express/rastreo.html

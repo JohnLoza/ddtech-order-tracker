@@ -22,11 +22,13 @@
           required: true, 'data-parsley-equalto' => '#user_email' %>
     </div>
 
+    <% unless @user.admin? %>
     <div class="form-group">
       <%= f.label :role %>
       <%= f.select :role, roles_for_select(),
           {prompt: t('labels.select')}, {class: 'form-control', required: true} %>
     </div>
+    <% end %>
 
     <%= f.submit t('labels.save'), class: 'btn btn-primary btn-lg' %>
     <%= content_tag :span, t('labels.change_password'),

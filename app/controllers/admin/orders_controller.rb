@@ -29,8 +29,7 @@ module Admin
 
     def update
       if @order.update_attributes order_params
-        url = params[:redirect_url].present? ? params[:redirect_url] : [:admin, @order]
-        redirect_to url, flash: { success: t('.success', order: @order) }
+        redirect_to [:admin, @order], flash: { success: t('.success', order: @order) }
       else
         render :edit
       end

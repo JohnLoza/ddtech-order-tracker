@@ -1,0 +1,22 @@
+<div class="bg-primary upcase text-center">
+  <%= content_tag :h1, t('labels.brand'), style: 'padding-bottom: 0;' %>
+  <%= content_tag :h1, "Pedido: ##{@order.ddtech_key}" %>
+</div>
+
+<h2 class="text-center">¡Hola! le atiende: <%= @order.user %></h2>
+
+<%= render partial: "order_#{@order.status}", locals: {order: @order} %>
+
+<p class="text-center">
+  <strong>
+    Una vez despachado su pedido se le hará llegar su numero de rastreo desde otro mail, favor de revisar su bandeja de correo no deseado o spam. <br>
+    Gracias!
+  </strong>
+</p>
+
+<p class="text-center upcase" style="color: #ff9900;">
+  <strong>
+    importante <br>
+    Por la contingencia estamos tardando un poco más en procesar, tenemos menos de la mitad del personal laborando, por su comprensión ¡Gracias!
+  </strong>
+</p>

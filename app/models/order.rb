@@ -14,11 +14,13 @@ class Order < ApplicationRecord
   }.freeze
 
   attr_accessor :updater_id
+  attr_accessor :needs_notification
 
   before_validation :set_status, on: :create
   before_save :downcase_email
 
   before_save :create_movement
+  after_save :notify_client
 
   belongs_to :user
   has_many :movements
@@ -59,6 +61,14 @@ class Order < ApplicationRecord
       params = {user_id: self.updater_id ? self.updater_id : self.user_id}
       params[:data] = self.guide if self.guide_changed?
       self.movements.build(params)
+      self.needs_notification = true
+    end
+  end
+
+  def notify_client
+    if self.needs_notification
+      ApplicationMailer.with(order: self)
+        .notify_order_status_change.deliver_now
     end
   end
 end

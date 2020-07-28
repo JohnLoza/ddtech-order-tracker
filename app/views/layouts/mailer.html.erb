@@ -3,11 +3,86 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style>
-      /* Email styles need to be inline */
+      h1 {
+        font-size: 34px;
+        margin: 0;
+        padding: 0.5em;
+      }
+      p, a, span {
+        font-size: 16px;
+      }
+
+      .bg-primary {
+        background-color: #1765be;
+        color: #fefefe;
+      }
+      .bg-primary a {
+        color: #80acff
+      }
+
+      .bg-success {
+        background-color: #21ae41;
+        color: #fefefe;
+      }
+
+      .btn {
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 0.5em;
+        text-decoration: none;
+      }
+      .btn-success {
+        background-color: #21ae41;
+        color: #fefefe !important;
+      }
+      .btn-xl {
+        font-size: 24px !important;
+      }
+
+      .p-1 { padding: 0.5em; }
+
+      .parcel {
+        background-color: #777;
+        color: #fefefe;
+        padding: 0.2em;
+        margin: 0.5em;
+      }
+      .parcel p {
+        font-size: 24px !important;
+      }
+
+      .ESTAFETA { background-color: #e53935; }
+      .FEDEX { background-color: #3949ab; }
+      .ZMG { background-color: #7cb342; }
+      .DHL {
+        background-color: #fdd835;
+        color: #333
+      }
+
+      .text-center { text-align: center; }
+
+      .upcase { text-transform: uppercase; }
     </style>
   </head>
 
   <body>
+
     <%= yield %>
+
+    <div class="bg-primary p-1" style="padding-top: 1em;">
+      <p class="text-center upcase">importante</p>
+      <p class="text-center">
+        Si requiere factura, favor de indicarnos su método de pago:  tarjeta de débito, crédito, cheque, transferencia o efectivo, así como uso de CFDI. **Hacer caso omiso si ya registro sus datos de facturación en su pedido, o bien si no requiere factura.**
+      </p>
+      <p class="text-center">
+        Le recordamos nuestros tiempos de espera en el siguiente enlace:
+        <a href="https://ddtech.mx/blog/noticia/retrasos-en-envios">
+          https://ddtech.mx/blog/noticia/retrasos-en-envios
+        </a>
+      </p>
+    </div>
+
+    <p>#QuedateEnCasa</p>
+    <p>Atte. El Equipo DDTech</p>
   </body>
 </html>

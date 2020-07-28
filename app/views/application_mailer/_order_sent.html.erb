@@ -1,0 +1,18 @@
+<p class="text-center">
+  Nos complace informarte que tu pedido ## 373861/MONITOR fue realizado con éxito y ya se encuentra en tránsito hacia tu dirección. Recibirás tu envío pronto.
+</p>
+<p class="text-center">
+  Este correo solo tiene la finalidad de hacerle llegar el número de rastreo de su pedido, si tiene alguna duda conforme al mismo favor de responder a este correo.
+</p>
+
+<div class='parcel <%= order.parcel %> text-center'>
+  <%= content_tag :p, order.parcel %>
+  <%= content_tag :p, order.guide %>
+</div>
+
+<div class="text-center">
+  <%= link_to t('labels.track_your_package'),
+      t("mailer.body.order.track_urls.#{@order.parcel.downcase}"),
+      class: 'btn btn-success .btn-xl' %>
+</div>
+<br>

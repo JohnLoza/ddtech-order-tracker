@@ -1,4 +1,4 @@
-<%= provide :title, t('.title') %>
+<% provide :title, t('.title') %>
 
 <div class="row">
 
@@ -50,8 +50,7 @@
             class: 'badge badge-primary badge-pill' %>
         </p>
 
-        <%= render partial: 'update_status_form',
-          locals: {order: @order, redirect_url: nil} %>
+        <%= render partial: 'update_status_form', locals: {order: @order} %>
 
         <%= render partial: 'update_guide_form', locals: {order: @order} %>
       </div>
