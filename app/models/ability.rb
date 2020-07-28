@@ -40,6 +40,7 @@ class Ability
     cannot %i[update destroy], User, role: User::ROLES[:admin]
     can :update, User, id: user.id
 
+    cannot :update_status, Order, status: [Order::STATUS[:sent], Order::STATUS[:packed]]
     cannot :update_guide, Order
     can :update_guide, Order, status: [Order::STATUS[:sent], Order::STATUS[:packed]]
   end
