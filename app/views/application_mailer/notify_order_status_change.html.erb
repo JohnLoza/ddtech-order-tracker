@@ -7,16 +7,22 @@
 
 <%= render partial: "order_#{@order.status}", locals: {order: @order} %>
 
+<% unless @order.status == Order::STATUS[:sent] %>
 <p class="text-center">
   <strong>
-    Una vez despachado su pedido se le hará llegar su numero de rastreo desde otro mail, favor de revisar su bandeja de correo no deseado o spam. <br>
-    Gracias!
+    Una vez despachado su pedido se le hará llegar su numero de rastreo desde otro mail, favor de revisar su bandeja de correo no deseado o spam.
   </strong>
+</p>
+
+<p class="text-center">
+  Quedo a sus órdenes para cualquier duda que pueda surgir y le deseo un excelente día.<br>
+  <strong>¡Gracias!</strong>
 </p>
 
 <p class="text-center upcase" style="color: #ff9900;">
   <strong>
-    importante <br>
-    Por la contingencia estamos tardando un poco más en procesar, tenemos menos de la mitad del personal laborando, por su comprensión ¡Gracias!
+    Importante<br>
+    Actualmente nos encontramos bajo una gran demanda de pedidos, por lo que podría haber demoras con su envío. Agradecemos mucho su comprensión.
   </strong>
 </p>
+<% end # unless status is :sent %>
