@@ -18,6 +18,23 @@
   padding: 8px;
 }
 
+.parcel {
+  background-color: #777;
+  border-radius: 5px;
+  color: #fefefe;
+  padding: 0.3em;
+}
+
+.parcel.estafeta { background-color: #e53935; }
+.parcel.fedex { background-color: #3949ab; }
+.parcel.zmg { background-color: #7cb342; }
+.parcel.dhl {
+  background-color: #fdd835;
+  color: #333
+}
+
+.pointer { cursor: pointer; }
+
 /* hidden-action for actions in tables for each row */
 a.hidden-action {
   display: none;

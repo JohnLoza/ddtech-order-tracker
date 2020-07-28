@@ -44,6 +44,13 @@
         </p>
 
         <p class="card-text">
+          <%= content_tag :span, Order.human_attribute_name(:parcel),
+            class: 'font-weight-bold text-uppercase' %><br>
+          <%= content_tag :span, @order.parcel,
+            class: "parcel #{@order.parcel.downcase}" %>
+        </p>
+
+        <p class="card-text">
           <%= content_tag :span, Order.human_attribute_name(:status),
             class: 'font-weight-bold text-uppercase' %><br>
           <%= content_tag :span, t("order.statuses.#{@order.status}"),
@@ -58,22 +65,7 @@
   </div>
 
   <div class="col-lg-8 col-md-6 col-sm-12 col-12">
-    <div class="card">
-      <div class="card-body">
-        <%= content_tag :h3, Movement.model_name.human(count: 2), class: 'card-title' %>
-
-        <% @movements.each do |movement| %>
-          <p class="card-text">
-            <%= content_tag :span, movement.user, class: 'badge badge-info badge-pill' %> |
-            <%= content_tag :span, l(movement.created_at, format: :long) %>
-          </p>
-          <%= content_tag :span, t("movement.descriptions.#{movement.description}"),
-            class: 'card-text' %>
-          <%= content_tag :span, movement.data,
-            class: 'badge badge-primary badge-pill' if movement.data.present? %>
-          <hr>
-        <% end %>
-      </div>
-    </div>
+    <%= render partial: 'movements_card', locals: {movements: @movements} %>
+    <%= render partial: 'notes_card', locals: {notes: @notes, new_note: @order.notes.build} %>
   </div>
 </div>

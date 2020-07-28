@@ -1,0 +1,9 @@
+<p class="card-text">
+  <%= content_tag :span, movement.user, class: 'badge badge-info badge-pill' %>
+  <%= content_tag :span, l(movement.created_at, format: :long) %>
+</p>
+<%= content_tag :span, t("movement.descriptions.#{movement.description}"),
+  class: 'card-text' %>
+<%= content_tag :span, movement.data,
+  class: 'badge badge-primary badge-pill' if movement.data.present? %>
+<hr>

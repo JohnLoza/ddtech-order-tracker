@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :dashboard, only: :index
     resources :users
-    resources :orders
+    resources :orders do
+      resources :notes, only: :create
+    end
   end
 
   match '*path', via: :all, to: 'application#render_404'

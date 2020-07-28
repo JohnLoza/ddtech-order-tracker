@@ -26,3 +26,10 @@ es:
       # partials
       order:
         are_you_sure_to_delete: ¿Estás seguro(a) de eliminar el pedido %{order}?
+
+      notes_card:
+        empty_notes: Oopss. ¡Aún no tenemos ninguna nota!
+
+    notes:
+      form:
+        are_you_sure_to_save: ¿Estás seguro(a) de guardar así la nota?

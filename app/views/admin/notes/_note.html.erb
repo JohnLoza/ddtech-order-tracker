@@ -1,0 +1,6 @@
+<p class="card-text note-<%= note.id %>">
+  <%= content_tag :span, note.user, class: 'badge badge-secondary badge-pill' %>
+  <%= content_tag :span, l(note.created_at, format: :long) %>
+</p>
+<%= content_tag :p, simple_format(note.message), class: 'card-text' %>
+<hr>

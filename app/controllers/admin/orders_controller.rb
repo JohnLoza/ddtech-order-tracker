@@ -13,6 +13,7 @@ module Admin
 
     def show
       @movements = @order.movements.includes(:user)
+      @notes = @order.notes.recent.includes(:user)
     end
 
     def new; end

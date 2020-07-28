@@ -1,4 +1,6 @@
 class Movement < ApplicationRecord
+  include Timeable
+
   belongs_to :user
   belongs_to :order
 

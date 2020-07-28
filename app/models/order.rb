@@ -3,6 +3,7 @@
 # User definition class
 class Order < ApplicationRecord
   include Searchable
+  include Timeable
 
   PARCELS = %i[ESTAFETA FEDEX ZMG DHL].freeze
   STATUS = {
@@ -24,6 +25,7 @@ class Order < ApplicationRecord
 
   belongs_to :user
   has_many :movements
+  has_many :notes
 
   validates :client_email, :status, :parcel,
     presence: true,
@@ -35,8 +37,6 @@ class Order < ApplicationRecord
     uniqueness: true
 
   validates :status, inclusion: {in: STATUS.values}
-
-  scope :recent, -> { order(created_at: :desc) }
 
   def to_s
     "##{ddtech_key}"

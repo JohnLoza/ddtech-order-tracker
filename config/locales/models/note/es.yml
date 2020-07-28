@@ -1,0 +1,12 @@
+es:
+  activerecord:
+    models:
+      note:
+        one: Nota
+        other: Notas
+    attributes:
+      note:
+        id: Clave
+        user_id: Usuario
+        order_id: Orden
+        message: Mensaje

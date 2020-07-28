@@ -3,6 +3,7 @@
 # User definition class
 class User < ApplicationRecord
   include Searchable
+  include Timeable
   include SoftDeletable
 
   ROLES = {
@@ -20,6 +21,7 @@ class User < ApplicationRecord
 
   has_many :orders
   has_many :movements
+  has_many :notes
 
   validates :name, :email, presence: true, length: { maximum: 50 }
   validates :role, presence: true, inclusion: { in: ROLES.values }
@@ -32,7 +34,6 @@ class User < ApplicationRecord
 
   scope :non_admin, -> { where.not(role: User::ROLES[:admin]) }
   scope :not, ->(ids) { where.not(id: ids) }
-  scope :recent, -> { order(created_at: :desc) }
   scope :order_by_name, ->(way = :asc) { order(name: way) }
   scope :by_role, ->(role) { where(role: role) if role.present? }
 
