@@ -2,6 +2,8 @@
 
 # Helper with functions for layout rendering
 module LayoutHelper
+  include Pagy::Frontend
+
   def active_class_for(required)
     case required.class.to_s
     when 'String'
@@ -25,12 +27,21 @@ module LayoutHelper
 
   def roles_for_select()
     roles = roles_without(:admin)
-    roles = roles.map { |key, value| [I18n.t("roles.#{key}"), value] }
+    roles = roles.map { |key, value| [I18n.t("user.roles.#{key}"), value] }
     roles.sort { |a, b| a.first <=> b.first }
   end
 
+  def users_for_select(args = {})
+    User.by_role(args[:role])
+      .map{ |user| [user, user.id] }
+  end
+
+  def order_statuses_for_select()
+    Order::STATUS.map { |key, value| [I18n.t("order.statuses.#{key}"), value] }
+  end
+
   def parcels_for_select()
-    Order::PARCELS.map{ |value| [value, value] }
+    Order::PARCELS.map { |value| [value, value] }
   end
 
   def next_status_for_order(order)

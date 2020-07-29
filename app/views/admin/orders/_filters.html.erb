@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <%= content_tag :h5, t("labels.filters"), class: "card-header" %>
+      <div class="card-body">
+        <%= form_for :filter, method: :get, html: {class: "form-inline"} do |f| %>
+
+          <div class="form-group mx-sm-3">
+            <%= f.label :ddtech_key, Order.human_attribute_name(:ddtech_key), class: 'sr-only'  %>
+            <%= f.text_field :ddtech_key, value: filter_params(require: :ddtech_key),
+              class: 'form-control filter', placeholder: Order.human_attribute_name(:ddtech_key) %>
+          </div>
+
+          <div class='form-group mx-sm-3'>
+            <%= f.label :user_id, User.model_name.human, class: 'sr-only'  %>
+            <%= f.select :user_id, users_for_select(role: User::ROLES[:shipments]),
+                { prompt: User.model_name.human, selected: filter_params(require: :user_id) },
+                { class: 'form-control filter' } %>
+          </div>
+
+          <div class='form-group mx-sm-3'>
+            <%= f.label :status, Order.human_attribute_name(:status), class: 'sr-only'  %>
+            <%= f.select :status, order_statuses_for_select(),
+                {
+                  prompt: Order.human_attribute_name(:status),
+                  selected: filter_params(require: :status)
+                },
+                { class: 'form-control filter' } %>
+          </div>
+
+          <%= f.submit t("labels.search"), class: "btn btn-primary" %>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

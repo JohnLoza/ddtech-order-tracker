@@ -38,6 +38,11 @@ class Order < ApplicationRecord
 
   validates :status, inclusion: {in: STATUS.values}, unless: :holding?
 
+  scope :by_user, -> (user_id) { where(user_id: user_id) if user_id.present? }
+  scope :by_status, -> (status) {
+    where(status: status, holding: false) if status.present?
+  }
+
   def to_s
     "##{ddtech_key}"
   end

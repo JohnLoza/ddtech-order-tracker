@@ -9,7 +9,7 @@ if User.all.empty?
   (1..5).each do |subfix|
     User::ROLES.keys.each do |role|
       User.create(
-        name: "#{I18n.t("roles.#{role}")}_#{subfix}",
+        name: "#{I18n.t("user.roles.#{role}")}_#{subfix}",
         email: "#{role}#{subfix}@mail.com",
         role: role,
         password: 'foobar',

@@ -6,7 +6,7 @@
   </td>
   <%= content_tag :td, user.name %>
   <%= content_tag :td, user.email %>
-  <%= content_tag :td, t("roles.#{user.role}") %>
+  <%= content_tag :td, t("user.roles.#{user.role}") %>
   <td>
     <%= link_to edit_admin_user_path(user),
       class: 'btn btn-outline-light btn-sm hidden-action' do %>

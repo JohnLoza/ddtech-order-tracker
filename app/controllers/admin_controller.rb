@@ -2,6 +2,7 @@
 
 # Base Admin controller
 class AdminController < ApplicationController
+  include Pagy::Backend
   include AdminHelper
 
   layout 'admin'

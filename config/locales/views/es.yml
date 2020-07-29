@@ -23,14 +23,15 @@ es:
     track_your_package: Rastrea tu paquete
     updated_at: Última actualización
 
-  roles:
-    admin: Administrador
-    assembler: Ensamblador
-    human_resources: Recursos Humanos
-    packer: Empacador
-    parcel_guides_generator: Generador de Guías
-    shipments: Embarques
-    warehouse: Almacén
+  user:
+    roles:
+      admin: Administrador
+      assembler: Ensamblador
+      human_resources: Recursos Humanos
+      packer: Empacador
+      parcel_guides_generator: Generador de Guías
+      shipments: Embarques
+      warehouse: Almacén
 
   order:
     statuses:

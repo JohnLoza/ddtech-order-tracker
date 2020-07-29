@@ -84,7 +84,14 @@ module Admin
     end
 
     def load_orders
-      @orders = Order.recent.includes(:user)
+      @pagy, @orders = pagy(
+        Order.search(
+            keywords: filter_params(require: :ddtech_key),
+            fields: [:ddtech_key]
+          ).by_user(filter_params(require: :user_id))
+          .by_status(filter_params(require: :status))
+          .recent.includes(:user)
+      )
     end
 
     def set_new_order

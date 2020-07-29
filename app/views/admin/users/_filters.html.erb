@@ -4,8 +4,15 @@
       <%= content_tag :h5, 'Filtros', class: 'card-header' %>
       <div class="card-body">
         <%= form_for :filter, method: :get, html: {class: 'form-inline'} do |f| %>
+
+        <div class="form-group mx-sm-3">
+          <%= f.label :keywords, 'Name or Email', class: 'sr-only'  %>
+          <%= f.text_field :keywords, value: filter_params(require: :keywords),
+            class: 'form-control filter', placeholder: 'Name or Email' %>
+        </div>
+
         <div class='form-group mx-sm-3'>
-          <%= f.label :role, 'Rol', class: 'sr-only'  %>
+          <%= f.label :role, User.human_attribute_name(:role), class: 'sr-only'  %>
           <%= f.select :role, roles_for_select(),
               { prompt: User.human_attribute_name(:role), selected: filter_params(require: :role) },
               { class: 'form-control' } %>

@@ -13,8 +13,12 @@
       </h5>
       <div class="card-body">
         <div class="table-responsive">
-          <table class="table">
+
+          <table class="table table-bordered table-hover">
             <thead class="bg-light">
+              <tr>
+                <%= content_tag :td, pagy_bootstrap_nav(@pagy).html_safe, colspan: 5 %>
+              </tr>
               <tr class="border-0">
                 <%= content_tag :th, t('labels.badge'), class: 'border-0' %>
                 <%= content_tag :th, User.human_attribute_name(:name), class: 'border-0' %>
@@ -26,6 +30,11 @@
             <tbody>
               <%= render @users %>
             </tbody>
+            <tfoot>
+              <tr>
+                <%= content_tag :td, pagy_bootstrap_nav(@pagy).html_safe, colspan: 5 %>
+              </tr>
+            </tfoot>
           </table>
 
         </div>

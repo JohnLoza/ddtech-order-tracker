@@ -65,8 +65,11 @@ module Admin
     end
 
     def load_users
-      @users = User.active.not(current_user).order_by_name
-                   .by_role(filter_params(require: :role))
+      @pagy, @users = pagy(
+        User.active.not(current_user).order_by_name
+          .search(keywords: filter_params(require: :keywords), fields: [:name, :email])
+          .by_role(filter_params(require: :role))
+      )
     end
   end
 end

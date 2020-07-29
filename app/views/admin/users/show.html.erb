@@ -8,7 +8,7 @@
 
         <figcaption class="figure-caption">
           <%= content_tag :h6, @user, class: 'figure-title' %>
-          <%= content_tag :span, t("roles.#{@user.role}"),
+          <%= content_tag :span, t("user.roles.#{@user.role}"),
             class: 'badge badge-secondary badge-pill' %>
         </figcaption>
       </figure>
@@ -32,7 +32,7 @@
         <p class="card-text">
           <%= content_tag :span, User.human_attribute_name(:rol),
             class: 'font-weight-bold text-uppercase' %><br>
-          <%= content_tag :span, t("roles.#{@user.role}"),
+          <%= content_tag :span, t("user.roles.#{@user.role}"),
             class: 'badge badge-secondary badge-pill' %>
         </p>
       </div>

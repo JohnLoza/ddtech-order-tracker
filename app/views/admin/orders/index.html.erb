@@ -13,8 +13,12 @@
       </h5>
       <div class="card-body">
         <div class="table-responsive">
-          <table class="table">
+
+          <table class="table table-bordered table-hover">
             <thead class="bg-light">
+              <tr>
+                <%= content_tag :td, pagy_bootstrap_nav(@pagy).html_safe, colspan: 6 %>
+              </tr>
               <tr class="border-0">
                 <%= content_tag :th, Order.human_attribute_name(:ddtech_key), class: 'border-0' %>
                 <%= content_tag :th, Order.human_attribute_name(:client_email), class: 'border-0' %>
@@ -27,6 +31,11 @@
             <tbody>
               <%= render @orders %>
             </tbody>
+            <tfoot>
+              <tr>
+                <%= content_tag :td, pagy_bootstrap_nav(@pagy).html_safe, colspan: 6 %>
+              </tr>
+            </tfoot>
           </table>
 
         </div>
