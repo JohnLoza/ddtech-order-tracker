@@ -1,0 +1,22 @@
+<% holding = @order.holding? %>
+
+<% if holding %>
+  <% return unless can? :release, @order %>
+<% else %>
+  <% return unless can? :hold, @order %>
+<% end %>
+
+<% url = holding ? release_admin_order_path(@order) : hold_admin_order_path(@order) %>
+<% label = holding ? t('labels.release') : t('labels.hold') %>
+
+<div class="pt-5">
+<%= content_tag :h2, t('.title'), class: 'text-center' %>
+<%= form_with url: url, method: :put, remote: false do %>
+  <div class="form-group">
+    <%= text_area :movement, :data, class: 'form-control',
+      maxlength: 250, required: true %>
+  </div>
+  <%= submit_tag label, class: 'btn btn-danger btn-lg',
+     data: { confirm: t('.are_you_sure') } %>
+<% end %>
+</div>

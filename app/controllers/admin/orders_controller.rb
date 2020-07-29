@@ -7,7 +7,7 @@ module Admin
     before_action :load_and_authorize_order, only: :update
     before_action :set_new_order, only: :create
 
-    load_and_authorize_resource except: :update
+    load_and_authorize_resource except: [:update]
 
     def index; end
 
@@ -43,6 +43,31 @@ module Admin
         flash[:info] = t('.failure', order: @order)
       end
       redirect_to admin_orders_path
+    end
+
+    def hold
+      @order.movements.build(
+        user_id: current_user.id, data: params[:movement][:data],
+        description: Movement::DESCRIPTIONS[:holded_order])
+      if @order.hold
+        flash[:success] = t('.success', order: @order)
+      else
+        @order.errors.full_messages.each { |error| logger.debug "/// error: #{error}" }
+        flash[:info] = t('failure', order: @order)
+      end
+      redirect_to admin_order_path @order
+    end
+
+    def release
+      @order.movements.build(
+        user_id: current_user.id, data: params[:movement][:data],
+        description: Movement::DESCRIPTIONS[:released_order])
+      if @order.release
+        flash[:success] = t('.success', order: @order)
+      else
+        flash[:info] = t('failure', order: @order)
+      end
+      redirect_to admin_order_path @order
     end
 
     private

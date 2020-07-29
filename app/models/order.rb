@@ -36,7 +36,7 @@ class Order < ApplicationRecord
     length: {minimum:5, maximum:6},
     uniqueness: true
 
-  validates :status, inclusion: {in: STATUS.values}
+  validates :status, inclusion: {in: STATUS.values}, unless: :holding?
 
   def to_s
     "##{ddtech_key}"
@@ -44,6 +44,18 @@ class Order < ApplicationRecord
 
   def to_param
     "#{id}-#{ddtech_key}"
+  end
+
+  def hold
+    self.update_attributes(holding: true)
+  end
+
+  def release
+    self.update_attributes(holding: false)
+  end
+
+  def holding?
+    self.holding
   end
 
   private

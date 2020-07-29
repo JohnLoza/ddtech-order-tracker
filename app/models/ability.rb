@@ -43,6 +43,9 @@ class Ability
     cannot :update_status, Order, status: [Order::STATUS[:sent], Order::STATUS[:packed]]
     cannot :update_guide, Order
     can :update_guide, Order, status: [Order::STATUS[:sent], Order::STATUS[:packed]]
+
+    cannot [:update_status, :update_guide], Order, holding: true
+    cannot :hold, Order, status: Order::STATUS[:sent]
   end
 
   def human_resources_permissions(user)
@@ -54,22 +57,27 @@ class Ability
     can :manage, Order, user_id: user.id
     cannot :update_status, Order
     cannot :update_guide, Order
+    cannot :hold, Order, status: Order::STATUS[:sent]
   end
 
   def warehouse_permissions(user)
     can :update_status, Order, status: Order::STATUS[:new]
+    cannot :update_status, Order, holding: true
   end
 
   def assembler_permissions(user)
     can :update_status, Order, status: Order::STATUS[:supplied]
+    cannot :update_status, Order, holding: true
   end
 
   def packer_permissions(user)
     can :update_status, Order, status: Order::STATUS[:assembled]
+    cannot :update_status, Order, holding: true
   end
 
   def parcel_guides_generator_permissions(user)
     can :update_guide, Order, status: [Order::STATUS[:sent], Order::STATUS[:packed]]
+    cannot :update_guide, Order, holding: true
   end
 
 end

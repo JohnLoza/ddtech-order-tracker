@@ -11,6 +11,9 @@ es:
     dashboard: Tablero de Inicio
     filter: Filtrar
     forgot_password: Olvidé mi contraseña
+    hold: Retener
+    holding: Retenido
+    release: Liberar
     remember_me: Recuérdame
     save: Guardar
     search: Buscar
@@ -19,6 +22,7 @@ es:
     sign_out: Cerrar sesión
     track_your_package: Rastrea tu paquete
     updated_at: Última actualización
+
   roles:
     admin: Administrador
     assembler: Ensamblador
@@ -27,6 +31,7 @@ es:
     parcel_guides_generator: Generador de Guías
     shipments: Embarques
     warehouse: Almacén
+
   order:
     statuses:
       new: Nuevo
@@ -41,6 +46,7 @@ es:
     assemble:
       false: '<span class="badge badge-warning badge-pill">No</span>'
       true: '<span class="badge badge-success badge-pill">Sí</span>'
+
   movement:
     descriptions:
       new_order: Creó el pedido
@@ -48,6 +54,9 @@ es:
       assembled_order: Terminó el ensamble
       packed_order: Empaquetó el pedido
       sent_order: Registró guía de seguimiento
+      holded_order: Retuvo el pedido
+      released_order: Liberó el pedido
+
   mailer:
     subjects:
       order_status_changed: "Actualización de tu pedido DD Tech #%{key}"

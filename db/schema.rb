@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2020_07_28_172059) do
     t.string "parcel"
     t.string "guide"
     t.boolean "assemble", default: false
+    t.boolean "holding", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["client_email"], name: "index_orders_on_client_email"
