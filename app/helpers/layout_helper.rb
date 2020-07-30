@@ -55,6 +55,18 @@ module LayoutHelper
     end
   end
 
+  def status_badge(order)
+    badge_class = order.status == Order::STATUS[:sent] ? 'success' : 'primary'
+
+    if order.holding?
+      content_tag(:span, t('labels.holding'),
+        class: 'badge badge-danger badge-pill')
+    else
+      content_tag(:span, t("order.statuses.#{order.status}"),
+        class: "badge badge-#{badge_class} badge-pill")
+    end
+  end
+
   def next_status_message(order)
     t("order.status_change_msg.#{next_status_for_order(order)}")
   end

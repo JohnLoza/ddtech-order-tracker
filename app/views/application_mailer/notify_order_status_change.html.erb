@@ -7,7 +7,7 @@
 
 <%= render partial: "order_#{@order.status}", locals: {order: @order} %>
 
-<% unless @order.status == Order::STATUS[:sent] %>
+<% if @order.status == Order::STATUS[:new] %>
 <p class="text-center">
   <strong>
     Una vez despachado su pedido se le hará llegar su numero de rastreo desde otro mail, favor de revisar su bandeja de correo no deseado o spam.
@@ -25,4 +25,17 @@
     Actualmente nos encontramos bajo una gran demanda de pedidos, por lo que podría haber demoras con su envío. Agradecemos mucho su comprensión.
   </strong>
 </p>
+
+<div class="bg-primary p-1" style="padding-top: 1em;">
+  <p class="text-center upcase">importante</p>
+  <p class="text-center">
+    Si requiere factura, favor de indicarnos su método de pago:  tarjeta de débito, crédito, cheque, transferencia o efectivo, así como uso de CFDI. **Hacer caso omiso si ya registro sus datos de facturación en su pedido, o bien si no requiere factura.**
+  </p>
+  <p class="text-center">
+    Le recordamos nuestros tiempos de espera en el siguiente enlace:
+    <a href="https://ddtech.mx/blog/noticia/retrasos-en-envios">
+      https://ddtech.mx/blog/noticia/retrasos-en-envios
+    </a>
+  </p>
+</div>
 <% end # unless status is :sent %>

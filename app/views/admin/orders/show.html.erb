@@ -1,4 +1,4 @@
-<% provide :title, t('.title') %>
+<% provide :title, t('.title', order: @order.ddtech_key) %>
 
 <div class="row">
 
@@ -6,16 +6,12 @@
     <div class="card">
       <div class="card-body">
         <h3 class="card-title"><%= yield :title %></h3>
-        <p class="card-text">
-          <%= content_tag :span, Order.human_attribute_name(:ddtech_key),
-            class: 'font-weight-bold text-uppercase' %><br>
-          <%= @order.ddtech_key %>
-        </p>
 
+        <%= content_tag :p, l(@order.created_at, format: :long), class: 'card-text' %>
         <p class="card-text">
-          <%= content_tag :span, t('labels.created_at'),
+          <%= content_tag :span, Order.human_attribute_name(:status),
             class: 'font-weight-bold text-uppercase' %><br>
-          <%= l(@order.created_at, format: :long) %>
+          <%= status_badge(@order) %>
         </p>
 
         <p class="card-text">
@@ -48,13 +44,6 @@
             class: 'font-weight-bold text-uppercase' %><br>
           <%= content_tag :span, @order.parcel,
             class: "parcel #{@order.parcel.downcase}" %>
-        </p>
-
-        <p class="card-text">
-          <%= content_tag :span, Order.human_attribute_name(:status),
-            class: 'font-weight-bold text-uppercase' %><br>
-          <%= content_tag :span, t("order.statuses.#{@order.status}"),
-            class: 'badge badge-primary badge-pill' %>
         </p>
 
         <%= render partial: 'update_status_form', locals: {order: @order} %>

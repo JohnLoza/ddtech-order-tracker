@@ -78,7 +78,7 @@ class Order < ApplicationRecord
       params = {user_id: self.updater_id ? self.updater_id : self.user_id}
       params[:data] = self.guide if self.guide_changed?
       self.movements.build(params)
-      self.needs_notification = true
+      self.needs_notification = true unless self.status == STATUS[:packed]
     end
   end
 

@@ -5,7 +5,7 @@ es:
         title: Listado de pedidos
 
       show:
-        title: Datos del pedido
+        title: Pedido No %{order}
 
       new:
         title: Nuevo pedido

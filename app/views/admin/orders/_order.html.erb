@@ -3,13 +3,7 @@
   <%= content_tag :td, link_to(order.client_email, "mailto:#{order.client_email}") %>
   <%= content_tag :td, order.user %>
   <td>
-    <% if order.holding? %>
-      <%= content_tag :span, t('labels.holding'),
-        class: 'badge badge-danger badge-pill' %>
-    <% else %>
-      <%= content_tag :span, t("order.statuses.#{order.status}"),
-        class: 'badge badge-primary badge-pill' %>
-    <% end %>
+    <%= status_badge(order) %>
   </td>
   <%= content_tag :td, l(order.created_at, format: :only_date) %>
   <td>
