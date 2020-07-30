@@ -27,10 +27,8 @@ class Movement < ApplicationRecord
   private
 
   def set_description
-    Rails.logger.debug "/// description: #{self.description}"
     unless self.description.present?
       self.description = "#{self.order.status}_order"
     end
-    Rails.logger.debug "/// description: #{self.description}"
   end
 end

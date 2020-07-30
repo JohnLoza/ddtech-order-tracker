@@ -1,4 +1,6 @@
-<% if order.assemble %>
+<%= render partial: 'order_header', locals: {order: @order} %>
+
+<% if @order.assemble %>
   <p class="text-center">
     Nos complace saludarle y comentarle que a partir de éste momento su pedido ya fue surtido y por ello pasará a ser ensamblado. Cuando finalice éste proceso pasará al área de empaque para su embalaje y entrega a la paquetería final.
   </p>

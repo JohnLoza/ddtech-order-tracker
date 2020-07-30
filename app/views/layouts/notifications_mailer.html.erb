@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      h1 {
+        margin: 0;
+        padding: 0.3em;
+      }
+      p, a, span {
+        font-size: 14px;
+      }
+
+      .bg-primary {
+        background-color: #1765be;
+        color: #fefefe;
+      }
+      .bg-primary a {
+        color: #80acff
+      }
+
+      .bg-success {
+        background-color: #21ae41;
+        color: #fefefe;
+      }
+
+      .btn {
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 0.5em;
+        text-decoration: none;
+      }
+      .btn-success {
+        background-color: #21ae41;
+        color: #fefefe !important;
+      }
+      .btn-xxl {
+        font-size: 1.5em !important;
+      }
+
+      .p-1 { padding: 0.5em; }
+
+      .parcel {
+        background-color: #777;
+        color: #fefefe;
+        padding: 0.2em;
+        margin: 0.5em;
+      }
+
+      .ESTAFETA { background-color: #e53935; }
+      .FEDEX { background-color: #3949ab; }
+      .ZMG { background-color: #7cb342; }
+      .DHL {
+        background-color: #fdd835;
+        color: #333
+      }
+
+      .text-center { text-align: center; }
+
+      .upcase { text-transform: uppercase; }
+    </style>
+  </head>
+
+  <body>
+
+    <%= yield %>
+
+    <p>#QuedateEnCasa</p>
+    <p>Atte. El Equipo DDTech</p>
+  </body>
+</html>

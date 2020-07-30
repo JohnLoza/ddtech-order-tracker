@@ -15,7 +15,7 @@ $(document).on('turbolinks:load', function() {
     // ==============================================================
     if ($(".menu-list").length) {
         $('.menu-list').slimScroll({
-
+            height: '100%'
         });
     }
 

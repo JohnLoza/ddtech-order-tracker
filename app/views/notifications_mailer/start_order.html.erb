@@ -1,13 +1,11 @@
-<div class="bg-primary upcase text-center">
-  <%= content_tag :h1, t('labels.brand'), style: 'padding-bottom: 0;' %>
-  <%= content_tag :h1, "Pedido: ##{@order.ddtech_key}" %>
-</div>
+<%= render partial: 'order_header', locals: {order: @order} %>
 
 <h2 class="text-center">¡Hola! le atiende: <%= @order.user %></h2>
 
-<%= render partial: "order_#{@order.status}", locals: {order: @order} %>
+<p class="text-center">
+  Es un gusto saludarle y comentarle que a partir de éste momento me encargaré de procesar su pedido, el cual pasará al área de Almacén - Empaque para su despacho y empaquetado.
+</p>
 
-<% if @order.status == Order::STATUS[:new] %>
 <p class="text-center">
   <strong>
     Una vez despachado su pedido se le hará llegar su numero de rastreo desde otro mail, favor de revisar su bandeja de correo no deseado o spam.
@@ -38,4 +36,3 @@
     </a>
   </p>
 </div>
-<% end # unless status is :sent %>

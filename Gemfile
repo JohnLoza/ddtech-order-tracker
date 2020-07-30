@@ -56,3 +56,4 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'cancancan', '~> 3.1'
 gem 'jwt', '~> 2.2'
 gem 'pagy', '~> 3.8'
+gem 'sucker_punch', '~> 2.0'

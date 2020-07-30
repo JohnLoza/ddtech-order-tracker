@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-class ApplicationMailer < ActionMailer::Base # :nodoc:
+class NotificationsMailer < ActionMailer::Base # :nodoc:
   add_template_helper(MailerHelper)
 
   default from: "DD Tech <noreply@ddtech.mx>"
   default reply_to: "DD Tech <ventas@ddtech.mx>"
-  layout "mailer"
+  layout "notifications_mailer"
 
-  def notify_new_order
+  def start_order
     @order = params[:order]
     subject = t('mailer.subjects.order_status',
       key: @order.ddtech_key, datetime: l(Time.now, format: :long))
@@ -18,7 +18,7 @@ class ApplicationMailer < ActionMailer::Base # :nodoc:
       subject: subject)
   end
 
-  def notify_supplied_order
+  def supplied_order
     @order = params[:order]
     subject = t('mailer.subjects.order_status',
       key: @order.ddtech_key, datetime: l(Time.now, format: :long))
@@ -29,7 +29,7 @@ class ApplicationMailer < ActionMailer::Base # :nodoc:
       subject: subject)
   end
 
-  def notify_assembled_order
+  def assembled_order
     @order = params[:order]
     subject = t('mailer.subjects.order_status',
       key: @order.ddtech_key, datetime: l(Time.now, format: :long))
@@ -40,7 +40,7 @@ class ApplicationMailer < ActionMailer::Base # :nodoc:
       subject: subject)
   end
 
-  def notify_sent_order
+  def sent_order
     @order = params[:order]
     @guide = params[:guide]
     subject = t('mailer.subjects.order_status',
@@ -51,5 +51,4 @@ class ApplicationMailer < ActionMailer::Base # :nodoc:
       reply_to: @order.user.email,
       subject: subject)
   end
-
 end

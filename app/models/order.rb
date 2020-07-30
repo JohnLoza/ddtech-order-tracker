@@ -21,7 +21,7 @@ class Order < ApplicationRecord
   before_save :downcase_email
 
   before_save :create_movement
-  after_save :notify_client
+  after_save :notify_status_change
 
   belongs_to :user
   has_many :movements
@@ -73,19 +73,28 @@ class Order < ApplicationRecord
     self.status = STATUS[:new]
   end
 
-  def create_movement
+  def create_movement(params = {})
     if self.status_changed? or self.guide_changed?
-      params = {user_id: self.updater_id ? self.updater_id : self.user_id}
+      params[:user_id] = self.updater_id ? self.updater_id : self.user_id
       params[:data] = self.guide if self.guide_changed?
+
       self.movements.build(params)
-      self.needs_notification = true unless self.status == STATUS[:packed]
+      self.needs_notification = true
     end
   end
 
-  def notify_client
+  def notify_status_change
     if self.needs_notification
-      ApplicationMailer.with(order: self)
-        .notify_order_status_change.deliver_now
+      mailer = NotificationsMailer.with(order: self)
+
+      case self.status
+      when STATUS[:supplied]
+        NotifySuppliedOrderJob.perform_async(self)
+      when STATUS[:assembled]
+        NotifyAssembledOrderJob.perform_async(self)
+      when STATUS[:sent]
+        NotifySentOrderJob.perform_async(self)
+      end
     end
   end
 end

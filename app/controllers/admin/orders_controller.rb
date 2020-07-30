@@ -20,6 +20,7 @@ module Admin
 
     def create
       if @order.save
+        NotifyStartOrderJob.perform_async(@order)
         redirect_to [:admin, @order], flash: { success: t('.success', order: @order) }
       else
         render :new

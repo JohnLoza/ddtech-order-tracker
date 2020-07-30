@@ -1,3 +1,5 @@
+<%= render partial: 'order_header', locals: {order: @order} %>
+
 <p class="text-center">
   Nos complace informarte que tu pedido fue realizado con éxito y ya se encuentra en tránsito hacia tu dirección. Recibirás tu envío pronto.
 </p>
@@ -5,14 +7,14 @@
   Este correo solo tiene la finalidad de hacerle llegar el número de rastreo de su pedido, si tiene alguna duda conforme al mismo favor de responder a este correo.
 </p>
 
-<div class='parcel <%= order.parcel %> text-center'>
-  <%= content_tag :h1, order.parcel %>
-  <%= content_tag :h1, order.guide %>
+<div class='parcel <%= @order.parcel %> text-center'>
+  <%= content_tag :h1, @order.parcel %>
+  <%= content_tag :h1, @guide %>
 </div>
 
 <div class="text-center" style="margin-top: 3em; margin-bottom: 2em;">
   <%= link_to t('labels.track_your_package'),
-      t("mailer.body.track_urls.#{order.parcel.downcase}"),
+      t("mailer.body.track_urls.#{@order.parcel.downcase}"),
       class: 'btn btn-success btn-xxl' %>
 </div>
 <br>
