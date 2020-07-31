@@ -22,7 +22,10 @@ $(document).on('turbolinks:load', function () {
   $("#update_order_status").on("ajax:success", function(event){
     const ddtech_key = $("#order_ddtech_key").val();
     $(".processed-orders").prepend(`
-      <p>Se procesó el pedido
+      <p>
+        <i class='fas fa-fw fa-check fa-lg text-success'></i>
+        <i class='fas fa-fw fa-chevron-right'></i>
+        Se procesó el pedido
         <strong>#${ddtech_key}</strong>
       </p>
     `);
@@ -31,8 +34,11 @@ $(document).on('turbolinks:load', function () {
     console.log('error event: ', event.detail);
     const ddtech_key = $("#order_ddtech_key").val();
     $(".processed-orders").prepend(`
-      <p>Ocurrió un error al procesar el pedido
-      <strong>#${ddtech_key}</strong>
+      <p>
+        <i class='fas fa-fw fa-time fa-lg text-danger'></i>
+        <i class='fas fa-fw fa-chevron-right'></i>
+        Ocurrió un error al procesar el pedido
+        <strong>#${ddtech_key}</strong>
       </p>
     `);
   });
@@ -44,6 +50,8 @@ $(document).on('turbolinks:load', function () {
     const guide = $("#order_guide").val();
     $(".processed-orders").prepend(`
       <p>
+        <i class='fas fa-fw fa-check fa-lg text-success'></i>
+        <i class='fas fa-fw fa-chevron-right'></i>
         Se capturó la guía <strong>${guide}</strong>
         para el pedido <strong>#${ddtech_key}</strong>
       </p>
@@ -57,6 +65,8 @@ $(document).on('turbolinks:load', function () {
     const guide = $("#order_guide").val();
     $(".processed-orders").prepend(`
       <p>
+        <i class='fas fa-fw fa-time fa-lg text-danger'></i>
+        <i class='fas fa-fw fa-chevron-right'></i>
         Ocurrió un error al capturar la guía <strong>${guide}</strong>
         para el pedido <strong>#${ddtech_key}</strong>
       </p>

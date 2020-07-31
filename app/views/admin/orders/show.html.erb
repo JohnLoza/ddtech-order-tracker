@@ -4,8 +4,12 @@
 
   <div class="col-lg-4 col-md-6 col-sm-12 col-12">
     <div class="card">
-      <div class="card-body">
+      <div class="card-header <%= 'bg-warning' if @order.urgent %>">
         <h3 class="card-title"><%= yield :title %></h3>
+        <%= content_tag :span, Order.human_attribute_name(:urgent),
+          class: 'badge badge-danger' if @order.urgent %>
+      </div>
+      <div class="card-body">
 
         <%= content_tag :p, l(@order.created_at, format: :long), class: 'card-text' %>
         <p class="card-text">
