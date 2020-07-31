@@ -22,9 +22,20 @@
           {prompt: t('labels.select')}, {class: 'form-control', required: true} %>
     </div>
 
-    <div class="form-group">
-      <%= f.label :assemble %>
-      <%= f.check_box :assemble %>
+    <div class="row mt-2 mb-2 pt-3 border-top border-bottom">
+      <div class="col-lg-4 col-sm-6 col-xm-12">
+        <div class="form-group">
+          <%= f.label :assemble %>
+          <%= f.check_box :assemble %>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-sm-6 col-xs-12">
+        <div class="form-group">
+          <%= f.label :urgent %>
+          <%= f.check_box :urgent %>
+        </div>
+      </div>
     </div>
 
     <%= f.submit t('labels.save'), class: 'btn btn-primary btn-lg' %>

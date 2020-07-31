@@ -40,6 +40,7 @@ class Order < ApplicationRecord
   scope :by_status, -> (status) {
     where(status: status, holding: false) if status.present?
   }
+  scope :urgent_first, -> { order(urgent: :desc) }
 
   def to_s
     "##{ddtech_key}"

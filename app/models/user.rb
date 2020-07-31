@@ -13,7 +13,8 @@ class User < ApplicationRecord
     packer: 'packer',
     parcel_guides_generator: 'parcel_guides_generator',
     shipments: 'shipments',
-    warehouse: 'warehouse'
+    warehouse: 'warehouse',
+    observer: 'observer'
   }.freeze
 
   before_save :downcase_email

@@ -10,6 +10,7 @@ es:
     close: Cerrar
     dashboard: Tablero de Inicio
     filter: Filtrar
+    filters: Filtros
     forgot_password: Olvidé mi contraseña
     hold: Retener
     holding: Retenido
@@ -32,6 +33,7 @@ es:
       parcel_guides_generator: Generador de Guías
       shipments: Embarques
       warehouse: Almacén
+      observer: Observador
 
   order:
     statuses:

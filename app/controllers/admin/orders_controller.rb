@@ -104,7 +104,8 @@ module Admin
         :client_email,
         :parcel,
         :guide,
-        :assemble
+        :assemble,
+        :urgent
       )
     end
 
@@ -117,6 +118,7 @@ module Admin
     def guide_params
       hash = params.require(:order).permit(:ddtech_key, :guide, :status)
       hash[:status] = Order::STATUS[:sent]
+      hash[:urgent] = false
       hash[:updater_id] = current_user.id
       return hash
     end
@@ -128,7 +130,7 @@ module Admin
             fields: [:ddtech_key]
           ).by_user(filter_params(require: :user_id))
           .by_status(filter_params(require: :status))
-          .recent.includes(:user)
+          .urgent_first.recent.includes(:user)
       )
     end
 

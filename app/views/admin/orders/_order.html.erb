@@ -1,9 +1,11 @@
-<tr>
+<tr class="<%= 'table-warning' if order.urgent %>">
   <%= content_tag :td, link_to(order.ddtech_key, admin_order_path(order)) %>
   <%= content_tag :td, link_to(order.client_email, "mailto:#{order.client_email}") %>
   <%= content_tag :td, order.user %>
   <td>
     <%= status_badge(order) %>
+    <%= content_tag :span, Order.human_attribute_name(:urgent),
+      class: 'badge badge-danger' if order.urgent %>
   </td>
   <%= content_tag :td, l(order.created_at, format: :only_date) %>
   <td>

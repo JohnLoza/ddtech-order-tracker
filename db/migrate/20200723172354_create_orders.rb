@@ -9,6 +9,7 @@ class CreateOrders < ActiveRecord::Migration[6.0]
       t.string :guide
       t.boolean :assemble, default: false
       t.boolean :holding, default: false
+      t.boolean :urgent, default: false
       t.timestamps
     end
 
