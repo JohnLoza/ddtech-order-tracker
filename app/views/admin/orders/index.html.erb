@@ -16,6 +16,9 @@
         <div class="text-center mb-3">
           <%= link_to t('.process_orders'), update_status_admin_orders_path,
             class: 'btn btn-primary' if can? :update_status, Order %>
+
+          <%= link_to t('.capture_guides'), update_guide_admin_orders_path,
+            class: 'btn btn-primary ml-3' if can? :update_guide, Order %>
         </div>
 
         <div class="table-responsive">

@@ -4,6 +4,7 @@ es:
       index:
         title: Listado de pedidos
         process_orders: Procesa Pedidos
+        capture_guides: Captura de Guías
 
       show:
         title: Pedido No %{order}

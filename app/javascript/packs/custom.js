@@ -16,6 +16,7 @@ $(document).on('turbolinks:load', function () {
   }).on("ajax:error", function(event) {
     console.log('error event: ', event.detail);
   });
+  // handle new_note form response
 
   // handle update_order_status form response
   $("#update_order_status").on("ajax:success", function(event){
@@ -35,7 +36,35 @@ $(document).on('turbolinks:load', function () {
       </p>
     `);
   });
+  // handle update_order_status form response
 
+  // handle update_order_guide form response
+  $("#update_order_guide").on("ajax:success", function(event){
+    const ddtech_key = $("#order_ddtech_key").val();
+    const guide = $("#order_guide").val();
+    $(".processed-orders").prepend(`
+      <p>
+        Se capturó la guía <strong>${guide}</strong>
+        para el pedido <strong>#${ddtech_key}</strong>
+      </p>
+    `);
+    $("#order_ddtech_key").val("");
+    $("#order_guide").val("");
+    $("#order_ddtech_key").focus();
+  }).on("ajax:error", function(event) {
+    console.log('error event: ', event.detail);
+    const ddtech_key = $("#order_ddtech_key").val();
+    const guide = $("#order_guide").val();
+    $(".processed-orders").prepend(`
+      <p>
+        Ocurrió un error al capturar la guía <strong>${guide}</strong>
+        para el pedido <strong>#${ddtech_key}</strong>
+      </p>
+    `);
+  });
+  // handle update_order_guide form response
+
+  // submit form on enter
   $("[data-submit-on-enter]").on("keydown", function(event) {
     if (event.keyCode === 13) {
       if (event.shiftKey)
@@ -45,6 +74,7 @@ $(document).on('turbolinks:load', function () {
       $(target).click();
     }
   });
+  // submit form on enter
 });
 
 window.toggleChevron = function(trigger) {

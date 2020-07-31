@@ -13,6 +13,9 @@ Rails.application.routes.draw do
       get :update_status, on: :collection
       put :update_status, on: :collection
 
+      get :update_guide, on: :collection
+      put :update_guide, on: :collection
+
       resources :notes, only: :create
     end
   end

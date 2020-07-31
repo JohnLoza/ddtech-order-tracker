@@ -45,8 +45,6 @@
           <%= content_tag :span, @order.parcel,
             class: "parcel #{@order.parcel.downcase}" %>
         </p>
-
-        <%= render partial: 'update_guide_form', locals: {order: @order} %>
       </div>
     </div>
   </div>

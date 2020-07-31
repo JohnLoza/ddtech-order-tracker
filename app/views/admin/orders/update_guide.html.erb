@@ -1,0 +1,31 @@
+<% provide :title, t('admin.orders.index.capture_guides') %>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h1 class="card-title"><%= yield :title %></h1>
+      </div>
+      <div class="card-body">
+        <%= form_with(model: Order.new, method: :put,
+            url: update_guide_admin_orders_path,
+            html: {id: 'update_order_guide'}) do |f| %>
+
+          <div class='form-group'>
+            <%= f.label :ddtech_key %>
+            <%= f.text_field :ddtech_key, class: 'form-control' %>
+          </div>
+
+          <div class='form-group'>
+            <%= f.label :guide %>
+            <%= f.text_field :guide, class: 'form-control' %>
+          </div>
+
+          <%= f.submit t('labels.save'), class: 'btn btn-primary m-2' %>
+        <% end %>
+
+        <div class="mt-2 processed-orders"></div>
+      </div>
+    </div>
+  </div>
+</div>

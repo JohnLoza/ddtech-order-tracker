@@ -4,11 +4,10 @@ module Admin
   # Admin Orders Controller
   class OrdersController < AdminController
     before_action :load_orders, only: :index
-    before_action :load_and_authorize_order, only: :update
     before_action :set_new_order, only: :create
 
-    skip_authorization_check only: [:update_status]
-    load_and_authorize_resource except: [:update, :update_status]
+    skip_authorization_check only: [:update_guide, :update_status]
+    load_and_authorize_resource except: [:update_guide, :update_status]
 
     def index; end
 
@@ -38,10 +37,22 @@ module Admin
       end
     end
 
+    def update_guide
+      return unless params[:order].present?
+      @order = Order.find_by!(ddtech_key: params[:order][:ddtech_key])
+      authorize! :update_guide, @order
+
+      if @order.update_attributes guide_params
+        notify_status_change(@order)
+        render json: { data: @order.to_json }
+      else
+        render status: 400, json: { data: @order.errors.to_json }
+      end
+    end
+
     def update_status
       return unless params[:order].present?
       @order = Order.find_by!(ddtech_key: params[:order][:ddtech_key])
-      @order.updater_id = current_user.id
       authorize! :update_status, @order
 
       if @order.update_attributes status_params
@@ -51,7 +62,6 @@ module Admin
         render status: 400, json: { data: @order.errors.to_json }
       end
     end
-
 
     def destroy
       if @order.destroy
@@ -99,7 +109,16 @@ module Admin
     end
 
     def status_params
-      params.require(:order).permit(:status)
+      hash = params.require(:order).permit(:ddtech_key, :status)
+      hash[:updater_id] = current_user.id
+      return hash
+    end
+
+    def guide_params
+      hash = params.require(:order).permit(:ddtech_key, :guide, :status)
+      hash[:status] = Order::STATUS[:sent]
+      hash[:updater_id] = current_user.id
+      return hash
     end
 
     def load_orders
@@ -115,16 +134,6 @@ module Admin
 
     def set_new_order
       @order = current_user.orders.new(order_params)
-    end
-
-    def load_and_authorize_order
-      @order = Order.find(params[:id])
-      @order.updater_id = current_user.id
-      if params[:order][:guide]
-        authorize! :update_guide, @order
-      else
-        authorize! :update, @order
-      end
     end
 
     def notify_status_change(order)
