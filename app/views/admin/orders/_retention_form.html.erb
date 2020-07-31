@@ -8,6 +8,7 @@
 
 <% url = holding ? release_admin_order_path(@order) : hold_admin_order_path(@order) %>
 <% label = holding ? t('labels.release') : t('labels.hold') %>
+<% btn_class = holding ? 'warning' : 'danger' %>
 
 <div class="pt-5">
 <%= content_tag :h2, t('.title'), class: 'text-center' %>
@@ -16,7 +17,7 @@
     <%= text_area :movement, :data, class: 'form-control',
       maxlength: 250, required: true %>
   </div>
-  <%= submit_tag label, class: 'btn btn-danger btn-lg',
+  <%= submit_tag label, class: "btn btn-#{btn_class} btn-lg",
      data: { confirm: t('.are_you_sure') } %>
 <% end %>
 </div>

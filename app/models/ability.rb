@@ -54,10 +54,10 @@ class Ability
   end
 
   def shipments_permissions(user)
-    can :manage, Order, user_id: user.id
-    cannot :update_status, Order
-    cannot :update_guide, Order
-    cannot :hold, Order, status: Order::STATUS[:sent]
+    can [:create, :update], Order, user_id: user.id
+    can [:hold, :release], Order do |order|
+      order.user_id == user.id and order.status != Order::STATUS[:sent]
+    end
   end
 
   def warehouse_permissions(user)
