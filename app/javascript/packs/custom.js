@@ -75,6 +75,14 @@ $(document).on('turbolinks:load', function () {
     }
   });
   // submit form on enter
+
+  // submit form on enter
+  $("[data-prevent-enter]").on("keydown", function(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+    }
+  });
+  // submit form on enter
 });
 
 window.toggleChevron = function(trigger) {
