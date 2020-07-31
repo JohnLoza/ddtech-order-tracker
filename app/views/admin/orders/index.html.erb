@@ -12,6 +12,12 @@
         <% end if can? :create, Order %>
       </h5>
       <div class="card-body">
+
+        <div class="text-center mb-3">
+          <%= link_to t('.process_orders'), update_status_admin_orders_path,
+            class: 'btn btn-primary' if can? :update_status, Order %>
+        </div>
+
         <div class="table-responsive">
 
           <table class="table table-bordered table-hover">

@@ -66,12 +66,13 @@ class Ability
   end
 
   def assembler_permissions(user)
-    can :update_status, Order, status: Order::STATUS[:supplied]
+    can :update_status, Order, status: Order::STATUS[:supplied], assemble: true
     cannot :update_status, Order, holding: true
   end
 
   def packer_permissions(user)
-    can :update_status, Order, status: Order::STATUS[:assembled]
+    can :update_status, Order, status: Order::STATUS[:assembled], assemble: true
+    can :update_status, Order, status: Order::STATUS[:supplied], assemble: false
     cannot :update_status, Order, holding: true
   end
 

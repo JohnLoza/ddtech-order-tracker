@@ -7,7 +7,8 @@ module Admin
     before_action :load_and_authorize_order, only: :update
     before_action :set_new_order, only: :create
 
-    load_and_authorize_resource except: [:update]
+    skip_authorization_check only: [:update_status]
+    load_and_authorize_resource except: [:update, :update_status]
 
     def index; end
 
@@ -37,6 +38,21 @@ module Admin
       end
     end
 
+    def update_status
+      return unless params[:order].present?
+      @order = Order.find_by!(ddtech_key: params[:order][:ddtech_key])
+      @order.updater_id = current_user.id
+      authorize! :update_status, @order
+
+      if @order.update_attributes status_params
+        notify_status_change(@order)
+        render json: { data: @order.to_json }
+      else
+        render status: 400, json: { data: @order.errors.to_json }
+      end
+    end
+
+
     def destroy
       if @order.destroy
         flash[:success] = t('.success', order: @order)
@@ -53,7 +69,6 @@ module Admin
       if @order.hold
         flash[:success] = t('.success', order: @order)
       else
-        @order.errors.full_messages.each { |error| logger.debug "/// error: #{error}" }
         flash[:info] = t('failure', order: @order)
       end
       redirect_to admin_order_path @order
@@ -79,9 +94,12 @@ module Admin
         :client_email,
         :parcel,
         :guide,
-        :status,
         :assemble
       )
+    end
+
+    def status_params
+      params.require(:order).permit(:status)
     end
 
     def load_orders
@@ -104,10 +122,19 @@ module Admin
       @order.updater_id = current_user.id
       if params[:order][:guide]
         authorize! :update_guide, @order
-      elsif params[:order][:status]
-        authorize! :update_status, @order
       else
         authorize! :update, @order
+      end
+    end
+
+    def notify_status_change(order)
+      case order.status
+      when Order::STATUS[:supplied]
+        NotifySuppliedOrderJob.perform_async(order)
+      when Order::STATUS[:assembled]
+        NotifyAssembledOrderJob.perform_async(order)
+      when Order::STATUS[:sent]
+        NotifySentOrderJob.perform_async(order)
       end
     end
 

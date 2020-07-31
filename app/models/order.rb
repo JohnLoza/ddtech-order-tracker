@@ -15,13 +15,11 @@ class Order < ApplicationRecord
   }.freeze
 
   attr_accessor :updater_id
-  attr_accessor :needs_notification
 
   before_validation :set_status, on: :create
   before_save :downcase_email
 
   before_save :create_movement
-  after_save :notify_status_change
 
   belongs_to :user
   has_many :movements
@@ -34,7 +32,7 @@ class Order < ApplicationRecord
   validates :ddtech_key,
     presence: true,
     length: {minimum:5, maximum:6},
-    uniqueness: true
+    uniqueness: {case_sensitive: true}
 
   validates :status, inclusion: {in: STATUS.values}, unless: :holding?
 
@@ -79,22 +77,6 @@ class Order < ApplicationRecord
       params[:data] = self.guide if self.guide_changed?
 
       self.movements.build(params)
-      self.needs_notification = true
-    end
-  end
-
-  def notify_status_change
-    if self.needs_notification
-      mailer = NotificationsMailer.with(order: self)
-
-      case self.status
-      when STATUS[:supplied]
-        NotifySuppliedOrderJob.perform_async(self)
-      when STATUS[:assembled]
-        NotifyAssembledOrderJob.perform_async(self)
-      when STATUS[:sent]
-        NotifySentOrderJob.perform_async(self)
-      end
     end
   end
 end

@@ -1,0 +1,31 @@
+<% provide :title, t('admin.orders.index.process_orders') %>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h1 class="card-title"><%= yield :title %></h1>
+      </div>
+      <div class="card-body">
+        <%= form_with(model: Order.new, method: :put,
+            url: update_status_admin_orders_path,
+            html: {id: 'update_order_status'}) do |f| %>
+
+          <div class='form-group'>
+            <%= f.select :status, update_order_statuses_for_select(current_user.role),
+                {}, { class: 'form-control filter' } %>
+          </div>
+
+          <div class='form-group'>
+            <%= f.label :ddtech_key %>
+            <%= f.text_field :ddtech_key, class: 'form-control' %>
+          </div>
+
+          <%= f.submit t('labels.save'), class: 'btn btn-primary m-2' %>
+        <% end %>
+
+        <div class="mt-2 processed-orders"></div>
+      </div>
+    </div>
+  </div>
+</div>

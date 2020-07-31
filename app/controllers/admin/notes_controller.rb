@@ -9,19 +9,9 @@ module Admin
 
     def create
       if @note.save
-        respond_to do |format|
-          format.js { render json: {
-              data: @note,
-              template: render_to_string(@note)
-            }
-          }
-          format.any { head :forbidden, content_type: 'text/html' }
-        end
+        render json: { data: @note.to_json, template: render_to_string(@note) }
       else
-        respond_to do |format|
-          format.js { render status: 400, json: @note.errors.as_json }
-          format.any { head :forbidden, content_type: 'text/html' }
-        end
+        render status: 400, json: { data: @note.errors.to_json }
       end
     end
 

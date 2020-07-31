@@ -3,6 +3,7 @@ es:
     orders:
       index:
         title: Listado de pedidos
+        process_orders: Procesa Pedidos
 
       show:
         title: Pedido No %{order}

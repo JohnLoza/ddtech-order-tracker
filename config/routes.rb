@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     resources :orders do
       put :hold, on: :member
       put :release, on: :member
+
+      get :update_status, on: :collection
+      put :update_status, on: :collection
+
       resources :notes, only: :create
     end
   end

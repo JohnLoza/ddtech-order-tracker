@@ -44,17 +44,6 @@ module LayoutHelper
     Order::PARCELS.map { |value| [value, value] }
   end
 
-  def next_status_for_order(order)
-    case order.status
-    when Order::STATUS[:new]
-      Order::STATUS[:supplied]
-    when Order::STATUS[:supplied]
-      order.assemble ? Order::STATUS[:assembled] : Order::STATUS[:packed]
-    when Order::STATUS[:assembled]
-      Order::STATUS[:packed]
-    end
-  end
-
   def status_badge(order)
     badge_class = order.status == Order::STATUS[:sent] ? 'success' : 'primary'
 
@@ -67,8 +56,20 @@ module LayoutHelper
     end
   end
 
-  def next_status_message(order)
-    t("order.status_change_msg.#{next_status_for_order(order)}")
+  def update_order_statuses_for_select(role)
+    case role
+    when User::ROLES[:admin]
+      statuses = Order::STATUS.reject { |key, value|
+        [Order::STATUS[:new], Order::STATUS[:sent]].include?(value)
+      }
+      statuses.map { |key, value| [t("order.status_change_msg.#{value}"), value] }
+    when User::ROLES[:warehouse]
+      [[t("order.status_change_msg.#{Order::STATUS[:supplied]}"), Order::STATUS[:supplied]]]
+    when User::ROLES[:assembler]
+      [[t("order.status_change_msg.#{Order::STATUS[:assembled]}"), Order::STATUS[:assembled]]]
+    when User::ROLES[:packer]
+      [[t("order.status_change_msg.#{Order::STATUS[:packed]}"), Order::STATUS[:packed]]]
+    end
   end
 
 end
