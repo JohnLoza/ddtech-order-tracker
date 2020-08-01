@@ -38,16 +38,16 @@
         </p>
 
         <p class="card-text">
-          <%= content_tag :span, Order.human_attribute_name(:guide),
-            class: 'font-weight-bold text-uppercase' %><br>
-          <%= content_tag :span, @order.guide, class: 'badge badge-primary badge-pill' %>
-        </p>
-
-        <p class="card-text">
           <%= content_tag :span, Order.human_attribute_name(:parcel),
             class: 'font-weight-bold text-uppercase' %><br>
           <%= content_tag :span, @order.parcel,
             class: "parcel #{@order.parcel.downcase}" %>
+        </p>
+
+        <p class="card-text">
+          <%= content_tag :span, Order.human_attribute_name(:guide),
+            class: 'font-weight-bold text-uppercase' if @order.guide %>
+          <%= content_tag :span, @order.guide, class: 'badge badge-primary badge-pill' %>
         </p>
       </div>
     </div>

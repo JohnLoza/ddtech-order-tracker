@@ -7,7 +7,7 @@ class Ability
   def initialize(user)
     user ||= User.new
 
-    default_permissions()
+    default_permissions
 
     case user.role
     when User::ROLES[:admin]
@@ -22,8 +22,8 @@ class Ability
       assembler_permissions(user)
     when User::ROLES[:packer]
       packer_permissions(user)
-    when User::ROLES[:parcel_guides_generator]
-      parcel_guides_generator_permissions(user)
+    when User::ROLES[:digital_guides]
+      digital_guides_permissions(user)
     end
   end
   # See the wiki for details:
@@ -44,41 +44,40 @@ class Ability
     cannot :update_guide, Order
     can :update_guide, Order, status: [Order::STATUS[:sent], Order::STATUS[:packed]]
 
-    cannot [:update_status, :update_guide], Order, holding: true
+    cannot %i[update_status update_guide], Order, holding: true
     cannot :hold, Order, status: Order::STATUS[:sent]
   end
 
-  def human_resources_permissions(user)
+  def human_resources_permissions(_user)
     can :manage, User
     cannot %i[update destroy], User, role: User::ROLES[:admin]
   end
 
   def shipments_permissions(user)
-    can [:create, :update], Order, user_id: user.id
+    can %i[create update], Order, user_id: user.id
     can [:hold, :release], Order do |order|
       order.user_id == user.id and order.status != Order::STATUS[:sent]
     end
   end
 
-  def warehouse_permissions(user)
+  def warehouse_permissions(_user)
     can :update_status, Order, status: Order::STATUS[:new]
     cannot :update_status, Order, holding: true
   end
 
-  def assembler_permissions(user)
+  def assembler_permissions(_user)
     can :update_status, Order, status: Order::STATUS[:supplied], assemble: true
     cannot :update_status, Order, holding: true
   end
 
-  def packer_permissions(user)
+  def packer_permissions(_user)
     can :update_status, Order, status: Order::STATUS[:assembled], assemble: true
     can :update_status, Order, status: Order::STATUS[:supplied], assemble: false
     cannot :update_status, Order, holding: true
   end
 
-  def parcel_guides_generator_permissions(user)
+  def digital_guides_permissions(_user)
     can :update_guide, Order, status: [Order::STATUS[:sent], Order::STATUS[:packed]]
     cannot :update_guide, Order, holding: true
   end
-
 end

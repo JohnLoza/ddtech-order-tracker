@@ -11,7 +11,7 @@ class User < ApplicationRecord
     assembler: 'assembler',
     human_resources: 'human_resources',
     packer: 'packer',
-    parcel_guides_generator: 'parcel_guides_generator',
+    digital_guides: 'digital_guides',
     shipments: 'shipments',
     warehouse: 'warehouse',
     observer: 'observer'
@@ -31,7 +31,7 @@ class User < ApplicationRecord
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i.freeze
   validates :email, format: { with: VALID_EMAIL_REGEX },
-    uniqueness: { case_sensitive: false }, confirmation: true
+                    uniqueness: { case_sensitive: false }, confirmation: true
 
   scope :non_admin, -> { where.not(role: User::ROLES[:admin]) }
   scope :not, ->(ids) { where.not(id: ids) }
