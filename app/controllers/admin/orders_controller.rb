@@ -116,8 +116,10 @@ module Admin
     end
 
     def guide_params
-      hash = params.require(:order).permit(:ddtech_key, :guide, :status)
+      hash = Hash.new
       hash[:status] = Order::STATUS[:sent]
+      hash[:guide] = params[:order][:guide].join(' y ')
+
       hash[:urgent] = false
       hash[:updater_id] = current_user.id
       return hash

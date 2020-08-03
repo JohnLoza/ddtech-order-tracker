@@ -27,14 +27,16 @@ class Order < ApplicationRecord
 
   validates :client_email, :status, :parcel,
     presence: true,
-    length: {maximum:50}
+    length: { maximum: 50 }
 
   validates :ddtech_key,
     presence: true,
-    length: {minimum:5, maximum:6},
-    uniqueness: {case_sensitive: true}
+    length: { minimum: 5, maximum: 6 },
+    uniqueness: { case_sensitive: true }
 
-  validates :status, inclusion: {in: STATUS.values}, unless: :holding?
+  validates :guide, length: { maximum: 250 }
+
+  validates :status, inclusion: { in: STATUS.values }
 
   scope :by_user, -> (user_id) { where(user_id: user_id) if user_id.present? }
   scope :by_status, -> (status) {

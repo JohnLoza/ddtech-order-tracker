@@ -21,6 +21,9 @@ es:
       update:
         success: El pedido %{order} se actualizó correctamente
 
+      update_guide:
+        add_guide: Agregar una guía
+
       destroy:
         success: El pedido %{order} ha sido eliminada
         failure: Ocurrió un error al eliminar el pedido %{order}
