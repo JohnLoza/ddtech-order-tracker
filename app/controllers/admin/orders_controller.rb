@@ -110,8 +110,8 @@ module Admin
     end
 
     def status_params
-      hash = params.require(:order).permit(:ddtech_key, :status)
-      hash[:updater_id] = current_user.id
+      hash = params.require(:order).permit(:ddtech_key, :updater_id, :status)
+      hash[:updater_id] = current_user.id unless hash.keys.include? "updater_id"
       return hash
     end
 
@@ -141,6 +141,7 @@ module Admin
     end
 
     def notify_status_change(order)
+      # Only notify the client about the next statuses
       case order.status
       when Order::STATUS[:supplied]
         NotifySuppliedOrderJob.perform_async(order)

@@ -24,6 +24,9 @@ es:
       update_guide:
         add_guide: Agregar una guía
 
+      update_status:
+        select_a_process: Selecciona un proceso
+
       destroy:
         success: El pedido %{order} ha sido eliminada
         failure: Ocurrió un error al eliminar el pedido %{order}

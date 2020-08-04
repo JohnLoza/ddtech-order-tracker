@@ -11,7 +11,7 @@ module LayoutHelper
     when 'Array'
       required.include?(params[:controller]) ? 'active' : ''
     else
-      raise 'Parameter should be a string or an array'
+      raise ArgumentError, 'Parameter should be a string or an array'
     end
   end
 
@@ -63,12 +63,60 @@ module LayoutHelper
         [Order::STATUS[:new], Order::STATUS[:sent]].include?(value)
       }
       statuses.map { |key, value| [t("order.status_change_msg.#{value}"), value] }
-    when User::ROLES[:warehouse]
-      [[t("order.status_change_msg.#{Order::STATUS[:supplied]}"), Order::STATUS[:supplied]]]
-    when User::ROLES[:assembler]
-      [[t("order.status_change_msg.#{Order::STATUS[:assembled]}"), Order::STATUS[:assembled]]]
-    when User::ROLES[:packer]
-      [[t("order.status_change_msg.#{Order::STATUS[:packed]}"), Order::STATUS[:packed]]]
+    when User::ROLES[:warehouse_boss]
+      [
+        [
+          t("order.status_change_msg.#{Order::STATUS[:warehouse_entry]}"),
+          Order::STATUS[:warehouse_entry]
+        ],
+        [
+          t("order.status_change_msg.#{Order::STATUS[:supplied]}"),
+          Order::STATUS[:supplied]
+        ]
+      ]
+    when User::ROLES[:warehouse_exit]
+      [
+        [
+          t("order.status_change_msg.#{Order::STATUS[:supplied]}"),
+          Order::STATUS[:supplied]
+        ]
+      ]
+    when User::ROLES[:assemble_boss]
+      [
+        [
+          t("order.status_change_msg.#{Order::STATUS[:assemble_entry]}"),
+          Order::STATUS[:assemble_entry]
+        ],
+        [
+          t("order.status_change_msg.#{Order::STATUS[:assembled]}"),
+          Order::STATUS[:assembled]
+        ]
+      ]
+    when User::ROLES[:assemble_exit]
+      [
+        [
+          t("order.status_change_msg.#{Order::STATUS[:assembled]}"),
+          Order::STATUS[:assembled]
+        ]
+      ]
+    when User::ROLES[:pack_boss]
+      [
+        [
+          t("order.status_change_msg.#{Order::STATUS[:pack_entry]}"),
+          Order::STATUS[:pack_entry]
+        ],
+        [
+          t("order.status_change_msg.#{Order::STATUS[:packed]}"),
+          Order::STATUS[:packed]
+        ]
+      ]
+    when User::ROLES[:pack_exit]
+      [
+        [
+          t("order.status_change_msg.#{Order::STATUS[:packed]}"),
+          Order::STATUS[:packed]
+        ]
+      ]
     end
   end
 

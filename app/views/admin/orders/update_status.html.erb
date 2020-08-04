@@ -13,7 +13,19 @@
 
           <div class='form-group'>
             <%= f.select :status, update_order_statuses_for_select(current_user.role),
-                {}, { class: 'form-control filter' } %>
+              { prompt: t('.select_a_process') },
+              { class: 'form-control', autocomplete: :off } %>
+          </div>
+
+          <div class="form-group">
+            <%= f.select :updater_id, users_for_select(role: User::ROLES[:warehouse]),
+              {}, { class: 'form-control users-select warehouse-users d-none', disabled: true } %>
+
+            <%= f.select :updater_id, users_for_select(role: User::ROLES[:assembler]),
+              {}, { class: 'form-control users-select assembler-users d-none', disabled: true } %>
+
+            <%= f.select :updater_id, users_for_select(role: User::ROLES[:packer]),
+              {}, { class: 'form-control users-select packer-users d-none', disabled: true } %>
           </div>
 
           <div class='form-group'>

@@ -16,15 +16,23 @@ class Ability
       human_resources_permissions(user)
     when User::ROLES[:shipments]
       shipments_permissions(user)
-    when User::ROLES[:warehouse]
-      warehouse_permissions(user)
-    when User::ROLES[:assembler]
-      assembler_permissions(user)
-    when User::ROLES[:packer]
-      packer_permissions(user)
+    when User::ROLES[:warehouse_boss]
+      warehouse_boss_permissions(user)
+    when User::ROLES[:warehouse_exit]
+      warehouse_exit_permissions(user)
+    when User::ROLES[:assemble_boss]
+      assemble_boss_permissions(user)
+    when User::ROLES[:assemble_exit]
+      assemble_exit_permissions(user)
+    when User::ROLES[:pack_boss]
+      pack_boss_permissions(user)
+    when User::ROLES[:pack_exit]
+      pack_exit_permissions(user)
     when User::ROLES[:digital_guides]
       digital_guides_permissions(user)
     end
+
+    cannot %i[update_status update_guide], Order, holding: true # no one can
   end
   # See the wiki for details:
   # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
@@ -44,11 +52,10 @@ class Ability
     cannot :update_guide, Order
     can :update_guide, Order, status: [Order::STATUS[:sent], Order::STATUS[:packed]]
 
-    cannot %i[update_status update_guide], Order, holding: true
-    cannot :hold, Order, status: Order::STATUS[:sent]
+    cannot [:hold, :release], Order, status: Order::STATUS[:sent]
   end
 
-  def human_resources_permissions(_user)
+  def human_resources_permissions(user)
     can :manage, User
     cannot %i[update destroy], User, role: User::ROLES[:admin]
   end
@@ -60,24 +67,35 @@ class Ability
     end
   end
 
-  def warehouse_permissions(_user)
-    can :update_status, Order, status: Order::STATUS[:new]
-    cannot :update_status, Order, holding: true
+  def warehouse_boss_permissions(user)
+    can :update_status, Order,
+      status: [Order::STATUS[:new], Order::STATUS[:warehouse_entry]]
   end
 
-  def assembler_permissions(_user)
-    can :update_status, Order, status: Order::STATUS[:supplied], assemble: true
-    cannot :update_status, Order, holding: true
+  def warehouse_exit_permissions(user)
+    can :update_status, Order, status: Order::STATUS[:warehouse_entry]
   end
 
-  def packer_permissions(_user)
+  def assemble_boss_permissions(user)
+    can :update_status, Order, assemble: true,
+      status: [Order::STATUS[:supplied], Order::STATUS[:assemble_entry]]
+  end
+
+  def assemble_exit_permissions(user)
+    can :update_status, Order, assemble: true, status: Order::STATUS[:assemble_entry]
+  end
+
+  def pack_boss_permissions(user)
     can :update_status, Order, status: Order::STATUS[:assembled], assemble: true
     can :update_status, Order, status: Order::STATUS[:supplied], assemble: false
-    cannot :update_status, Order, holding: true
+    can :update_status, Order, status: Order::STATUS[:pack_entry]
   end
 
-  def digital_guides_permissions(_user)
+  def pack_exit_permissions(user)
+    can :update_status, Order, status: Order::STATUS[:pack_entry]
+  end
+
+  def digital_guides_permissions(user)
     can :update_guide, Order, status: [Order::STATUS[:sent], Order::STATUS[:packed]]
-    cannot :update_guide, Order, holding: true
   end
 end

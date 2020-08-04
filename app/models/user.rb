@@ -8,12 +8,18 @@ class User < ApplicationRecord
 
   ROLES = {
     admin: 'admin',
+    shipments: 'shipments',
+    warehouse_boss: 'warehouse_boss',
+    warehouse_exit: 'warehouse_exit',
+    warehouse: 'warehouse',
+    assemble_boss: 'assemble_boss',
+    assemble_exit: 'assemble_exit',
     assembler: 'assembler',
-    human_resources: 'human_resources',
+    pack_boss: 'pack_boss',
+    pack_exit: 'pack_exit',
     packer: 'packer',
     digital_guides: 'digital_guides',
-    shipments: 'shipments',
-    warehouse: 'warehouse',
+    human_resources: 'human_resources',
     observer: 'observer'
   }.freeze
 

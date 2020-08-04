@@ -6,10 +6,14 @@ class Order < ApplicationRecord
   include Timeable
 
   PARCELS = %i[ESTAFETA FEDEX ZMG DHL].freeze
+  # STATUSES have to be in secuence
   STATUS = {
     new: 'new',
+    warehouse_entry: 'warehouse_entry',
     supplied: 'supplied',
+    assemble_entry: 'assemble_entry',
     assembled: 'assembled',
+    pack_entry: 'pack_entry',
     packed: 'packed',
     sent: 'sent'
   }.freeze
@@ -37,6 +41,7 @@ class Order < ApplicationRecord
   validates :guide, length: { maximum: 250 }
 
   validates :status, inclusion: { in: STATUS.values }
+  validate :status_change, on: :update
 
   scope :by_user, -> (user_id) { where(user_id: user_id) if user_id.present? }
   scope :by_status, -> (status) {
@@ -71,7 +76,7 @@ class Order < ApplicationRecord
   end
 
   def set_status
-    self.status = STATUS[:new]
+    self.status = STATUS[:new] unless self.status.present?
   end
 
   def create_movement(params = {})
@@ -80,6 +85,28 @@ class Order < ApplicationRecord
       params[:data] = self.guide if self.guide_changed?
 
       self.movements.build(params)
+    end
+  end
+
+  def status_change
+    return unless self.status_changed?
+    old_status, new_status = self.changes['status']
+    new_status_is_ok = true
+
+    if old_status != STATUS[:supplied]
+      status_keys = Order::STATUS.keys # statuses are in secuence
+      indx = status_keys.index(old_status.to_sym)
+      new_status_is_ok = false unless new_status == STATUS[status_keys[indx + 1]]
+    else
+      if self.assemble
+        new_status_is_ok = false unless new_status == STATUS[:assemble_entry]
+      else
+        new_status_is_ok = false unless new_status == STATUS[:pack_entry]
+      end
+    end
+
+    unless new_status_is_ok
+      self.errors.add(:status, 'that is not the next step')
     end
   end
 end

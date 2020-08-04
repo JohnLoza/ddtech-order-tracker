@@ -6,8 +6,11 @@ class Movement < ApplicationRecord
 
   DESCRIPTIONS = {
     new_order: 'new_order',
+    warehouse_entry_order: 'warehouse_entry_order',
     supplied_order: 'supplied_order',
+    assemble_entry_order: 'assemble_entry_order',
     assembled_order: 'assembled_order',
+    pack_entry_order: 'pack_entry_order',
     packed_order: 'packed_order',
     sent_order: 'sent_order',
     holded_order: 'holded_order',

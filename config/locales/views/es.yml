@@ -27,38 +27,53 @@ es:
   user:
     roles:
       admin: Administrador
+      assemble_boss: Jefe de Ensambles
+      assemble_exit: Encargado de Salidas de Ensamble
       assembler: Ensamblador
       human_resources: Recursos Humanos
+      pack_boss: Jefe de Empaque
+      pack_exit: Encargado de Salidas de Empaque
       packer: Empacador
       digital_guides: Guías Digitales
       shipments: Embarques
+      warehouse_boss: Jefe de Almacén
+      warehouse_exit: Encargado de Salidas de Almacén
       warehouse: Almacén
       observer: Observador
 
   order:
     statuses:
       new: Nuevo
+      warehouse_entry: Entró en Almacén
       supplied: Suminitrado por Almacén
+      assemble_entry: Entró a Ensamble
       assembled: Ensamblado
+      pack_entry: Entró a Empaque
       packed: Empaquetado
       sent: Enviado
     status_change_msg:
-      supplied: Establecer salida de almacén!
-      assembled: Ensamble realizado!
-      packed: Empaquetado listo!
+      warehouse_entry: ¡Establecer entrada a almacén!
+      supplied: ¡Salió de almacén!
+      assemble_entry: ¡Establecer entrada a Ensamble!
+      assembled: ¡Ensamble realizado!
+      pack_entry: ¡Establecer entrada a Empaque!
+      packed: ¡Empaquetado listo!
     assemble:
       false: '<span class="badge badge-warning badge-pill">No</span>'
       true: '<span class="badge badge-success badge-pill">Sí</span>'
 
   movement:
     descriptions:
-      new_order: Creó el pedido
-      supplied_order: Surtió de almacén
-      assembled_order: Terminó el ensamble
-      packed_order: Empaquetó el pedido
-      sent_order: Registró guía de seguimiento
-      holded_order: Retuvo el pedido
-      released_order: Liberó el pedido
+      new_order: El pedido comienza a ser procesado
+      warehouse_entry_order: Entró en Almacén (por surtir)
+      supplied_order: Se surtió el pedido y salió de almacén
+      assemble_entry_order: Entró a Ensamble (por ensamblar)
+      assembled_order: El ensamble ha sido terminado satisfactoriamente
+      pack_entry_order: Entró a Empaque (por empacar)
+      packed_order: El pedido se empaquetó y está en espera de una guía de rastreo
+      sent_order: Guía(s) de rastreo registrada(s)
+      holded_order: El pedido ha sido retenido
+      released_order: Se elimina el reten del pedido y continua con su proceso normal
 
   mailer:
     subjects:
