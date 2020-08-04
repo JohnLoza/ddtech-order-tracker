@@ -19,6 +19,7 @@ class Order < ApplicationRecord
   }.freeze
 
   attr_accessor :updater_id
+  attr_accessor :updating_status
 
   before_validation :set_status, on: :create
   before_save :downcase_email
@@ -89,7 +90,11 @@ class Order < ApplicationRecord
   end
 
   def status_change
-    return unless self.status_changed?
+    if !self.status_changed?
+      self.errors.add(:status, 'not_next_step') if self.updating_status
+      return
+    end
+
     old_status, new_status = self.changes['status']
     new_status_is_ok = true
 
@@ -106,7 +111,7 @@ class Order < ApplicationRecord
     end
 
     unless new_status_is_ok
-      self.errors.add(:status, 'that is not the next step')
+      self.errors.add(:status, 'not_next_step')
     end
   end
 end

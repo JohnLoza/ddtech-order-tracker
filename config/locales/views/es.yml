@@ -77,7 +77,7 @@ es:
 
   mailer:
     subjects:
-      order_status: Pedido DD Tech No %{key} | %{datetime}
+      order_status: Actualización de Pedido DD Tech No %{key} | %{datetime}
     body:
       track_urls:
         estafeta: https://www.estafeta.com/Herramientas/Rastreov1

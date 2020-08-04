@@ -40,8 +40,9 @@ ActiveRecord::Schema.define(version: 2020_07_28_172059) do
     t.string "status"
     t.string "parcel"
     t.string "guide"
-    t.boolean "assemble", default: false
     t.boolean "holding", default: false
+    t.boolean "assemble", default: false
+    t.boolean "multiple_packages", default: false
     t.boolean "urgent", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

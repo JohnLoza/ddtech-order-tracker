@@ -59,7 +59,11 @@ module Admin
         notify_status_change(@order)
         render json: { data: @order.to_json }
       else
-        render status: 400, json: { data: @order.errors.to_json }
+        if create_extra_movement(@order)
+          render json: { data: @order.to_json }
+        else
+          render status: 400, json: { data: @order.errors.to_json }
+        end
       end
     end
 
@@ -105,6 +109,7 @@ module Admin
         :parcel,
         :guide,
         :assemble,
+        :multiple_packages,
         :urgent
       )
     end
@@ -112,6 +117,7 @@ module Admin
     def status_params
       hash = params.require(:order).permit(:ddtech_key, :updater_id, :status)
       hash[:updater_id] = current_user.id unless hash.keys.include? "updater_id"
+      hash[:updating_status] = true
       return hash
     end
 
@@ -149,6 +155,27 @@ module Admin
         NotifyAssembledOrderJob.perform_async(order)
       when Order::STATUS[:sent]
         NotifySentOrderJob.perform_async(order)
+      end
+    end
+
+    def create_extra_movement(order)
+      json_e = order.errors.as_json
+      if order.multiple_packages and json_e.has_key? :status and
+          json_e[:status].include? 'not_next_step'
+
+        if [Order::STATUS[:assemble_entry], Order::STATUS[:assembled]].include? order.status and
+            !order.assemble
+          return false
+        end
+
+        Movement.create({
+          order_id: order.id,
+          user_id: order.updater_id ? order.updater_id : current_user.id,
+          description: "#{order.status}_order"
+        })
+        true
+      else
+        false
       end
     end
 
