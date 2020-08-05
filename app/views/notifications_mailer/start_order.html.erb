@@ -6,6 +6,12 @@
   Es un gusto saludarle y comentarle que a partir de éste momento me encargaré de procesar su pedido, el cual pasará al área de Almacén - Empaque para su despacho y empaquetado.
 </p>
 
+<% if @order.multiple_packages %>
+<p class="text-center">
+  Debido a la cantidad de productos en tu pedido y/o volumen de estos tu pedido se dividirá en 1 o más paquetes de ser necesario, esto con el fin de que no se dañen en el camino.
+</p>
+<% end %>
+
 <p class="text-center">
   <strong>
     Una vez despachado su pedido se le hará llegar su numero de rastreo desde otro mail, favor de revisar su bandeja de correo no deseado o spam.

@@ -25,6 +25,19 @@
       </div>
     </div>
 
+    <% if @order.guide.present? %>
+    <div class="text-center mt-5 parcel <%= @order.parcel %>">
+      <%= content_tag :h2, @order.parcel %>
+      <%= content_tag :h2, @order.guide %>
+    </div>
+
+    <div class="text-center"">
+      <%= link_to t('labels.track_your_package'),
+          t("mailer.body.track_urls.#{@order.parcel.downcase}"),
+          class: 'btn btn-success btn-lg' %>
+    </div>
+    <% end %>
+
     <div class="text-center mt-5">
       <%= link_to 'Rastrea otro pedido', track_path, class: 'btn btn-primary' %>
 

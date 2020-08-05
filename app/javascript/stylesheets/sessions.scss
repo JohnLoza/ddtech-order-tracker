@@ -30,6 +30,19 @@ body {
   color: #333;
 }
 
+.parcel {
+  background-color: #777;
+  padding: 0.2em;
+  margin: 0.5em;
+}
+.parcel h2 { color: #fefefe !important; }
+
+.ESTAFETA { background-color: #e53935; }
+.FEDEX { background-color: #3949ab; }
+.ZMG { background-color: #7cb342; }
+.DHL { background-color: #fdd835; }
+.DHL h2 { color: #333; }
+
 .progressbar li {
   list-style-type: none;
   width: 25%;
