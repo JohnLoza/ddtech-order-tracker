@@ -5,12 +5,14 @@
 <div class="row">
   <div class="col-md-12">
     <div class="card">
-      <h5 class="card-header">
-        <%= t(".title") %>
-        <%= link_to new_admin_order_path do %>
-        <i class="fas fa-fw fa-plus-circle fa-2x float-right"></i>
-        <% end if can? :create, Order %>
-      </h5>
+      <div class="card-header">
+        <h2 class="card-title">
+          <%= t(".title") %>
+          <%= link_to new_admin_order_path do %>
+          <i class="fas fa-fw fa-plus-circle fa-lg float-right"></i>
+          <% end if can? :create, Order %>
+        </h2>
+      </div>
       <div class="card-body">
 
         <div class="text-center mb-3">
@@ -19,6 +21,9 @@
 
           <%= link_to t('.capture_guides'), update_guide_admin_orders_path,
             class: 'btn btn-primary ml-3' if can? :update_guide, Order %>
+
+          <%= link_to t('.arrears'), arrears_admin_orders_path,
+            class: 'btn btn-info ml-3' if can? :read, Order %>
         </div>
 
         <div class="table-responsive">

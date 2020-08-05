@@ -1,5 +1,5 @@
 <div class="card">
-  <h5 class="card-header"><%= yield :page_header %></h5>
+  <h2 class="card-header"><%= yield :page_header %></h2>
   <div class="card-body">
     <%= form_for [:admin, @order] do |f| %>
     <%= render partial: '/shared/form_errors.html.erb', locals: {obj: @order} %>

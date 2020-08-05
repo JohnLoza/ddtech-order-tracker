@@ -1,10 +1,10 @@
 <div class="card">
   <div class="card-header pointer" onclick="toggleChevron(this)"
     data-toggle="collapse" data-target=".notes-card">
-    <h3 class="card-title">
+    <h2 class="card-title">
       <%= Note.model_name.human(count: 2) %>
       <i class="fas fa-chevron-up"></i>
-    </h3>
+    </h2>
   </div>
   <div class="card-body collapse notes-card">
     <%= render partial: '/admin/notes/form', locals: {new_note: new_note} %>

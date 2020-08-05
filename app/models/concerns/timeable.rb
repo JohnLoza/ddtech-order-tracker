@@ -9,9 +9,9 @@ module Timeable
 
   included do
     scope :recent, -> { order(created_at: :desc) }
-    scope :ancient, -> { order(created_at: :asc) }
+    scope :oldest, -> { order(created_at: :asc) }
     scope :recent_update, -> { order(updated_at: :desc) }
-    scope :ancient_update, -> { order(updated_at: :asc) }
+    scope :oldest_update, -> { order(updated_at: :asc) }
   end
 
   class_methods do

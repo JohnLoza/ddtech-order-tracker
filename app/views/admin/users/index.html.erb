@@ -5,12 +5,14 @@
 <div class="row">
   <div class="col-md-12">
     <div class="card">
-      <h5 class="card-header">
-        <%= t(".title") %>
-        <%= link_to new_admin_user_path do %>
-        <i class="fas fa-fw fa-plus-circle fa-2x float-right"></i>
-        <% end if can? :create, User %>
-      </h5>
+      <div class="card-header">
+        <h2 class="card-title">
+          <%= t(".title") %>
+          <%= link_to new_admin_user_path do %>
+          <i class="fas fa-fw fa-plus-circle fa-lg float-right"></i>
+          <% end if can? :create, User %>
+        </h2>
+      </div>
       <div class="card-body">
         <div class="table-responsive">
 

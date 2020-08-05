@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :dashboard, only: :index
     resources :users
     resources :orders do
+      get :arrears, on: :collection
+
       put :hold, on: :member
       put :release, on: :member
 

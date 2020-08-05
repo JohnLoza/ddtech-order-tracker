@@ -5,6 +5,12 @@ es:
         title: Listado de pedidos
         process_orders: Procesa Pedidos
         capture_guides: Captura de Guías
+        arrears: Retrasos
+
+      arrears:
+        title: Los pedidos más atrasados
+        assemble_arrears: Ensambles atrasados
+        arrears: Pedidos atrasados
 
       show:
         title: Pedido No %{order}

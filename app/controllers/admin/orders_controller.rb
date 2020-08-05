@@ -7,9 +7,15 @@ module Admin
     before_action :set_new_order, only: :create
 
     skip_authorization_check only: [:update_guide, :update_status]
-    load_and_authorize_resource except: [:update_guide, :update_status]
+    load_and_authorize_resource except: [:arrears, :update_guide, :update_status]
 
     def index; end
+
+    def arrears
+      authorize! :read, Order
+      @arrears = Order.arrears.oldest.limit(10).includes(:user)
+      @assemble_arrears = Order.assemble_arrears.oldest.limit(10).includes(:user)
+    end
 
     def show
       @movements = @order.movements.includes(:user)

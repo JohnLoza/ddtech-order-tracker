@@ -1,0 +1,74 @@
+<% provide :title, t('.title') %>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header pointer" onclick="toggleChevron(this)"
+          data-toggle="collapse" data-target=".arrears-card">
+        <h2 class="card-title">
+          <%= t(".arrears") %>
+          <i class="fas fa-chevron-down"></i>
+        </h2>
+      </div>
+      <div class="card-body collapse show arrears-card">
+
+        <div class="table-responsive">
+
+          <table class="table table-bordered table-hover">
+            <thead class="bg-light">
+              <tr class="border-0">
+                <%= content_tag :th, Order.human_attribute_name(:ddtech_key), class: 'border-0' %>
+                <%= content_tag :th, Order.human_attribute_name(:client_email), class: 'border-0' %>
+                <%= content_tag :th, Order.human_attribute_name(:user_id), class: 'border-0' %>
+                <%= content_tag :th, Order.human_attribute_name(:status), class: 'border-0' %>
+                <%= content_tag :th, t('labels.created_at'), class: 'border-0' %>
+                <%= content_tag :th, t('labels.actions'), class: 'border-0' %>
+              </tr>
+            </thead>
+            <tbody>
+              <%= render @arrears %>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header pointer" onclick="toggleChevron(this)"
+          data-toggle="collapse" data-target=".assemble-arrears-card">
+        <h2 class="card-title">
+          <%= t(".assemble_arrears") %>
+          <i class="fas fa-chevron-down"></i>
+        </h2>
+      </div>
+      <div class="card-body collapse show assemble-arrears-card">
+
+        <div class="table-responsive">
+
+          <table class="table table-bordered table-hover">
+            <thead class="bg-light">
+              <tr class="border-0">
+                <%= content_tag :th, Order.human_attribute_name(:ddtech_key), class: 'border-0' %>
+                <%= content_tag :th, Order.human_attribute_name(:client_email), class: 'border-0' %>
+                <%= content_tag :th, Order.human_attribute_name(:user_id), class: 'border-0' %>
+                <%= content_tag :th, Order.human_attribute_name(:status), class: 'border-0' %>
+                <%= content_tag :th, t('labels.created_at'), class: 'border-0' %>
+                <%= content_tag :th, t('labels.actions'), class: 'border-0' %>
+              </tr>
+            </thead>
+            <tbody>
+              <%= render @assemble_arrears %>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

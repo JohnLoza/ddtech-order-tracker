@@ -49,6 +49,8 @@ class Order < ApplicationRecord
     where(status: status, holding: false) if status.present?
   }
   scope :urgent_first, -> { order(urgent: :desc) }
+  scope :arrears, -> () { where.not(status: STATUS[:sent]).where(assemble: false) }
+  scope :assemble_arrears, -> () { where.not(status: STATUS[:sent]).where(assemble: true) }
 
   def to_s
     "##{ddtech_key}"
