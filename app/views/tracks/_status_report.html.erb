@@ -1,0 +1,47 @@
+<div class="card">
+  <div class="card-header bg-primary text-center">
+    <h2 class="card-title text-light">
+      Pedido: #<%= @order.ddtech_key %>
+    </h2>
+  </div>
+  <div class="card-body">
+
+    <div class="row">
+      <div class="col-12">
+        <ul class="progressbar text-center">
+          <li class="active">Órden creada</li>
+          <li class="<%= 'active' if movements_include?(@movements, Movement::DESCRIPTIONS[:supplied_order]) %>">
+            Surtida
+          </li>
+          <% if @order.assemble %>
+            <li class="<%= 'active' if movements_include?(@movements, Movement::DESCRIPTIONS[:assembled_order]) %>">
+              Ensamble finalizado
+            </li>
+          <% end %>
+          <li class="<%= 'active' if movements_include?(@movements, Movement::DESCRIPTIONS[:sent_order]) %>">
+            Enviado
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="text-center mt-5">
+      <%= link_to 'Rastrea otro pedido', track_path, class: 'btn btn-primary' %>
+
+      <button data-toggle="collapse" data-target=".details"
+        class="btn btn-light">
+        Mostrar detalles
+      </button>
+    </div>
+
+    <section class="details collapse mt-3">
+    <% @movements.each do |movement| %>
+      <p>
+        <%= l(movement.created_at, format: :short) %> > > >
+        <%= t("movement.descriptions.#{movement.description}") %>
+      </p>
+      <hr>
+    <% end %>
+    </section>
+  </div>
+</div>

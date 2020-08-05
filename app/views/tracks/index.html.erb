@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_pack_tag 'sessions', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'sessions', 'data-turbolinks-track': 'reload' %>
+
+  <%= content_tag :title, t('labels.sign_in') %>
+</head>
+
+<body>
+
+  <div class="container px-1 px-md-4 py-5 mx-auto">
+    <%= render '/shared/alerts.html.erb' %>
+
+    <% if @order %>
+      <%= render 'status_report' %>
+    <% else %>
+      <%= render 'form' %>
+    <% end %>
+  </div>
+
+</body>
+
+</html>

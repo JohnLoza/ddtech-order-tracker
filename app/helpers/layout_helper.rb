@@ -120,4 +120,10 @@ module LayoutHelper
     end
   end
 
+  def movements_include?(movements, required)
+    json = movements.as_json
+    match = json.select {|s| s["description"] == required}
+    match.any?
+  end
+
 end
