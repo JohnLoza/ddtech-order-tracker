@@ -1,8 +1,8 @@
 <div class="card">
   <div class="card-header bg-primary text-center">
-    <h2 class="card-title text-light">
+    <h1 class="card-title font-weigh-bold text-light mt-3">
       Pedido: #<%= @order.ddtech_key %>
-    </h2>
+    </h1>
   </div>
   <div class="card-body">
 
@@ -26,15 +26,15 @@
     </div>
 
     <% if @order.guide.present? %>
-    <div class="text-center mt-5 parcel <%= @order.parcel %>">
-      <%= content_tag :h2, @order.parcel %>
+    <div class="text-center mt-5">
+      <%= content_tag :h2, @order.parcel, class: "parcel #{@order.parcel} font-weight-bold" %>
       <%= content_tag :h2, @order.guide %>
     </div>
 
     <div class="text-center"">
       <%= link_to t('labels.track_your_package'),
           t("mailer.body.track_urls.#{@order.parcel.downcase}"),
-          class: 'btn btn-primary' %>
+          class: 'btn btn-primary mt-3', target: '_blank' %>
     </div>
     <% end %>
 
