@@ -13,7 +13,7 @@ $(document).on('turbolinks:load', function () {
       case "assemble_entry":
         select = document.getElementsByClassName("assembler-users")[0]
         break;
-      case "pack_entry":
+      case "packed":
         select = document.getElementsByClassName("packer-users")[0]
         break;
     }

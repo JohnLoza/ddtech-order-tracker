@@ -88,11 +88,11 @@ class Ability
   def pack_boss_permissions(user)
     can :update_status, Order, status: Order::STATUS[:assembled], assemble: true
     can :update_status, Order, status: Order::STATUS[:supplied], assemble: false
-    can :update_status, Order, status: Order::STATUS[:pack_entry]
   end
 
   def pack_exit_permissions(user)
-    can :update_status, Order, status: Order::STATUS[:pack_entry]
+    can :update_status, Order, status: Order::STATUS[:assembled], assemble: true
+    can :update_status, Order, status: Order::STATUS[:supplied], assemble: false
   end
 
   def digital_guides_permissions(user)

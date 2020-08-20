@@ -13,7 +13,6 @@ class Order < ApplicationRecord
     supplied: 'supplied',
     assemble_entry: 'assemble_entry',
     assembled: 'assembled',
-    pack_entry: 'pack_entry',
     packed: 'packed',
     sent: 'sent'
   }.freeze
@@ -108,7 +107,7 @@ class Order < ApplicationRecord
       if self.assemble
         new_status_is_ok = false unless new_status == STATUS[:assemble_entry]
       else
-        new_status_is_ok = false unless new_status == STATUS[:pack_entry]
+        new_status_is_ok = false unless new_status == STATUS[:packed]
       end
     end
 

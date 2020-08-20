@@ -48,7 +48,6 @@ es:
       supplied: Suminitrado por Almacén
       assemble_entry: Entró a Ensamble
       assembled: Ensamblado
-      pack_entry: Entró a Empaque
       packed: Empaquetado
       sent: Enviado
     status_change_msg:
@@ -56,7 +55,6 @@ es:
       supplied: ¡Salió de almacén!
       assemble_entry: ¡Establecer entrada a Ensamble!
       assembled: ¡Ensamble realizado!
-      pack_entry: ¡Establecer entrada a Empaque!
       packed: ¡Empaquetado listo!
     assemble:
       false: '<span class="badge badge-warning badge-pill">No</span>'
@@ -69,7 +67,6 @@ es:
       supplied_order: Se surtió el pedido y salió de almacén
       assemble_entry_order: Entró a Ensamble (por ensamblar)
       assembled_order: El ensamble ha sido terminado satisfactoriamente
-      pack_entry_order: Entró a Empaque (por empacar)
       packed_order: El pedido se empaquetó y está en espera de una guía de rastreo
       sent_order: Guía(s) de rastreo registrada(s)
       holded_order: El pedido ha sido retenido

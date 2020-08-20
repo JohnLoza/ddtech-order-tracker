@@ -30,31 +30,14 @@
       <%= content_tag :h2, @order.parcel, class: "parcel #{@order.parcel} font-weight-bold" %>
       <%= content_tag :h2, @order.guide %>
     </div>
-
-    <div class="text-center"">
-      <%= link_to t('labels.track_your_package'),
-          t("mailer.body.track_urls.#{@order.parcel.downcase}"),
-          class: 'btn btn-primary mt-3', target: '_blank' %>
-    </div>
     <% end %>
 
     <div class="text-center mt-5">
-      <%= link_to 'Rastrea otro pedido', track_path, class: 'btn btn-primary' %>
+      <%= link_to t('labels.track_your_package'),
+        t("mailer.body.track_urls.#{@order.parcel.downcase}"),
+        class: 'btn btn-primary btn-lg', target: '_blank' if @order.guide.present? %>
 
-      <button data-toggle="collapse" data-target=".details"
-        class="btn btn-light">
-        Mostrar detalles
-      </button>
+      <%= link_to 'Buscar otro pedido', track_path, class: 'btn btn-light btn-lg' %>
     </div>
-
-    <section class="details collapse mt-3">
-    <% @movements.each do |movement| %>
-      <p>
-        <%= l(movement.created_at, format: :short) %> > > >
-        <%= t("movement.descriptions.#{movement.description}") %>
-      </p>
-      <hr>
-    <% end %>
-    </section>
   </div>
 </div>

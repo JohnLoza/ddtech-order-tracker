@@ -10,7 +10,6 @@ class Movement < ApplicationRecord
     supplied_order: 'supplied_order',
     assemble_entry_order: 'assemble_entry_order',
     assembled_order: 'assembled_order',
-    pack_entry_order: 'pack_entry_order',
     packed_order: 'packed_order',
     sent_order: 'sent_order',
     holded_order: 'holded_order',

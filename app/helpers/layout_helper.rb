@@ -102,10 +102,6 @@ module LayoutHelper
     when User::ROLES[:pack_boss]
       [
         [
-          t("order.status_change_msg.#{Order::STATUS[:pack_entry]}"),
-          Order::STATUS[:pack_entry]
-        ],
-        [
           t("order.status_change_msg.#{Order::STATUS[:packed]}"),
           Order::STATUS[:packed]
         ]
