@@ -140,8 +140,8 @@ module Admin
     def load_orders
       @pagy, @orders = pagy(
         Order.search(
-            keywords: filter_params(require: :ddtech_key),
-            fields: [:ddtech_key]
+            keywords: filter_params(require: :keywords),
+            fields: [:ddtech_key, :client_email]
           ).by_user(filter_params(require: :user_id))
           .by_status(filter_params(require: :status))
           .urgent_first.recent.includes(:user)

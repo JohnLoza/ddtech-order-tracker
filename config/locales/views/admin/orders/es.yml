@@ -53,6 +53,9 @@ es:
         title: Retención de pedido
         are_you_sure: ¿Estás seguro(a) de retener/liberar el pedido?
 
+      filters:
+        search_by: Buscar por No de pedido o correo
+
     notes:
       card:
         empty_notes: Oopss. ¡Aún no tenemos ninguna nota!

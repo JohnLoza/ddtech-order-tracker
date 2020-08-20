@@ -4,11 +4,10 @@
       <%= content_tag :h3, t("labels.filters"), class: "card-header" %>
       <div class="card-body">
         <%= form_for :filter, method: :get, html: {class: "form-inline"} do |f| %>
-
           <div class="form-group mx-sm-3">
-            <%= f.label :ddtech_key, Order.human_attribute_name(:ddtech_key), class: 'sr-only'  %>
-            <%= f.text_field :ddtech_key, value: filter_params(require: :ddtech_key),
-              class: 'form-control filter', placeholder: Order.human_attribute_name(:ddtech_key) %>
+            <%= f.label :keywords, t('.search_by'), class: 'sr-only'  %>
+            <%= f.text_field :keywords, value: filter_params(require: :keywords),
+              class: 'form-control filter', placeholder: t('.search_by') %>
           </div>
 
           <div class='form-group mx-sm-3'>
@@ -28,8 +27,8 @@
                 { class: 'form-control filter' } %>
           </div>
 
-          <%= f.submit t("labels.filter"), class: "btn btn-primary" %>
-
+          <%= f.submit t('labels.filter'), class: 'btn btn-primary' %>
+          <%= link_to t('labels.clear_filters'), admin_orders_path, class: 'btn btn-light ml-3' %>
         <% end %>
       </div>
     </div>

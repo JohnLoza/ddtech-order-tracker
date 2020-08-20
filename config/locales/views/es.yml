@@ -6,8 +6,9 @@ es:
     badge: Insignia
     brand: Ddtech
     change_password: Cambiar contraseña
-    created_at: Fecha
+    clear_filters: Limpiar filtros
     close: Cerrar
+    created_at: Fecha
     dashboard: Tablero de Inicio
     filter: Filtrar
     filters: Filtros
