@@ -15,7 +15,6 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: <%= ENV['DB_USER'] %>
   password: <%= ENV['DB_PASS'] %>
-  socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
@@ -50,5 +49,5 @@ test:
 production:
   <<: *default
   database: ddtech_order_tracker_production
-  username: ddtech_order_tracker
-  password: <%= ENV['DDTECH_ORDER_TRACKER_DATABASE_PASSWORD'] %>
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASS'] %>
