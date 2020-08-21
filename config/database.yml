@@ -48,6 +48,6 @@ test:
 #
 production:
   <<: *default
-  database: ddtech_order_tracker_production
+  database: ddtech_order-tracker-production
   username: <%= ENV['DB_USER'] %>
   password: <%= ENV['DB_PASS'] %>
