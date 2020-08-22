@@ -6,7 +6,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :dashboard, only: :index
-    resources :users
+
+    resources :users do
+      post :restore, on: :member
+    end
+
     resources :orders do
       get :arrears, on: :collection
 
