@@ -20,12 +20,12 @@ if User.all.empty?
 end
 
 5.times do
-  Order::PARCELS.keys.each do |key|
+  Order::PARCELS.each do |parcel|
     Order.create(
-      user_id: 1
-      ddtech_key: rand(111111..999999).to_s
-      client_email: 'lozabucio.jony@gmail.com'
-      parcel: Order::PARCELS[key]
+      user_id: 1,
+      ddtech_key: rand(111111..999999).to_s,
+      client_email: 'lozabucio.jony@gmail.com',
+      parcel: parcel,
       urgent: rand() <= 0.25 ? true : false
     )
   end
