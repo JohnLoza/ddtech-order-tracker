@@ -166,20 +166,20 @@ module Admin
 
     def create_extra_movement(order)
       json_e = order.errors.as_json
-      if order.multiple_packages and json_e.has_key? :status and
-          json_e[:status].include? 'not_next_step'
+      # verify the order has multiple packages option active
+      if order.multiple_packages and json_e.has_key? :status and json_e[:status].include? 'not_next_step'
 
         if [Order::STATUS[:assemble_entry], Order::STATUS[:assembled]].include? order.status and
-            !order.assemble
+            !order.assemble # do not let to save assemble statuses if it doesnt even has to be assembled
           return false
         end
 
+        # Create only a new movement record while not updating the status
         Movement.create({
           order_id: order.id,
           user_id: order.updater_id ? order.updater_id : current_user.id,
           description: "#{order.status}_order"
         })
-        true
       else
         false
       end

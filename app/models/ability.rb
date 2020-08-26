@@ -49,6 +49,7 @@ class Ability
     can :update, User, id: user.id
 
     cannot :update_status, Order, status: [Order::STATUS[:sent], Order::STATUS[:packed]]
+    can :update_status, Order, multiple_packages: true
     cannot :update_guide, Order
     can :update_guide, Order, status: [Order::STATUS[:sent], Order::STATUS[:packed]]
 
@@ -70,29 +71,35 @@ class Ability
   def warehouse_boss_permissions(user)
     can :update_status, Order,
       status: [Order::STATUS[:new], Order::STATUS[:warehouse_entry]]
+    can :update_status, Order, multiple_packages: true
   end
 
   def warehouse_exit_permissions(user)
     can :update_status, Order, status: Order::STATUS[:warehouse_entry]
+    can :update_status, Order, multiple_packages: true
   end
 
   def assemble_boss_permissions(user)
     can :update_status, Order, assemble: true,
       status: [Order::STATUS[:supplied], Order::STATUS[:assemble_entry]]
+    can :update_status, Order, assemble: true, multiple_packages: true
   end
 
   def assemble_exit_permissions(user)
     can :update_status, Order, assemble: true, status: Order::STATUS[:assemble_entry]
+    can :update_status, Order, assemble: true, multiple_packages: true
   end
 
   def pack_boss_permissions(user)
     can :update_status, Order, status: Order::STATUS[:assembled], assemble: true
     can :update_status, Order, status: Order::STATUS[:supplied], assemble: false
+    can :update_status, Order, multiple_packages: true
   end
 
   def pack_exit_permissions(user)
     can :update_status, Order, status: Order::STATUS[:assembled], assemble: true
     can :update_status, Order, status: Order::STATUS[:supplied], assemble: false
+    can :update_status, Order, multiple_packages: true
   end
 
   def digital_guides_permissions(user)
