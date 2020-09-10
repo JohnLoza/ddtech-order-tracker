@@ -27,7 +27,7 @@ module Admin
     def create
       if @order.save
         NotifyStartOrderJob.perform_async(@order)
-        redirect_to [:admin, @order], flash: { success: t('.success', order: @order) }
+        redirect_to new_admin_order_path(), flash: { success: t('.success', order: @order) }
       else
         render :new
       end
@@ -130,7 +130,8 @@ module Admin
     def guide_params
       hash = Hash.new
       hash[:status] = Order::STATUS[:sent]
-      hash[:guide] = params[:order][:guide].join(' y ')
+      guides = params[:order][:guide].reject { |el| el.empty? }
+      hash[:guide] = guides.join(' y ')
 
       hash[:urgent] = false
       hash[:updater_id] = current_user.id

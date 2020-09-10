@@ -3,42 +3,34 @@
 <h2 class="text-center">¡Hola! le atiende: <%= @order.user %></h2>
 
 <p class="text-center">
-  Es un gusto saludarle y comentarle que a partir de éste momento me encargaré de procesar su pedido, el cual pasará al área de Almacén - Empaque para su despacho y empaquetado.
+  Es un gusto comentarle que a partir de este momento me encargaré de su compra. Estaremos trabajando en su pedido y tan pronto como este sea enviado,
+  le haremos llegar vía email su número de rastreo de la paquetería (Por favor mantengase pendiente de su bandeja de correo no deseado).
 </p>
 
 <% if @order.multiple_packages %>
 <p class="text-center">
-  Debido a la cantidad de productos en tu pedido y/o volumen de estos tu pedido se dividirá en 1 o más paquetes de ser necesario, esto con el fin de que no se dañen en el camino.
+  En caso de ser necesario su pedido se dividirá en 1 o más paquetes con el fin de evitar daños en el trayecto.
 </p>
 <% end %>
 
-<p class="text-center">
-  <strong>
-    Una vez despachado su pedido se le hará llegar su numero de rastreo desde otro mail, favor de revisar su bandeja de correo no deseado o spam.
-  </strong>
-</p>
-
-<p class="text-center">
-  Quedo a sus órdenes para cualquier duda que pueda surgir y le deseo un excelente día.<br>
-  <strong>¡Gracias!</strong>
-</p>
+<div class="text-center" style="margin-top: 3em; margin-bottom: 2em;">
+  <a class="btn btn-success btn-xxl" href="https://ddtech.mx/rastreo">
+    Ver estado de mi pedido
+  </a>
+</div>
 
 <p class="text-center upcase" style="color: #ff9900;">
   <strong>
-    Importante<br>
-    Actualmente nos encontramos bajo una gran demanda de pedidos, por lo que podría haber demoras con su envío. Agradecemos mucho su comprensión.
+    IMPORTANTE<br>
+    Puedes ver los tiempos estimados de envío actuales aqui: <a href="https://ddtech.mx/blog/noticia/retrasos-en-envios">Tiempos de espera</a>
   </strong>
 </p>
 
 <div class="bg-primary p-1" style="padding-top: 1em;">
-  <p class="text-center upcase">importante</p>
+  <p class="text-center upcase">NOTA</p>
   <p class="text-center">
-    Si requiere factura, favor de indicarnos su método de pago:  tarjeta de débito, crédito, cheque, transferencia o efectivo, así como uso de CFDI. **Hacer caso omiso si ya registro sus datos de facturación en su pedido, o bien si no requiere factura.**
-  </p>
-  <p class="text-center">
-    Le recordamos nuestros tiempos de espera en el siguiente enlace:
-    <a href="https://ddtech.mx/blog/noticia/retrasos-en-envios">
-      https://ddtech.mx/blog/noticia/retrasos-en-envios
-    </a>
+  En caso de necesitar factura y no haberla solicitado al momento de hacer el pedido, por favor indíquenos los siguientes datos:
+  1.- Método de pago (Tarjeta de débito, crédito, cheque, transferencia o efectivo) y 2.- El uso de CFDI. Si usted no necesita
+  declarar impuestos ante hacienda, haga caso omiso de esta nota.
   </p>
 </div>

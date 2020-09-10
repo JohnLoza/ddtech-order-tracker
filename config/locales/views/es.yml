@@ -46,16 +46,16 @@ es:
     statuses:
       new: Nuevo
       warehouse_entry: Entró en Almacén
-      supplied: Suminitrado por Almacén
+      supplied: Suministrado por Almacén
       assemble_entry: Entró a Ensamble
       assembled: Ensamblado
       packed: Empaquetado
       sent: Enviado
     status_change_msg:
-      warehouse_entry: ¡Establecer entrada a almacén!
-      supplied: ¡Salió de almacén!
-      assemble_entry: ¡Establecer entrada a Ensamble!
-      assembled: ¡Ensamble realizado!
+      warehouse_entry: ¡Entradas a Almacén!
+      supplied: ¡Salidas de Almacén!
+      assemble_entry: ¡Entradas a Ensamble!
+      assembled: ¡Salidas de Ensamble!
       packed: ¡Empaquetado listo!
     assemble:
       false: '<span class="badge badge-warning badge-pill">No</span>'
