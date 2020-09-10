@@ -71,7 +71,7 @@ es:
       packed_order: El pedido se empaquetó y está en espera de una guía de rastreo
       sent_order: Guía(s) de rastreo registrada(s)
       holded_order: El pedido ha sido retenido
-      released_order: Se elimina el reten del pedido y continua con su proceso normal
+      released_order: Se elimina el retén del pedido y continua con su proceso normal
 
   mailer:
     subjects:
