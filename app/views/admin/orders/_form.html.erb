@@ -12,8 +12,8 @@
 
     <div class="form-group">
       <%= f.label :client_email %>
-      <%= f.email_field :client_email, class: 'form-control',
-          maxlength: 50, required: true, onpaste: "document.getElementById('order_parcel').focus();" %>
+      <%= f.email_field :client_email, class: 'form-control', maxlength: 50, required: true,
+          onpaste: "setTimeout(function() {document.getElementById('order_parcel').focus();}, 0)" %>
     </div>
 
     <div class="form-group">
