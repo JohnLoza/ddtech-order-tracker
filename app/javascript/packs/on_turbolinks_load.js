@@ -19,4 +19,10 @@ $(document).on('turbolinks:load', function () {
       event.preventDefault();
   });
   // submit form on enter
+
+  // prevent spaces
+  $("[data-prevent-spaces]").on("keydown", function(event) {
+    if (event.keyCode === 32)
+      event.preventDefault();
+  });
 });

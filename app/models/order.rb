@@ -21,8 +21,8 @@ class Order < ApplicationRecord
   attr_accessor :updating_status
 
   before_validation :set_status, on: :create
+  before_validation :trim_ddtech_key
   before_save :downcase_email
-
   before_save :create_movement
 
   belongs_to :user
@@ -75,6 +75,10 @@ class Order < ApplicationRecord
 
   def downcase_email
     self.client_email = client_email.downcase
+  end
+
+  def trim_ddtech_key
+    self.ddtech_key.strip!
   end
 
   def set_status
