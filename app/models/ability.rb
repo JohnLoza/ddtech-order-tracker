@@ -52,6 +52,7 @@ class Ability
     can :update_status, Order, multiple_packages: true
     cannot :update_guide, Order
     can :update_guide, Order, status: [Order::STATUS[:sent], Order::STATUS[:packed]]
+    can :update_guide, Order, multiple_packages: true
 
     cannot [:hold, :release], Order, status: Order::STATUS[:sent]
   end

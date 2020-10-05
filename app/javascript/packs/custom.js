@@ -1,6 +1,7 @@
 import './bootstrap_custom'
 import '@fortawesome/fontawesome-free/js/all.min.js'
 import 'jquery-slimscroll'
+import 'bootstrap-datepicker'
 
 import 'parsleyjs'
 import 'parsleyjs/dist/i18n/es'

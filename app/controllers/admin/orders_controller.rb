@@ -52,7 +52,12 @@ module Admin
         notify_status_change(@order)
         render json: { data: @order.to_json }
       else
-        render status: 400, json: { data: @order.errors.to_json }
+        if create_extra_movement(@order)
+          render json: { data: @order.to_json }
+          notify_status_change(@order)
+        else
+          render status: 400, json: { data: @order.errors.to_json }
+        end
       end
     end
 
@@ -145,6 +150,8 @@ module Admin
             fields: [:ddtech_key, :client_email]
           ).by_user(filter_params(require: :user_id))
           .by_status(filter_params(require: :status))
+          .by_parcel(filter_params(require: :parcel))
+          .by_date(filter_params(require: :date))
           .urgent_first.recent.includes(:user)
       )
     end
@@ -176,11 +183,14 @@ module Admin
         end
 
         # Create only a new movement record while not updating the status
-        Movement.create({
+        mvnt = Movement.new({
           order_id: order.id,
           user_id: order.updater_id ? order.updater_id : current_user.id,
           description: "#{order.status}_order"
         })
+
+        mvnt.data = order.guide if order.guide.present?
+        mvnt.save!
       else
         false
       end

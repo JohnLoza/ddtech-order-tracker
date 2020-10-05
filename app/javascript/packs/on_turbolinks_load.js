@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function () {
-  $('form').parsley();
+  $('form').parsley(); // initialize parsley
 
   // submit form on enter
   $("[data-submit-on-enter]").on("keydown", function(event) {
@@ -24,5 +24,12 @@ $(document).on('turbolinks:load', function () {
   $("[data-prevent-spaces]").on("keydown", function(event) {
     if (event.keyCode === 32)
       event.preventDefault();
+  });
+  // prevent spaces
+
+  $('.datepicker').datepicker({
+    autoclose: true,
+    format: 'yyyy-mm-dd',
+    orientation: 'bottom',
   });
 });

@@ -44,8 +44,10 @@ class Order < ApplicationRecord
   validate :status_change, on: :update
 
   scope :by_user, -> (user_id) { where(user_id: user_id) if user_id.present? }
-  scope :by_status, -> (status) {
-    where(status: status, holding: false) if status.present?
+  scope :by_status, -> (status) { where(status: status) if status.present? }
+  scope :by_parcel, -> (parcel) { where(parcel: parcel) if parcel.present? }
+  scope :by_date, -> (date) { 
+    where(created_at: Date.parse(date).all_day) if date.present?
   }
   scope :urgent_first, -> { order(urgent: :desc) }
   scope :arrears, -> () { where.not(status: STATUS[:sent]).where(assemble: false, holding: false) }
