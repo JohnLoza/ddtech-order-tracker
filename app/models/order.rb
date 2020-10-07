@@ -49,6 +49,7 @@ class Order < ApplicationRecord
   scope :by_date, -> (date) { 
     where(created_at: Date.parse(date).all_day) if date.present?
   }
+  scope :today, -> { where(created_at: Date.today.all_day) }
   scope :urgent_first, -> { order(urgent: :desc) }
   scope :arrears, -> () { where.not(status: STATUS[:sent]).where(assemble: false, holding: false) }
   scope :assemble_arrears, -> () { where.not(status: STATUS[:sent]).where(assemble: true) }

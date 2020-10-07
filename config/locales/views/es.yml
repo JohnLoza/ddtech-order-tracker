@@ -22,6 +22,7 @@ es:
     select: Selecciona
     sign_in: Iniciar sesión
     sign_out: Cerrar sesión
+    today_statistics: Estadísticas diarias
     track_your_package: Rastrea tu paquete
     updated_at: Última actualización
 

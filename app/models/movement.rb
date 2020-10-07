@@ -26,6 +26,8 @@ class Movement < ApplicationRecord
 
   validates :data, length: { maximum: 250 }
 
+  scope :today, -> { where(created_at: Date.today.all_day) }
+
   private
 
   def set_description

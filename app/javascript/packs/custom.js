@@ -3,6 +3,9 @@ import '@fortawesome/fontawesome-free/js/all.min.js'
 import 'jquery-slimscroll'
 import 'bootstrap-datepicker'
 
+import { Chart } from 'chart.js'
+import './charts'
+
 import 'parsleyjs'
 import 'parsleyjs/dist/i18n/es'
 
