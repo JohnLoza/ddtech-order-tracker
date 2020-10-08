@@ -40,6 +40,7 @@ class Ability
   def default_permissions
     can :read, Order
     can :create, Note
+    can :manage, OrderTag
   end
 
   def admin_permissions(user)
@@ -67,6 +68,7 @@ class Ability
     can [:hold, :release], Order do |order|
       order.user_id == user.id and order.status != Order::STATUS[:sent]
     end
+    can :manage, Tag
   end
 
   def warehouse_boss_permissions(user)
