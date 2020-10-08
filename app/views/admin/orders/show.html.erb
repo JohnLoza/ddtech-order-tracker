@@ -50,6 +50,23 @@
           <%= content_tag :span, @order.guide, class: 'badge badge-primary badge-pill' %>
         </p>
       </div>
+      <div class="card-footer">
+        <%= content_tag :h3, Tag.model_name.human(count: 2) %>
+
+        <% @order.tags.each do |tag| %>
+          <%= render partial: '/admin/tags/tag_badge', locals: {order: @order, tag: tag} %>
+        <% end %>
+
+        <%= form_for OrderTag.new, url: admin_order_order_tags_path(@order.id) do |f| %>
+          <div class="form-group mt-3">
+            <%= f.hidden_field :order_id, value: @order.id %>
+            <%= f.label :tag_id, 'Añadir Etiqueta' %>
+            <%= f.select :tag_id, Tag.all.order(:name).collect {|tag| [tag.name, tag.id]}, 
+              {prompt: 'Selecciona la etiqueta'}, { class: 'form-control', required: true } %>
+          </div>
+          <%= f.submit t('labels.save'), class: 'btn btn-primary' %>
+        <% end %>
+      </div>
     </div>
   </div>
 

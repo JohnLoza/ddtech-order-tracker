@@ -1,0 +1,8 @@
+<% hash_id = Utils.new_token %>
+<%= content_tag :span, class: tag.css_class, id: hash_id do %>
+  <%= tag.name %> |
+  <%= link_to admin_order_order_tag_path(order, tag), method: :delete, 
+    'data-remove-dom-el-on-click' => hash_id, remote: true do %>
+    <i class="fas fa-times"></i>
+  <% end %>
+<% end %>

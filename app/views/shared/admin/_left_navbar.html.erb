@@ -36,6 +36,14 @@
           </li>
 
           <li class="nav-item">
+            <%= link_to admin_tags_path,
+              class: "nav-link #{active_class_for('admin/tags')}" do %>
+            <i class="fas fa-fw fa-tag mr-2"></i>
+            <%= Tag.model_name.human(count: 2) %>
+            <% end if can? :read, Tag %>
+          </li>
+
+          <li class="nav-item">
             <%= link_to session_path(current_user),
               class: "nav-link", method: :delete do %>
             <i class="fas fa-fw fa-power-off mr-2"></i>

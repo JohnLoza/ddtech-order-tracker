@@ -152,7 +152,7 @@ module Admin
           .by_status(filter_params(require: :status))
           .by_parcel(filter_params(require: :parcel))
           .by_date(filter_params(require: :date))
-          .urgent_first.recent.includes(:user)
+          .urgent_first.recent.includes(:user, :tags)
       )
     end
 

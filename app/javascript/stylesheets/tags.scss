@@ -1,0 +1,31 @@
+.tag {
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: bold;
+  padding: 3px 7px;
+}
+.tag.active {
+  border: lightblue 5px solid;
+  font-size: 1.2em;
+}
+.tag.red-tag { background-color: #f44336; }
+.tag.pink-tag { background-color: #e91e63; }
+.tag.purple-tag { background-color: #9c27b0; }
+.tag.deep-purple-tag { background-color: #673ab7; }
+.tag.indigo-tag { background-color: #3f51b5; }
+.tag.blue-tag { background-color: #2196f3; }
+.tag.light-blue-tag { background-color: #03a9f4; }
+.tag.cyan-tag { background-color: #00bcd4; }
+.tag.teal-tag { background-color: #009688; }
+.tag.green-tag { background-color: #4caf50; }
+.tag.light-green-tag { background-color: #8bc34a; }
+.tag.lime-tag { background-color: #cddc39; }
+.tag.yellow-tag { background-color: #ffeb3b; }
+.tag.amber-tag { background-color: #ffc107; }
+.tag.orange-tag { background-color: #ff9800; }
+.tag.deep-orange-tag { background-color: #ff5722; }
+.tag.brown-tag { background-color: #795548; }
+.tag.grey-tag { background-color: #9e9e9e; }
+.tag.blue-grey-tag { background-color: #607d8b; }
+

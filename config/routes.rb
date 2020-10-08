@@ -24,7 +24,10 @@ Rails.application.routes.draw do
       put :update_guide, on: :collection
 
       resources :notes, only: :create
+      resources :order_tags, only: [:create, :destroy]
     end
+
+    resources :tags, except: :show
   end
 
   match '*path', via: :all, to: 'application#render_404'

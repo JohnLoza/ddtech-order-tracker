@@ -28,6 +28,8 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :movements
   has_many :notes
+  has_many :order_tags, dependent: :destroy
+  has_many :tags, through: :order_tags
 
   validates :client_email, :status, :parcel,
     presence: true,

@@ -1,0 +1,19 @@
+<tr>
+  <%= content_tag :td, tag.name %>
+  <td>
+    <%= content_tag :span, tag.name, class: tag.css_class %>
+  </td>
+  <td>
+    <%= link_to edit_admin_tag_path(tag),
+      class: 'btn btn-outline-light btn-sm hidden-action' do %>
+    <i class="fas fa-fw fa-pencil-alt"></i>
+    <% end if can? :update, tag %>
+
+    <%= link_to admin_tag_path(tag),
+      method: :delete, class: 'btn btn-danger btn-sm hidden-action',
+      data: { confirm: t('.are_you_sure_to_delete') } do %>
+    <i class="fas fa-fw fa-trash"></i>
+    <% end if can? :destroy, tag %>
+  </td>
+</tr>
+

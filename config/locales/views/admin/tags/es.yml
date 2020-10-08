@@ -1,0 +1,24 @@
+es:
+  admin:
+    tags:
+      index:
+        title: Listado de Etiquetas
+
+      new:
+        title: Nueva etiqueta
+
+      create:
+        success: La Etiqueta %{tag} se guardo correctamente
+
+      edit:
+        title: Editar Etiqueta %{tag}
+
+      update:
+        success: La Etiqueta %{tag} se actualizó correctamente
+
+      destroy:
+        success: La Etiqueta %{tag} ha sido eliminada
+        failure: Ocurrió un error al eliminar la etiqueta %{tag}
+
+      tag:
+        are_you_sure_to_delete: Está seguro(a) de eliminar la etiqueta? esto la borrará de cualquier pedido que la esté usando.

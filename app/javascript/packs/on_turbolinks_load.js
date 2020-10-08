@@ -35,6 +35,21 @@ $(document).on('turbolinks:load', function () {
   });
   // initialize datepicker
 
+  // select a style for the new/editing tag
+  $("[data-tag-style]").on("click", function(event) {
+    $(".tag.active").removeClass("active"); // remove old active style
+    $("#tag_css_class").val($(this).attr("class")); // add new value to css_class field
+    $(this).addClass("active"); // set this style as active
+  });
+  // select a style for the new/editing tag
+
+  // remove dom element on click
+  $("[data-remove-dom-el-on-click]").on("click", function(event) {
+    let target = $(this).attr('data-remove-dom-el-on-click');
+    $(`#${target}`).remove();
+  });
+  // remove dom element on click
+
   // initialize charts
   if(document.getElementById('orders-by-parcel'))
     initChart('orders-by-parcel', 'Pedidos por Paquetería');

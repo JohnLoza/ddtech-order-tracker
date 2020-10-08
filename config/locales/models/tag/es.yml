@@ -1,0 +1,12 @@
+es:
+  activerecord:
+    models:
+      tag:
+        one: Etiqueta
+        other: Etiquetas
+    attributes:
+      tag:
+        id: Clave
+        name: Nombre
+        css_class: Estilo
+

@@ -21,3 +21,14 @@
     <% end if can? :destroy, order %>
   </td>
 </tr>
+<% if order.tags.length > 0 %>
+  <tr class="table-active">
+    <%= content_tag :td, Tag.model_name.human(count: 2) %>
+    <td colspan=5>
+      <% order.tags.each do |tag| %>
+        <%= render partial: '/admin/tags/tag_badge', locals: {order: order, tag: tag} %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+
