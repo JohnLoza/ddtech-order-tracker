@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
 
   def render_404
     respond_to do |format|
-      format.html { render file: Rails.root.join('public', '404'), layout: false, status: 404 }
+      format.html { render file: '/public/404', layout: false, status: 404 }
       format.any { head :not_found, content_type: 'text/html' }
     end
     true

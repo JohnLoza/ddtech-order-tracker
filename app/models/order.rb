@@ -60,10 +60,6 @@ class Order < ApplicationRecord
     "##{ddtech_key}"
   end
 
-  def to_param
-    "#{id}-#{ddtech_key}"
-  end
-
   def hold
     self.update_attributes(holding: true)
   end

@@ -43,8 +43,4 @@ class Tag < ApplicationRecord
   def to_s
     name
   end
-
-  def to_param
-    "#{self.id}-#{self.name}"
-  end
 end
