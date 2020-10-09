@@ -50,6 +50,6 @@
 
     <% end %>
 
-    <%= render 'retention_form' %>
+    <%= render 'retention_form' if @order.id.present? %>
   </div>
 </div>
