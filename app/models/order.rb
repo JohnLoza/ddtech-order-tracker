@@ -37,7 +37,7 @@ class Order < ApplicationRecord
 
   validates :ddtech_key,
     presence: true,
-    length: { minimum: 5, maximum: 6 },
+    length: { minimum: 5, maximum: 12 },
     uniqueness: { case_sensitive: true }
 
   validates :guide, length: { maximum: 250 }
