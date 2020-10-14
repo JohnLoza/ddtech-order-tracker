@@ -6,6 +6,8 @@
     <%= status_badge(order) %>
     <%= content_tag :span, Order.human_attribute_name(:urgent),
       class: 'badge badge-danger' if order.urgent %>
+    <%= content_tag :i, nil,  class: 'fas fa-desktop fa-lg ml-2 mr-2' if order.assemble %>
+    <%= content_tag :i, nil, class: 'fas fa-boxes fa-lg ml-2 mr-2' if order.multiple_packages %>
   </td>
   <%= content_tag :td, l(order.created_at, format: :only_date) %>
   <td>

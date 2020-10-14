@@ -38,6 +38,12 @@
         </p>
 
         <p class="card-text">
+          <%= content_tag :span, Order.human_attribute_name(:multiple_packages),
+            class: 'font-weight-bold text-uppercase' %>
+          <%= content_tag :span, t("order.assemble.#{@order.multiple_packages}").html_safe %>
+        </p>
+
+        <p class="card-text">
           <%= content_tag :span, Order.human_attribute_name(:parcel),
             class: 'font-weight-bold text-uppercase' %><br>
           <%= content_tag :span, @order.parcel,
