@@ -7,8 +7,8 @@ $(document).on('turbolinks:load', function () {
       if (event.shiftKey)
         return;
       event.preventDefault();
-      const target = this.dataset.target;
-      $(target).click();
+      const form = $(this).parents('form')[0];
+      $(form).children('[type=submit]').click();
     }
   });
   // submit form on enter

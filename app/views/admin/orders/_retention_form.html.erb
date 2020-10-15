@@ -15,9 +15,8 @@
 <%= form_with url: url, method: :put, remote: false do %>
   <div class="form-group">
     <%= text_area :movement, :data, class: 'form-control',
-      maxlength: 250, required: true %>
+      'data-submit-on-enter' => true, maxlength: 250, required: true %>
   </div>
-  <%= submit_tag label, class: "btn btn-#{btn_class} btn-lg",
-     data: { confirm: t('.are_you_sure') } %>
+  <%= submit_tag label, class: "btn btn-#{btn_class} btn-lg", data: { confirm: t('.are_you_sure') } %>
 <% end %>
 </div>
