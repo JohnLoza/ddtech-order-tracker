@@ -9,11 +9,31 @@
   <%= content_tag :h1, @guide %>
 </div>
 
-<p>Nota: La paquetería puede demorar hasta 24hrs en mostrar información en el rastreo.</p>
+<p class='text-center'>Nota: La paquetería puede demorar hasta 24hrs en mostrar información en el rastreo.</p>
 
 <div class="text-center" style="margin-top: 3em; margin-bottom: 2em;">
   <%= link_to t('labels.track_your_package'),
       t("mailer.body.track_urls.#{@order.parcel.downcase}"),
       class: 'btn btn-success btn-xxl' %>
+</div>
+
+<div class="text-center p-1" style='background-color: #dedede; margin-top: 5em;'>
+  <p style='color: red; font-weight: bold;'>¡IMPORTANTE!</p>
+  <p>
+    <span style='color: blue; font-weight: bold;'>Qué hacer si llega en mal estado mi pedido:</span><br>
+    Ya sea por un posible robo parcial o daño por el transportista, el paquete tiene que ser recibido por usted para generar el reporte correspondiente dentro de las primeras 48 horas, y enviarlo al correo logistica@ddtech.mx tomando evidencia como fotos del paquete dañado y/o abierto o una nota al momento de firmar de recibido, no nos hacemos responsables ni atenderemos reportes una vez hayan pasado las 48 horas después de recibido el paquete.
+  </p>
+  <p>
+    <span style='color: blue; font-weight: bold;'>Si Pagaste seguro de envió:</span><br>
+    Tu paquete está protegido contra robo o extravió TOTAL de la paquetería, esto quiere decir, que si tu paquete fue robado en su totalidad o la paquetería no puede entregarlo debido a que lo extravió, ddtech te enviará un nuevo paquete con los mismos productos que contenía en tu orden de compra o bien te repondrá el valor de la misma. 
+  </p>
+  <p>
+    Lamentablemente no podemos cubrir robos parciales, Esto es si tu paquete es recibido por ti y alguno de los productos ha sido sustraido de la caja. Es por ello que te instamos a revisar minuciosamente el paquete antes de firmar de recibido y seguir los pasos para estos casos mencionados más arriba si se llegase a presentar algún problema con tu paquete. Recuerda que solo podemos proteger entregas a domicilio, por lo que el seguro es invalido si decides recoger tu compra en las instalaciones de la paqueterìa.
+  </p>
+  <p>
+    <span style='color: blue; font-weight: bold;'>¿Dónde encuentro más información?</span><br>
+    Puedes ver más a detalles los términos y condiciones de los envíos con seguro en el siguiente enlace:<br>
+    https://ddtech.mx/seguro/
+  </p>
 </div>
 <br>
