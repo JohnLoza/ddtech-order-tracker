@@ -9,7 +9,7 @@ module Admin
       params[:chart_type] = 'line' unless params[:chart_type]
       @orders_by_parcel = Order.today.group(:parcel).count
 
-      @pendant_orders = Order.where.not(status: Order::STATUS[:sent]).group(:status).count
+      @pendant_orders = Order.where.not(status: Order::STATUS[:sent]).where(holding: false).group(:status).count
       @pendant_orders.keys.each { |key| @pendant_orders[t("order.statuses.#{key}")] = @pendant_orders.delete(key) }
 
       @orders_by_user = Order.today.group(:user_id).count.as_json

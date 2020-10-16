@@ -54,7 +54,7 @@ class Order < ApplicationRecord
   scope :today, -> { where(created_at: Date.today.all_day) }
   scope :urgent_first, -> { order(urgent: :desc) }
   scope :arrears, -> () { where.not(status: STATUS[:sent]).where(assemble: false, holding: false) }
-  scope :assemble_arrears, -> () { where.not(status: STATUS[:sent]).where(assemble: true) }
+  scope :assemble_arrears, -> () { where.not(status: STATUS[:sent]).where(assemble: true, holding: false) }
 
   def to_s
     "##{ddtech_key}"
