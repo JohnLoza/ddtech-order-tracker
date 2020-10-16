@@ -26,7 +26,7 @@ module SessionsHelper
   end
 
   def remember(user)
-    token = JsonWebToken.encode(user_id: user.id)
+    token = JsonWebToken.encode({ user_id: user.id }, 24.months.from_now)
     cookies.permanent[:auth_token] = token
   end
 
