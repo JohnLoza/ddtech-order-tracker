@@ -5,7 +5,12 @@
   <div class="col-lg-4 col-md-6 col-sm-12 col-12">
     <div class="card">
       <div class="card-header <%= 'bg-warning' if @order.urgent %>">
-        <h2 class="card-title"><%= yield :title %></h2>
+        <h2 class="card-title">
+          <%= yield :title %>
+          <%= link_to edit_admin_order_path(@order), class: 'float-right' do %>
+            <i class='fas fa-edit'></i>
+          <% end if can? :update, @order %>
+        </h2>
         <%= content_tag :span, Order.human_attribute_name(:urgent),
           class: 'badge badge-danger' if @order.urgent %>
       </div>
