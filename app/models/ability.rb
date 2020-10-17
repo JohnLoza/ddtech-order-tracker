@@ -107,5 +107,6 @@ class Ability
 
   def digital_guides_permissions(user)
     can :update_guide, Order, status: [Order::STATUS[:sent], Order::STATUS[:packed]]
+    can :update_guide, Order, multiple_packages: true
   end
 end
