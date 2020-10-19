@@ -7,7 +7,7 @@ module AdminHelper
 
     if opts[:require]
       if opts[:default_value]
-        filter[opts[:require]].blank? ? opts[:defaul_value] : filter[opts[:require]]
+        filter[opts[:require]].blank? ? opts[:default_value] : filter[opts[:require]]
       else
         filter[opts[:require]]
       end

@@ -1,74 +1,91 @@
 <% provide :title, t('labels.dashboard') %>
+<% chart_type = filter_params(require: :chart_type, default_value: 'bar') %>
 <%= content_tag :h2, t('labels.today_statistics'), class: 'text-center' %> <hr>
 
-<div class="row">
-  <div class="col-12 text-center">
-    <a href="?chart_type=line" class="ml-3 mr3">
-     <i class="fas fa-chart-line fa-3x"></i>
-    </a>
-    <a href="?chart_type=bar" class="ml-3 mr3">
-      <i class="fas fa-chart-bar fa-3x"></i>
-    </a>
-    <a href="?chart_type=pie" class="ml-3 mr3">
-     <i class="fas fa-chart-pie fa-3x"></i>
-    </a>
+<div class="card">
+  <div class="card-body">
+    <%= form_for :filter, method: :get, html: {class: "form-inline"} do |f| %>
+      <div class="form-group mx-sm-3">
+        <%= f.label :start_date, 'fecha de inicio',  class: 'sr-only' %>
+        <%= f.text_field :start_date, value: @start_date,
+          placeholder: 'Fecha de inicio', class: 'form-control filter datepicker', required: true %>
+      </div>
+      <div class="form-group mx-sm-3">
+        <%= f.label :end_date, 'fecha de fin', class: 'sr-only' %>
+        <%= f.text_field :end_date, value: @end_date,
+          placeholder: 'Fecha de fin', class: 'form-control filter datepicker', required: true %>
+      </div>
+      <div class="form-group mx-sm-3">
+        <%= f.label :chart_type, 'Tipo de gráfica', class: 'sr-only' %>
+        <%= f.select :chart_type, [['Barras', 'bar'], ['Linea', 'line'], ['Pastel', 'pie']],
+          {
+            prompt: 'Selecciona el tipo de gráfica',
+            selected: filter_params(require: :chart_type, default_value: 'bar')
+          }, { class: 'form-control' } %>
+      </div>
+      <%= f.submit t('labels.filter'), class: 'btn btn-primary' %>
+      <%= link_to t('labels.clear_filters'), admin_dashboard_index_path, class: 'btn btn-light ml-3' %>
+    <% end %>
   </div>
+</div>
+
+<div class="row">
 </div>
 <hr>
 
 <div class="row justify-content-around">
-  <div class="col-xl-4 col-lg-6 col-md-8 col-12">
-    <div class="col-12 text-center"><h3>Pedidos por Paquetería</h3></div>
-    <canvas id="orders-by-parcel" width="400" height="400"
-      data-json="<%= @orders_by_parcel.to_json %>" data-chart-type="<%= params[:chart_type] %>">
-    </canvas>
-  </div>
-
-  <div class="col-xl-4 col-lg-6 col-md-8 col-12">
+  <div class="col-lg-5 col-12">
     <div class="col-12 text-center"><h3>Pedidos en Cola</h3></div>
     <canvas id="pendant-orders" width="400" height="400"
-      data-json="<%= @pendant_orders.to_json %>" data-chart-type="<%= params[:chart_type] %>">
+      data-json="<%= @pendant_orders.to_json %>" data-chart-type="<%= chart_type %>">
+    </canvas>
+  </div>
+
+  <div class="col-lg-5 col-12">
+    <div class="col-12 text-center"><h3>Pedidos por Paquetería</h3></div>
+    <canvas id="orders-by-parcel" width="400" height="400"
+      data-json="<%= @orders_by_parcel.to_json %>" data-chart-type="<%= chart_type %>">
     </canvas>
   </div>
 </div>
 
 <div class="row justify-content-around mt-5">
-  <div class="col-xl-4 col-lg-6 col-md-8 col-12">
+  <div class="col-lg-5 col-12">
     <div class="col-12 text-center"><h3>Pedidos por Usuario</h3></div>
     <canvas id="orders-by-user" width="400" height="400"
-      data-json="<%= @orders_by_user.to_json %>" data-chart-type="<%= params[:chart_type] %>">
+      data-json="<%= @orders_by_user.to_json %>" data-chart-type="<%= chart_type %>">
     </canvas>
   </div>
 
-  <div class="col-xl-4 col-lg-6 col-md-8 col-12">
+  <div class="col-lg-5 col-12">
     <div class="col-12 text-center"><h3>Pedidos Surtidos</h3></div>
     <canvas id="supplied-orders" width="400" height="400"
-      data-json="<%= @supplied_orders.to_json %>" data-chart-type="<%= params[:chart_type] %>">
+      data-json="<%= @supplied_orders.to_json %>" data-chart-type="<%= chart_type %>">
     </canvas>
   </div>
 </div>
 
 <div class="row justify-content-around mt-5">
-  <div class="col-xl-4 col-lg-6 col-md-8 col-12">
+  <div class="col-lg-5 col-12">
     <div class="col-12 text-center"><h3>Pedidos Ensamblados</h3></div>
     <canvas id="assembled-orders" width="400" height="400"
-      data-json="<%= @assembled_orders.to_json %>" data-chart-type="<%= params[:chart_type] %>">
+      data-json="<%= @assembled_orders.to_json %>" data-chart-type="<%= chart_type %>">
     </canvas>
   </div>
 
-  <div class="col-xl-4 col-lg-6 col-md-8 col-12">
+  <div class="col-lg-5 col-12">
     <div class="col-12 text-center"><h3>Pedidos Empacados</h3></div>
     <canvas id="packed-orders" width="400" height="400"
-      data-json="<%= @packed_orders.to_json %>" data-chart-type="<%= params[:chart_type] %>">
+      data-json="<%= @packed_orders.to_json %>" data-chart-type="<%= chart_type %>">
     </canvas>
   </div>
 </div>
 
 <div class="row justify-content-around mt-5">
-  <div class="col-xl-4 col-lg-6 col-md-8 col-12">
+  <div class="col-lg-5 col-12">
     <div class="col-12 text-center"><h3>Guías Registradas</h3></div>
     <canvas id="guides-registered" width="400" height="400"
-      data-json="<%= @guides_registered.to_json %>" data-chart-type="<%= params[:chart_type] %>">
+      data-json="<%= @guides_registered.to_json %>" data-chart-type="<%= chart_type %>">
     </canvas>
   </div>
 </div>

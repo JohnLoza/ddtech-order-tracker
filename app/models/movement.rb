@@ -27,6 +27,12 @@ class Movement < ApplicationRecord
   validates :data, length: { maximum: 250 }
 
   scope :today, -> { where(created_at: Date.today.all_day) }
+  scope :beetween_dates, -> (start_date, end_date) {
+    return all unless start_date.present? and end_date.present?
+    start_date = start_date.to_date
+    end_date = end_date.to_date
+    where(created_at: start_date.beginning_of_day..end_date.end_of_day)
+  }
 
   private
 
