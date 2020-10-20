@@ -79,7 +79,7 @@ es:
       order_status: Actualización de Pedido DD Tech No %{key} | %{datetime}
     body:
       track_urls:
-        estafeta: https://www.estafeta.com/Herramientas/Rastreov1
+        estafeta: https://www.estafeta.com/Herramientas/Rastreo
         fedex: https://www.fedex.com/es-mx/tracking.html
         zmg: https://kanguus.com/app/rastreo
         dhl: http://www.dhl.com.mx/es/express/rastreo.html

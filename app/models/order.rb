@@ -4,6 +4,7 @@
 class Order < ApplicationRecord
   include Searchable
   include Timeable
+  include CustomGroupable
 
   PARCELS = %i[ESTAFETA FEDEX ZMG DHL].freeze
   # STATUSES have to be in secuence
@@ -48,19 +49,10 @@ class Order < ApplicationRecord
   scope :by_user, -> (user_id) { where(user_id: user_id) if user_id.present? }
   scope :by_status, -> (status) { where(status: status) if status.present? }
   scope :by_parcel, -> (parcel) { where(parcel: parcel) if parcel.present? }
-  scope :by_date, -> (date) { 
-    where(created_at: Date.parse(date).all_day) if date.present?
-  }
-  scope :today, -> { where(created_at: Date.today.all_day) }
-  scope :beetween_dates, -> (start_date, end_date) {
-    return all unless start_date.present? and end_date.present?
-    start_date = start_date.to_date
-    end_date = end_date.to_date
-    where(created_at: start_date.beginning_of_day..end_date.end_of_day)
-  }
   scope :urgent_first, -> { order(urgent: :desc) }
-  scope :arrears, -> () { where.not(status: STATUS[:sent]).where(assemble: false, holding: false) }
-  scope :assemble_arrears, -> () { where.not(status: STATUS[:sent]).where(assemble: true, holding: false) }
+
+  scope :arrears, -> { where.not(status: STATUS[:sent]).where(assemble: false, holding: false) }
+  scope :assemble_arrears, -> { where.not(status: STATUS[:sent]).where(assemble: true, holding: false) }
 
   def to_s
     "##{ddtech_key}"
