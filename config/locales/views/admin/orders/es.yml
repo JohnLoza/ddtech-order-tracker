@@ -46,6 +46,9 @@ es:
         failure: Ocurrió un error al liberar el pedido %{order}
 
       # partials
+      form:
+        optional_note: Nota (opcional)
+        optional_tag: Etiqueta (opcional)
       order:
         are_you_sure_to_delete: ¿Estás seguro(a) de eliminar el pedido %{order}?
 

@@ -25,6 +25,9 @@ module Admin
     def new; end
 
     def create
+      @order.notes.build(message: params[:note][:message], user_id: current_user.id) if params[:note][:message].present?
+      @order.order_tags.build(tag_id: params[:tag]) if params[:tag].present?
+
       if @order.save
         NotifyStartOrderJob.perform_async(@order)
         redirect_to new_admin_order_path(), flash: { success: t('.success', order: @order) }

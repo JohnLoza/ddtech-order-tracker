@@ -46,6 +46,19 @@
       </div>
     </div>
 
+    <% unless @order.persisted? %>
+    <div class="form-group">
+      <%= label_tag :note, t('.optional_note') %>
+      <%= text_area :note, :message, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :tag, t('.optional_tag') %>
+      <%= select_tag :tag, options_for_select(Tag.all.order(:name).collect {|tag| [tag.name, tag.id]}),
+        prompt: 'Selecciona una etiqueta...', class: 'form-control' %>
+    </div>
+    <% end # unless end %>
+
     <%= f.submit t('labels.save'), class: 'btn btn-primary btn-lg' %>
 
     <% end %>
