@@ -37,6 +37,7 @@ $(document).on('turbolinks:load', function () {
       </p>
     `);
     $("#order_ddtech_key").val("");
+    $("#order_data").val("");
   }).on("ajax:error", function(event) {
     console.log('error event: ', event.detail);
     const ddtech_key = $("#order_ddtech_key").val();

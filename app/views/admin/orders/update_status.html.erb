@@ -33,6 +33,20 @@
             <%= f.text_field :ddtech_key, class: 'form-control' %>
           </div>
 
+          <div class="form-group">
+            <%= f.select :data, [
+                'Accesorios de cómputo',
+                'Componentes de cómputo',
+                'Computadora armada',
+                'Monitor',
+                'Silla',
+                'Impresora',
+                'Otro'
+              ],
+              { prompt: 'Selecciona una descripción (opcional)' },
+              { class: 'form-control' } %>
+          </div>
+
           <%= f.submit t('labels.save'), class: 'btn btn-primary m-2' %>
         <% end %>
 

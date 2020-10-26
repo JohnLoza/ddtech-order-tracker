@@ -11,6 +11,7 @@ $(document).on('turbolinks:load', function () {
     `);
     $("#order_ddtech_key").val("");
     $("#order_guide").val("");
+    $("#order_data").val("");
     $(".guides-container").html("");
     $("#order_ddtech_key").focus();
   }).on("ajax:error", function(event) {

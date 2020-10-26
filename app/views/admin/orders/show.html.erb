@@ -57,8 +57,8 @@
 
         <p class="card-text">
           <%= content_tag :span, Order.human_attribute_name(:guide),
-            class: 'font-weight-bold text-uppercase' if @order.guide %>
-          <%= content_tag :span, @order.guide, class: 'badge badge-primary badge-pill' %>
+            class: 'font-weight-bold text-uppercase' if @order.guide %><br>
+          <%= content_tag :span, @order.guide, class: 'text-primary font-weight-bold' %>
         </p>
       </div>
       <div class="card-footer">

@@ -25,6 +25,20 @@
 
           <section class="guides-container"></section>
 
+          <div class="form-group">
+            <%= f.select :data, [
+                'Accesorios de cómputo',
+                'Componentes de cómputo',
+                'Computadora armada',
+                'Monitor',
+                'Silla',
+                'Impresora',
+                'Otro'
+              ],
+              { prompt: 'Selecciona una descripción (opcional)' },
+              { class: 'form-control' } %>
+          </div>
+
           <%= content_tag :span, t('.add_guide'), class: 'btn btn-secondary',
             onclick: 'appendGuideField()' %>
           <%= f.submit t('labels.save'), class: 'btn btn-primary m-2' %>

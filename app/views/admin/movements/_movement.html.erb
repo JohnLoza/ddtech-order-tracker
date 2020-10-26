@@ -3,5 +3,6 @@
   <%= content_tag :span, l(movement.created_at, format: :long) %>
 </p>
 <%= content_tag :span, t("movement.descriptions.#{movement.description}"), class: 'card-text' %>
+<%= content_tag :i, nil, class: 'fas fa-info-circle' if movement.data.present? %>
 <%= content_tag :strong, movement.data if movement.data.present? %>
 <hr>

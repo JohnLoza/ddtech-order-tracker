@@ -18,6 +18,7 @@ class Order < ApplicationRecord
     sent: 'sent'
   }.freeze
 
+  attr_accessor :data
   attr_accessor :updater_id
   attr_accessor :updating_status
 
@@ -87,7 +88,7 @@ class Order < ApplicationRecord
   def create_movement(params = {})
     if self.status_changed? or self.guide_changed?
       params[:user_id] = self.updater_id ? self.updater_id : self.user_id
-      params[:data] = self.guide if self.guide_changed?
+      params[:data] = self.data if self.data.present?
 
       self.movements.build(params)
     end

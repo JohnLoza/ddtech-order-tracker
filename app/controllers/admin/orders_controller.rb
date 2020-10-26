@@ -129,7 +129,7 @@ module Admin
     end
 
     def status_params
-      hash = params.require(:order).permit(:ddtech_key, :updater_id, :status)
+      hash = params.require(:order).permit(:ddtech_key, :updater_id, :status, :data)
       hash[:updater_id] = current_user.id unless hash.keys.include? "updater_id"
       hash[:updating_status] = true
       return hash
@@ -140,6 +140,8 @@ module Admin
       hash[:status] = Order::STATUS[:sent]
       guides = params[:order][:guide].reject { |el| el.empty? }
       hash[:guide] = guides.join(' y ')
+      hash[:guide] += " -> #{params[:order][:data]}" if params[:order][:data].present?
+      hash[:data] = hash[:guide]
 
       hash[:urgent] = false
       hash[:updater_id] = current_user.id
@@ -192,7 +194,7 @@ module Admin
           description: "#{order.status}_order"
         })
 
-        mvnt.data = order.guide if order.guide.present?
+        mvnt.data = order.data if order.data.present?
         mvnt.save!
       else
         false
