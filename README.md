@@ -1,24 +1,25 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Production ##
+make sure the mysql socket points to /var/run/mysqld/mysqld.sock  
+in neubox server its located in /usr/local/mysql/data/mysql.sock
 
-Things you may want to cover:
+You can create a symbolic link like so
+`ln -s /usr/local/mysql/data/mysql.sock /var/run/mysqld/mysqld.sock`
 
-* Ruby version
+## Basic Setup ##
+1. Create database
 
-* System dependencies
+  `$ RAILS_ENV=production rails db:create`
 
-* Configuration
+2. Run migrations
 
-* Database creation
+  `$ RAILS_ENV=productions rails db:migrate`
 
-* Database initialization
+3. Install yarn dependencies.
 
-* How to run the test suite
+  `$ yarn install`
 
-* Services (job queues, cache servers, search engines, etc.)
+4. Precompile Assets
 
-* Deployment instructions
-
-* ...
+  `$ RAILS_ENV=production rails assets:precompile`
