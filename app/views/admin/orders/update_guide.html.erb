@@ -26,6 +26,12 @@
           <section class="guides-container"></section>
 
           <div class="form-group">
+            <%= f.select :per_package_parcel, Order::PARCELS,
+              { prompt: 'Selecciona una paquetería (opcional)' },
+              { class: 'form-control' } %>
+          </div>
+
+          <div class="form-group">
             <%= f.select :data, [
                 'Accesorios de cómputo',
                 'Componentes de cómputo',

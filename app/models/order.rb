@@ -18,9 +18,7 @@ class Order < ApplicationRecord
     sent: 'sent'
   }.freeze
 
-  attr_accessor :data
-  attr_accessor :updater_id
-  attr_accessor :updating_status
+  attr_accessor :updater_id, :data, :force_status_update, :updating_status
 
   before_validation :set_status, on: :create
   before_validation :trim_ddtech_key
@@ -96,6 +94,7 @@ class Order < ApplicationRecord
   end
 
   def status_change
+    return if self.force_status_update
     if !self.status_changed?
       self.errors.add(:status, 'not_next_step') if self.updating_status
       return

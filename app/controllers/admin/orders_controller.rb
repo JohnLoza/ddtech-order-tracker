@@ -51,13 +51,18 @@ module Admin
       @order = Order.find_by!(ddtech_key: params[:order][:ddtech_key])
       authorize! :update_guide, @order
 
+      if current_user.role?(:provider_guides)
+        @order.force_status_update = true
+        @order.multiple_packages = true
+      end
+
       if @order.update_attributes guide_params
-        notify_status_change(@order)
+        NotifySentOrderJob.perform_async(@order, params[:order][:per_package_parcel])
         render json: { data: @order.to_json }
       else
         if create_extra_movement(@order)
           render json: { data: @order.to_json }
-          notify_status_change(@order)
+          NotifySentOrderJob.perform_async(@order, params[:order][:per_package_parcel])
         else
           render status: 400, json: { data: @order.errors.to_json }
         end
@@ -172,8 +177,6 @@ module Admin
         NotifySuppliedOrderJob.perform_async(order)
       when Order::STATUS[:assembled]
         NotifyAssembledOrderJob.perform_async(order)
-      when Order::STATUS[:sent]
-        NotifySentOrderJob.perform_async(order)
       end
     end
 

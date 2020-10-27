@@ -30,9 +30,11 @@ class Ability
       pack_exit_permissions(user)
     when User::ROLES[:digital_guides]
       digital_guides_permissions(user)
+    when User::ROLES[:provider_guides]
+      provider_guides_permissions(user)
     end
 
-    cannot %i[update_status update_guide], Order, holding: true # no one can
+    cannot %i[update_status update_guide], Order, holding: true # no one can update an order status or guide if it's holded back
   end
   # See the wiki for details:
   # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
@@ -108,5 +110,9 @@ class Ability
   def digital_guides_permissions(user)
     can :update_guide, Order, status: [Order::STATUS[:sent], Order::STATUS[:packed]]
     can :update_guide, Order, multiple_packages: true
+  end
+
+  def provider_guides_permissions(user)
+    can :update_guide, Order
   end
 end

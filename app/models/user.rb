@@ -19,6 +19,7 @@ class User < ApplicationRecord
     pack_exit: 'pack_exit',
     packer: 'packer',
     digital_guides: 'digital_guides',
+    provider_guides: 'provider_guides',
     human_resources: 'human_resources',
     observer: 'observer'
   }.freeze

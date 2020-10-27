@@ -9,9 +9,12 @@ $(document).on('turbolinks:load', function () {
         Se capturó la(s) guía(s) para el pedido <strong>#${ddtech_key}</strong>
       </p>
     `);
+
     $("#order_ddtech_key").val("");
     $("#order_guide").val("");
     $("#order_data").val("");
+    $("#order_per_package_parcel").val("");
+
     $(".guides-container").html("");
     $("#order_ddtech_key").focus();
   }).on("ajax:error", function(event) {

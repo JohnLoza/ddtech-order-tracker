@@ -43,6 +43,8 @@ class NotificationsMailer < ActionMailer::Base # :nodoc:
   def sent_order
     @order = params[:order]
     @guide = params[:guide]
+    @order.parcel = params[:parcel] if params[:parcel].present?
+
     subject = t('mailer.subjects.order_status',
       key: @order.ddtech_key, datetime: l(Time.now, format: :long))
 

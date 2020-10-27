@@ -37,6 +37,7 @@ es:
       pack_exit: Encargado de Salidas de Empaque
       packer: Empacador
       digital_guides: Guías Digitales
+      provider_guides: Guías Proveedor
       shipments: Embarques
       warehouse_boss: Jefe de Almacén
       warehouse_exit: Encargado de Salidas de Almacén
