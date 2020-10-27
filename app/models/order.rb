@@ -24,7 +24,7 @@ class Order < ApplicationRecord
 
   before_validation :set_status, on: :create
   before_validation :trim_ddtech_key
-  before_save :downcase_email
+  before_save :downcase_values
   before_save :create_movement
 
   belongs_to :user
@@ -40,7 +40,7 @@ class Order < ApplicationRecord
   validates :ddtech_key,
     presence: true,
     length: { minimum: 5, maximum: 12 },
-    uniqueness: { case_sensitive: true }
+    uniqueness: { case_sensitive: false }
 
   validates :guide, length: { maximum: 250 }
 
@@ -73,8 +73,9 @@ class Order < ApplicationRecord
 
   private
 
-  def downcase_email
+  def downcase_values
     self.client_email = client_email.downcase
+    self.ddtech_key = ddtech_key.downcase
   end
 
   def trim_ddtech_key

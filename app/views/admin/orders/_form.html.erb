@@ -6,14 +6,14 @@
 
     <div class="form-group">
       <%= f.label :ddtech_key %>
-      <%= f.text_field :ddtech_key, class: 'form-control',
+      <%= f.text_field :ddtech_key, class: 'form-control text-lowercase',
         minlength: 5, maxlength: 12,  required: true, autofocus: true,
         'data-parsley-pattern' => '^[a-zA-z0-9]+$', 'data-prevent-spaces' => true %>
     </div>
 
     <div class="form-group">
       <%= f.label :client_email %>
-      <%= f.email_field :client_email, class: 'form-control', maxlength: 50, required: true,
+      <%= f.email_field :client_email, class: 'form-control text-lowercase', maxlength: 50, required: true,
           onpaste: "setTimeout(function() {document.getElementById('order_parcel').focus();}, 0)" %>
     </div>
 
