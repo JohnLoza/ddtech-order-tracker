@@ -54,6 +54,7 @@ module Admin
       if current_user.role?(:provider_guides)
         @order.force_status_update = true
         @order.multiple_packages = true
+        @order.notes.build(user_id: current_user.id, message: "Se capturó guía de proveedor: #{params[:order][:guide].join(' ')}")
       end
 
       if @order.update_attributes guide_params
