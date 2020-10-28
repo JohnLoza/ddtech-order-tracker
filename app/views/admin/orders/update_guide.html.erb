@@ -14,13 +14,13 @@
           <div class='form-group'>
             <%= f.label :ddtech_key %>
             <%= f.text_field :ddtech_key, class: 'form-control text-lowercase',
-              'data-prevent-enter' => true, autocomplete: :off %>
+              'data-prevent-enter' => true, 'data-prevent-spaces' => true, autocomplete: :off %>
           </div>
 
           <div class='form-group'>
             <%= f.label :guide %>
             <%= f.text_field :guide, name: 'order[guide][]', class: 'form-control',
-              'data-prevent-enter' => true, autocomplete: :off %>
+              'data-prevent-enter' => true, 'data-prevent-spaces' => true, autocomplete: :off %>
           </div>
 
           <section class="guides-container"></section>

@@ -25,6 +25,11 @@ $(document).on('turbolinks:load', function () {
     if (event.keyCode === 32)
       event.preventDefault();
   });
+  $("[data-prevent-spaces]").on("paste", function(event) {
+    event.preventDefault();
+    let pasted_text = event.originalEvent.clipboardData.getData('text')
+    $(this).val(pasted_text.replace(/[\s]+/g, ''));
+  });
   // prevent spaces
 
   // initialize datepicker
