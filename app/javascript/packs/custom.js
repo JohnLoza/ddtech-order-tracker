@@ -1,13 +1,16 @@
-import './bootstrap_custom'
-import '@fortawesome/fontawesome-free/js/all.min.js'
-import 'jquery-slimscroll'
-import 'bootstrap-datepicker'
+import './bootstrap_custom.js'
 
-import { Chart } from 'chart.js'
+import '@fortawesome/fontawesome-free/js/fontawesome.min.js'
+import '@fortawesome/fontawesome-free/js/solid.min.js'
+
+import 'jquery-slimscroll/jquery.slimscroll.min.js'
+import 'bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js'
+
+import { Chart } from 'chart.js/dist/Chart.min.js'
 import './charts'
 
-import 'parsleyjs'
-import 'parsleyjs/dist/i18n/es'
+import 'parsleyjs/dist/parsley.min.js'
+import 'parsleyjs/dist/i18n/es.js'
 
 import './concept'
 

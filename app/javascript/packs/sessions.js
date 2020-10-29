@@ -17,5 +17,6 @@ require("channels")
 
 import '../stylesheets/sessions.scss'
 
-import '@fortawesome/fontawesome-free/js/all.min.js'
+import '@fortawesome/fontawesome-free/js/fontawesome.min.js'
+import '@fortawesome/fontawesome-free/js/solid.min.js'
 
