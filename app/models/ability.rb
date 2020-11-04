@@ -66,10 +66,8 @@ class Ability
   end
 
   def shipments_permissions(user)
-    can %i[create update], Order, user_id: user.id
-    can [:hold, :release], Order do |order|
-      order.user_id == user.id and order.status != Order::STATUS[:sent]
-    end
+    can %i[create update hold release], Order
+    cannot %i[hold release], Order, status: Order::STATUS[:sent]
     can :manage, Tag
   end
 
