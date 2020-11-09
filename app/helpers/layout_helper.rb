@@ -32,7 +32,7 @@ module LayoutHelper
   end
 
   def users_for_select(args = {})
-    User.by_role(args[:role])
+    User.active.order_by_name.by_role(args[:role])
       .map{ |user| [user, user.id] }
   end
 
