@@ -14,8 +14,13 @@
 <%= content_tag :h2, t('.title'), class: 'text-center' %>
 <%= form_with url: url, method: :put, remote: false do %>
   <div class="form-group">
-    <%= text_area :movement, :data, class: 'form-control',
-      'data-submit-on-enter' => true, maxlength: 250, required: true %>
+    <%= text_area :movement, :data, class: 'form-control', rows: 5,
+      'data-submit-on-enter' => true, maxlength: 250, required: true,
+      placeholder: 'Razón/motivo por el cuál se retiene el pedido ej.
+        * El cliente desea cancelar el pedido.
+        * Se requiere aplicar cambios al pedido.
+        * Posible fraude.
+        * Otra razón importante.' %>
   </div>
   <%= submit_tag label, class: "btn btn-#{btn_class} btn-lg", data: { confirm: t('.are_you_sure') } %>
 <% end %>
