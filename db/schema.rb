@@ -10,9 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_07_213957) do
+ActiveRecord::Schema.define(version: 2020_11_20_170517) do
 
-  create_table "movements", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "devolutions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id_id"
+    t.string "rma"
+    t.string "client_name"
+    t.string "email"
+    t.string "telephone"
+    t.string "client_type"
+    t.string "order_id"
+    t.string "products"
+    t.string "description"
+    t.string "devolution_address"
+    t.string "comments"
+    t.string "actions_taken"
+    t.integer "guide_id"
+    t.string "parcel"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_devolutions_on_email"
+    t.index ["order_id"], name: "index_devolutions_on_order_id"
+    t.index ["rma"], name: "index_devolutions_on_rma", unique: true
+    t.index ["user_id_id"], name: "index_devolutions_on_user_id_id"
+  end
+
+  create_table "movements", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "order_id"
     t.string "description"
@@ -23,7 +46,7 @@ ActiveRecord::Schema.define(version: 2020_10_07_213957) do
     t.index ["user_id"], name: "index_movements_on_user_id"
   end
 
-  create_table "notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "notes", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "order_id"
     t.text "message"
@@ -40,7 +63,7 @@ ActiveRecord::Schema.define(version: 2020_10_07_213957) do
     t.index ["tag_id"], name: "index_order_tags_on_tag_id"
   end
 
-  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.bigint "user_id"
     t.string "ddtech_key"
     t.string "client_email"
@@ -66,7 +89,7 @@ ActiveRecord::Schema.define(version: 2020_10_07_213957) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "role"

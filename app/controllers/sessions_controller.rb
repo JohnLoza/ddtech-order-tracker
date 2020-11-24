@@ -2,10 +2,10 @@
 
 # Controller for managing user sessions
 class SessionsController < ApplicationController
+  layout false
+
   def new
     redirect_to admin_dashboard_index_path and return if logged_in?
-
-    render :new, layout: false
   end
 
   def create
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
       redirect_back_or admin_dashboard_index_path
     else
       flash.now[:info] = 'El correo y/o contraseña es incorrecto'
-      render :new, layout: false
+      render :new
     end
   end
 

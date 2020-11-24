@@ -26,22 +26,28 @@
     <div class="row mt-2 mb-2 pt-3 border-top border-bottom">
       <div class="col-lg-4 col-sm-6 col-xm-12">
         <div class="form-group">
-          <%= f.label :assemble %>
-          <%= f.check_box :assemble %>
+          <label class="custom-control custom-checkbox">
+            <%= f.check_box :assemble, class: 'custom-control-input' %>
+            <%= f.label :assemble, class: 'custom-control-label' %>
+          </label>
         </div>
       </div>
 
       <div class="col-lg-4 col-sm-6 col-xs-12">
         <div class="form-group">
-          <%= f.label :multiple_packages %>
-          <%= f.check_box :multiple_packages %>
+          <label class="custom-control custom-checkbox">
+            <%= f.check_box :multiple_packages, class: 'custom-control-input' %>
+            <%= f.label :multiple_packages, class: 'custom-control-label' %>
+          </label>
         </div>
       </div>
 
       <div class="col-lg-4 col-sm-6 col-xs-12">
         <div class="form-group">
-          <%= f.label :urgent %>
-          <%= f.check_box :urgent %>
+          <label class="custom-control custom-checkbox">
+            <%= f.check_box :urgent, class: 'custom-control-input' %>
+            <%= f.label :urgent, class: 'custom-control-label' %>
+          </label>
         </div>
       </div>
     </div>

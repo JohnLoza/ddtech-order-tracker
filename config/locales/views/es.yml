@@ -10,6 +10,7 @@ es:
     close: Cerrar
     created_at: Fecha
     dashboard: Tablero de Inicio
+    devolution_form: Formulario para devoluciones
     filter: Filtrar
     filters: Filtros
     forgot_password: Olvidé mi contraseña
@@ -20,6 +21,7 @@ es:
     save: Guardar
     search: Buscar
     select: Selecciona
+    send: Enviar
     sign_in: Iniciar sesión
     sign_out: Cerrar sesión
     today_statistics: Estadísticas diarias

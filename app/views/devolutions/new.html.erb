@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_pack_tag 'sessions', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'sessions', 'data-turbolinks-track': 'reload' %>
+
+  <%= content_tag :title, t('labels.devolution_form') %>
+</head>
+
+<body style="height: auto;">
+
+  <div class="container">
+    <%= render '/shared/alerts.html.erb' %>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-stripe stripe-blue"></div>
+        <h1 class="card-title text-center mt-3">Formulario de Garantías y Devoluciones DDTECH</h1>
+      </div>
+      <div class="card-body">
+        <%= image_pack_tag "ddtech-warranty.jpg", class: "img-fluid rounded mx-auto d-block" %>
+        <h2 class="text-center mt-4">Revisa los siguientes puntos antes de comenzar</h2>
+        <ol>
+          <li>Revisa que se encuentre en buen estado. (sin partes rotas, golpes, indicios de tinta o rayaduras, etc.)</li>
+          <li>Deberá contar con su empaque original, si el producto tenía accesorios también debe incluirlos.</li>
+          <li>Si el envío será por paquetería recuerda mandarlo protegido. (Si el producto se rompe en el envío
+            no podremos hacer válida tu garantía)</li>
+          <li>Por último no olvides anexar tu ticket de compra y póliza de garantía. (estos pueden ser copias)</li>
+          <li>Leer detenidamente tu póliza de garatía.</li>
+          <li>Leer nuestros Términos y Condiciones apartado
+            <a href="https://ddtech.mx/terminos_y_condiciones" target="_blank"
+              class="text-primary">Garantías</a>.
+          </li>
+        </ol>
+        <hr>
+
+        <%= form_for @devolution, html: {autocomplete: :off} do |f| %>
+          <%= render partial: '/shared/form_errors.html.erb', locals: {obj: @devolution} %>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <i class="fas fa-user"></i>
+              <%= f.label :client_name %>
+            </div>
+            <%= f.text_field :client_name, class: 'form-control form-control-lg col-lg-9 col-md-8',
+              placeholder: Devolution.human_attribute_name(:client_name), required: true %>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <i class="fas fa-at"></i>
+              <%= f.label :email %>
+            </div>
+            <%= f.email_field :email, class: 'form-control form-control-lg col-lg-9 col-md-8',
+              placeholder: Devolution.human_attribute_name(:email), required: true %>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <i class="fas fa-phone"></i>
+              <%= f.label :telephone %>
+            </div>
+            <%= f.telephone_field :telephone, class: 'form-control form-control-lg col-lg-9 col-md-8',
+              placeholder: Devolution.human_attribute_name(:telephone), required: true %>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <i class="fas fa-key"></i>
+              <%= f.label :order_id %>
+            </div>
+            <%= f.text_field :order_id, class: 'form-control form-control-lg col-lg-9 col-md-8',
+              placeholder: Devolution.human_attribute_name(:order_id), required: true %>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <i class="fas fa-users"></i>
+              <%= f.label :client_type %>
+            </div>
+            <div class="col-lg-9 col-md-8">
+              <label class="custom-control custom-radio">
+                <%= f.radio_button :client_type, 'Fuera de Guadalajara', class: 'custom-control-input',
+                  required: true, "data-disable" => "#devolution_client_type" %>
+                <span class="custom-control-label">Fuera de Guadalajara</span>
+              </label>
+              <label class="custom-control custom-radio">
+                <%= f.radio_button :client_type, 'Suc. Centro', class: 'custom-control-input',
+                  required: true, "data-disable" => "#devolution_client_type" %>
+                <span class="custom-control-label">Suc. Centro (Guadalajara)</span>
+              </label>
+              <label class="custom-control custom-radio">
+                <%= f.radio_button :client_type, 'Suc. Jardines del bosque', class: 'custom-control-input',
+                  required: true, "data-disable" => "#devolution_client_type" %>
+                <span class="custom-control-label">Suc. Jardines del bosque (Guadalajara)</span>
+              </label>
+              <label class="custom-control custom-radio">
+                <%= f.radio_button :client_type, 'Devolución de producto', class: 'custom-control-input',
+                  required: true, "data-disable" => "#devolution_client_type" %>
+                <span class="custom-control-label">Devolución de producto</span>
+              </label>
+              <div class="row">
+                <div class="col-lg-2">
+                  <label class="custom-control custom-radio">
+                    <%= f.radio_button :client_type, false, class: 'custom-control-input',
+                      "data-enable" => "#devolution_client_type" %>
+                    <span class="custom-control-label">Otro:</span>
+                  </label>
+                </div>
+                <%= f.text_field :client_type, class: "form-control form-control-lg col-lg-10", disabled: true %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <i class="fas fa-box"></i>
+              <%= f.label :products, 'Marca y modelo del producto' %>
+            </div>
+            <%= f.text_area :products, class: 'form-control form-control-lg col-lg-9 col-md-8',
+              maxlength: 250, required: true, rows: 5 %>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <i class="fas fa-file-alt"></i>
+              <%= f.label :description, 'Descripción de la falla' %>
+              <p>* Entre mas detallada sea, mejor nos ayuda a resolver el problema,
+                también nos ayuda mucho saber en que situaciones falla el producto.</p>
+            </div>
+            <%= f.text_area :description, class: 'form-control form-control-lg col-lg-9 col-md-8',
+              maxlength: 250, required: true, rows: 5 %>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <i class="fas fa-book"></i>
+              <%= f.label :devolution_address %>
+              <p>* Ingrese aquí la dirección a la que desea le enviemos de regreso su producto
+                después de aplicada la garantia o especifique si desea recojer en alguna sucursal.</p>
+            </div>
+            <%= f.text_area :devolution_address, class: 'form-control form-control-lg col-lg-9 col-md-8',
+              maxlength: 250, rows: 5, placeholder: "Este campo es opcional" %>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <i class="fas fa-comments"></i>
+              <%= f.label :comments %>
+              <p>* Si tu producto falla dentro de los primeros 30 días a partir de su entrega,
+                es necesario proveer los siguientes datos: (Solicito guía / No de guía
+                proporcionado en tu compra así como la paquetería por la que lo recibiste)</p>
+            </div>
+            <%= f.text_area :comments, class: 'form-control form-control-lg col-lg-9 col-md-8',
+              maxlength: 250, rows: 5, placeholder: "Este campo es opcional" %>
+          </div>
+          <hr>
+
+          <div class="bg-primary">
+            <h2 class="text-center text-light pt-3 pb-3">
+              <i class="fas fa-truck"></i> Envía tu producto
+            </h2>
+          </div>
+
+          <div>
+            <h3><i class="fas fa-building"></i> Dirección DDTECH</h3>
+            <p>Debes enviar tu producto a la siguiente dirección o bien
+             si eres de la zona metropolitana de guadalajara puedes traerlo tú mismo.</p>
+            <p>
+              Adrian Ramirez Bucio<br>
+              Av Patria 239<br>
+              Entre calle del Mural y del Matriz<br>
+              Col Manantial<br>
+              CP 44860<br>
+              Guadalajara, Jalisco
+            </p>
+          </div>
+          <hr>
+
+          <div>
+            <h3>¿Cuándo obtendré respuesta?</h3>
+            <p>En un promedio de 11 días hábiles de haber recibido su producto en nuestra sucursal
+            le estaremos respondiendo sobre su estado, en algunos casos poco frecuentes el fabricante
+            solicita el producto para su revisión lo cual puede demorar entre 7 a 20 días.</p>
+          </div>
+          <hr>
+
+          <%= f.submit t('labels.send'), class: 'btn btn-primary btn-lg btn-block' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

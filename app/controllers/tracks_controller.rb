@@ -1,4 +1,6 @@
 class TracksController < ApplicationController
+  layout false
+
   def index
     return unless params[:track]
     @order = Order.find_by(ddtech_key: params[:track][:id])

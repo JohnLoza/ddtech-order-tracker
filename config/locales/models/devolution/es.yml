@@ -1,0 +1,25 @@
+es:
+  activerecord:
+    models:
+      devolution:
+        one: Devolución
+        other: Devoluciones
+    attributes:
+      devolution:
+        id: Clave
+        rma: RMA
+        client_name: Nombre del cliente
+        email: Email
+        telephone: Teléfono
+        client_type: Tipo de cliente
+
+        order_id: Número de pedido
+        products: Productos
+        description: Descripción
+        devolution_address: Dirección de regreso
+        comments: Commentarios
+
+        actions_taken: Acciones tomadas
+        guide_id: Número de guía
+        parcel: Paquetería
+

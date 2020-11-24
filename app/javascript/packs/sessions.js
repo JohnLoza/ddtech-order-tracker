@@ -17,6 +17,22 @@ require("channels")
 
 import '../stylesheets/sessions.scss'
 
+import './bootstrap_custom.js'
+
 import '@fortawesome/fontawesome-free/js/fontawesome.min.js'
 import '@fortawesome/fontawesome-free/js/solid.min.js'
+
+$(document).ready(function() {
+  $("[data-disable]").on("change", function(event) {
+    const target = $(this).attr("data-disable");
+    $(target).val("");
+    $(target).attr("disabled", true);
+  });
+
+  $("[data-enable]").on("change", function(event) {
+    const target = $(this).attr("data-enable");
+    $(target).removeAttr("disabled");
+    $(target).focus();
+  });
+});
 

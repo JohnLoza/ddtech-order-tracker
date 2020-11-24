@@ -7,7 +7,7 @@
 html,
 body {
   height: 100%;
-  background-color: #fefefe;
+  background-color: rgb(240, 235, 248);
 }
 
 body {
@@ -21,6 +21,21 @@ body {
 
 .card-footer-item {
   width: 100% !important;
+}
+
+.card-stripe {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  height: 10px;
+  left: -1px;
+  position: absolute;
+  top: -1px;
+  width: calc(100% + 2px);
+}
+
+.stripe-blue {
+  background-color: #5969ff;
+  color: #fefefe;
 }
 
 .navbar-brand {

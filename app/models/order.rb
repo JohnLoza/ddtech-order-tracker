@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# User definition class
+# Order definition class
 class Order < ApplicationRecord
   include Searchable
   include Timeable
