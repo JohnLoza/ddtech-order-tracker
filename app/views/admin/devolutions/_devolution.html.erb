@@ -1,0 +1,9 @@
+<tr>
+  <td>
+    <%= link_to devolution.rma, admin_devolution_path(devolution) %>
+  </td>
+  <%= content_tag :td, devolution.order_id, class: 'text-uppercase %>
+  <%= content_tag :td, devolution.client_name, class: 'text-uppercase' %>
+  <%= content_tag :td, devolution.email %>
+  <td>Actions here!</td>
+</tr>

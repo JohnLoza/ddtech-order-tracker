@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       resources :order_tags, only: [:create, :destroy]
     end
 
+    resources :devolutions
     resources :tags, except: :show
   end
 

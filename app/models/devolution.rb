@@ -27,6 +27,6 @@ class Devolution < ApplicationRecord
 
   private
   def set_rma
-    self.rma = Utils.new_alphanumeric_token
+    self.rma = Utils.new_alphanumeric_token(7)
   end
 end

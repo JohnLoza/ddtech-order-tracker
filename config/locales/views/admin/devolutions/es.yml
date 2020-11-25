@@ -1,0 +1,25 @@
+es:
+  admin:
+    devolutions:
+      index:
+        title: Listado de Garantías y Devoluciones
+
+      new:
+        title: Nueva Garantía/Devolución
+
+      create:
+        success: Se guardó la información, el RMA es %{devolution}
+
+      edit:
+        title: Editar Garantía/Devolución %{devolution}
+
+      update:
+        success: Se actualizó la Garantía/Devolución %{devolution}
+
+      destroy:
+        success: Se eliminó la Garantía/Devolución %{devolution}
+        failure: Ocurrió un error al eliminar el registro %{devolution}
+
+      # partials
+      devolution:
+        are_you_sure_to_delete: ¿Estás seguro(a) de eliminar el registro %{devolution}?

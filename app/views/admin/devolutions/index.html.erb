@@ -6,9 +6,9 @@
       <div class="card-header">
         <h2 class="card-title">
           <%= t(".title") %>
-          <%= link_to new_admin_tag_path do %>
+          <%= link_to new_admin_devolution_path do %>
           <i class="fas fa-fw fa-plus-circle fa-lg float-right"></i>
-          <% end if can? :create, Tag %>
+          <% end if can? :create, Devolution %>
         </h2>
       </div>
       <div class="card-body">
@@ -17,20 +17,22 @@
           <table class="table table-bordered table-hover">
             <thead class="bg-light">
               <tr>
-                <%= content_tag :td, pagy_bootstrap_nav(@pagy).html_safe, colspan: 3 %>
+                <%= content_tag :td, pagy_bootstrap_nav(@pagy).html_safe, colspan: 5 %>
               </tr>
               <tr class="border-0">
-                <%= content_tag :th, Tag.human_attribute_name(:name), class: 'border-0' %>
-                <%= content_tag :th, Tag.human_attribute_name(:css_class), class: 'border-0' %>
+                <%= content_tag :th, Devolution.human_attribute_name(:rma), class: 'border-0' %>
+                <%= content_tag :th, Devolution.human_attribute_name(:order_id), class: 'border-0' %>
+                <%= content_tag :th, Devolution.human_attribute_name(:client_name), class: 'border-0' %>
+                <%= content_tag :th, Devolution.human_attribute_name(:email), class: 'border-0' %>
                 <%= content_tag :th, t('labels.actions'), class: 'border-0' %>
               </tr>
             </thead>
             <tbody>
-              <%= render @tags %>
+              <%= render @devolutions %>
             </tbody>
             <tfoot>
               <tr>
-                <%= content_tag :td, pagy_bootstrap_nav(@pagy).html_safe, colspan: 3 %>
+                <%= content_tag :td, pagy_bootstrap_nav(@pagy).html_safe, colspan: 5 %>
               </tr>
             </tfoot>
           </table>

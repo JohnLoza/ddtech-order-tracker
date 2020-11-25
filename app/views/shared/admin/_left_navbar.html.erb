@@ -30,9 +30,17 @@
           <li class="nav-item">
             <%= link_to admin_orders_path,
               class: "nav-link #{active_class_for('admin/orders')}" do %>
-            <i class="fas fa-fw fa-book mr-2"></i>
+            <i class="fas fa-fw fa-cash-register mr-2"></i>
             <%= Order.model_name.human(count: 2) %>
             <% end if can? :read, Order %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to admin_devolutions_path,
+              class: "nav-link #{active_class_for('admin/devolutions')}" do %>
+            <i class="fas fa-fw fa-undo-alt mr-2"></i>
+            <%= Devolution.model_name.human(count: 2) %>
+            <% end if can? :read, Devolution %>
           </li>
 
           <li class="nav-item">
