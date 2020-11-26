@@ -1,0 +1,54 @@
+<% provide :title, @devolution %>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title"><%= yield :title %></h2>
+      </div>
+      <div class="card-body">
+        <div class="row mb-3">
+          <p class="card-text col-lg-4 col-12">
+            <%= content_tag :span, Devolution.human_attribute_name(:order_id),
+              class: 'font-weight-bold text-uppercase' %><br>
+            <%= @devolution.order_id %>
+          </p>
+          <p class="card-text col-lg-4 col-12">
+            <%= content_tag :span, Devolution.human_attribute_name(:client_name),
+              class: 'font-weight-bold text-uppercase' %><br>
+            <%= @devolution.client_name %>
+          </p>
+          <p class="card-text col-lg-4 col-12">
+            <%= content_tag :span, Devolution.human_attribute_name(:email),
+              class: 'font-weight-bold text-uppercase' %><br>
+            <%= @devolution.email %>
+          </p>
+          <p class="card-text col-lg-4 col-12">
+            <%= content_tag :span, Devolution.human_attribute_name(:telephone),
+              class: 'font-weight-bold text-uppercase' %><br>
+            <%= @devolution.telephone %>
+          </p>
+          <p class="card-text col-lg-4 col-12">
+            <%= content_tag :span, Devolution.human_attribute_name(:client_type),
+              class: 'font-weight-bold text-uppercase' %><br>
+            <%= @devolution.client_type %>
+          </p>
+        </div>
+
+        <%= content_tag :span, Devolution.human_attribute_name(:products),
+          class: 'font-weight-bold text-uppercase' %>
+        <%= simple_format(@devolution.products) %>
+        <%= content_tag :span, Devolution.human_attribute_name(:description),
+          class: 'font-weight-bold text-uppercase' %>
+        <%= simple_format(@devolution.description) %>
+        <%= content_tag :span, Devolution.human_attribute_name(:devolution_address),
+          class: 'font-weight-bold text-uppercase' %>
+        <%= simple_format(@devolution.devolution_address) %>
+        <%= content_tag :span, Devolution.human_attribute_name(:comments),
+          class: 'font-weight-bold text-uppercase' %>
+        <%= simple_format(@devolution.comments) %>
+
+      </div>
+    </div>
+  </div>
+</div>

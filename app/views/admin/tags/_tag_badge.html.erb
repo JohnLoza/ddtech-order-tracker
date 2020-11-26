@@ -1,8 +1,9 @@
 <% hash_id = Utils.new_token %>
+<% text_color = tag.css_class.include?('text-light') ? 'text-light' : 'text-dark' %>
 <%= content_tag :span, class: tag.css_class, id: hash_id do %>
   <%= tag.name %> |
-  <%= link_to admin_order_order_tag_path(order, tag), method: :delete, 
-    'data-remove-dom-el-on-click' => hash_id, remote: true do %>
+  <%= link_to admin_order_order_tag_path(order, tag), method: :delete,
+    'data-remove-dom-el-on-click' => hash_id, remote: true, class: text_color do %>
     <i class="fas fa-times"></i>
   <% end %>
 <% end %>
