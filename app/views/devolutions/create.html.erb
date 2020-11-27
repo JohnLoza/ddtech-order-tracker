@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_pack_tag 'sessions', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'sessions', 'data-turbolinks-track': 'reload' %>
+
+  <%= content_tag :title, t('labels.devolution_form') %>
+</head>
+<body class="text-center d-block p-0">
+
+  <div class="cover-container devolution-success-cover w-100 h-100 p-3 mx-auto flex-column" style="">
+    <main role="main" class="inner cover h-100">
+      <div class="row h-100">
+        <div class="col-12 align-self-center">
+          <h1 class="cover-heading font-weight-bold text-light display-2">¡Ya recibimos tu solicitúd!</h1>
+          <p class="lead text-light">Hacemos entrega de tu RMA ¡no lo pierdas!</p>
+          <%= content_tag :h2, @devolution.rma, class: "display-3 text-light" %>
+          <p class="lead">
+            <a href="#continue" class="btn btn-lg btn-round btn-secondary">
+              <i class="fas fa-arrow-down"></i>
+            </a>
+          </p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="container pt-5 pb-5">
+    <h2 class="display-3 font-weight-bold pb-5" id="continue">A continuación</h2>
+    <p class="lead">
+      Comunícate al correo
+      <a href="mailto:soporte@ddtech.mx" target="_blank"
+        class="text-primary font-weight-bold">soporte@ddtech.mx</a>
+      donde te darán los pasos a seguir, no olvides adjuntar tu número RMA:
+      <%= content_tag :strong, @devolution.rma %>.
+    </p>
+    <p class="lead">Te recordamos además el proceso que llevan ambos tipos de garantías.</p>
+    <div class="row">
+      <div class="col-md-6 col-12 mb-5">
+        <h3>Garantía Foranea</h3>
+        <p><i class="fas fa-globe-americas fa-5x text-primary pb-2"></i></p>
+        <a href="https://ddtech.mx/soporte/page8.html" target="_blank" class="btn btn-secondary">Aquí</a>
+      </div>
+      <div class="col-md-6 col-12 mb-5">
+        <h3>Garantía Local (Guadalajara)</h3>
+        <p><i class="fas fa-map-marker-alt fa-5x text-primary pb-2"></i></p>
+        <a href="https://ddtech.mx/soporte/page7.html" target="_blank" class="btn btn-secondary">Aquí</a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

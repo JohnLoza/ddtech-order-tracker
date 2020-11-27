@@ -2,15 +2,14 @@ class DevolutionsController < ApplicationController
   layout false
 
   def new
+    # @devolution = Devolution.first
+    # @render :create and return
     @devolution = Devolution.new
   end
 
   def create
     @devolution = Devolution.new(devolution_params)
-    if @devolution.save
-      flash[:success] = 'Hola ya tenemos registrada tu solicitud, te entregamos tu rma: ' + @devolution.rma
-      redirect_to new_devolution_path
-    else
+    unless @devolution.save
       render :new
     end
   end
