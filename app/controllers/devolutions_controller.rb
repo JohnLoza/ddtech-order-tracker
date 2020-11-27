@@ -2,8 +2,8 @@ class DevolutionsController < ApplicationController
   layout false
 
   def new
-    # @devolution = Devolution.first
-    # @render :create and return
+    #@devolution = Devolution.first
+    #render :create and return
     @devolution = Devolution.new
   end
 
