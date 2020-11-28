@@ -35,20 +35,47 @@
           </p>
         </div>
 
-        <%= content_tag :span, Devolution.human_attribute_name(:products),
-          class: 'font-weight-bold text-uppercase' %>
-        <%= simple_format(@devolution.products) %>
-        <%= content_tag :span, Devolution.human_attribute_name(:description),
-          class: 'font-weight-bold text-uppercase' %>
-        <%= simple_format(@devolution.description) %>
-        <%= content_tag :span, Devolution.human_attribute_name(:devolution_address),
-          class: 'font-weight-bold text-uppercase' %>
-        <%= simple_format(@devolution.devolution_address) %>
-        <%= content_tag :span, Devolution.human_attribute_name(:comments),
-          class: 'font-weight-bold text-uppercase' %>
-        <%= simple_format(@devolution.comments) %>
+        <div class="row mb-3">
+          <div class="col-lg-4 col-12 pb-3">
+            <%= content_tag :span, Devolution.human_attribute_name(:products),
+              class: 'font-weight-bold text-uppercase' %>
+            <%= simple_format(@devolution.products) %>
+            <%= content_tag :span, Devolution.human_attribute_name(:description),
+              class: 'font-weight-bold text-uppercase' %>
+            <%= simple_format(@devolution.description) %>
+            <%= content_tag :span, Devolution.human_attribute_name(:devolution_address),
+              class: 'font-weight-bold text-uppercase' %>
+            <%= simple_format(@devolution.devolution_address) %>
+            <%= content_tag :span, Devolution.human_attribute_name(:comments),
+              class: 'font-weight-bold text-uppercase' %>
+            <%= simple_format(@devolution.comments) %>
+          </div>
+          <div class="col-lg-4 col-12 pb-3">
+            <p class="card-text">
+              <%= content_tag :span, Devolution.human_attribute_name(:user_id),
+                class: 'font-weight-bold text-uppercase' %><br>
+              <%= link_to @devolution.user, admin_user_path(@devolution.user),
+                class: 'badge badge-pill badge-primary' if @devolution.user %>
+            </p>
+            <%= content_tag :span, Devolution.human_attribute_name(:actions_taken),
+              class: 'font-weight-bold text-uppercase' %>
+            <%= simple_format(@devolution.actions_taken) %>
+            <p class="card-text">
+              <%= content_tag :span, Devolution.human_attribute_name(:parcel),
+                class: 'font-weight-bold text-uppercase' %><br>
+              <%= @devolution.parcel %>
+            </p>
+            <p class="card-text">
+              <%= content_tag :span, Devolution.human_attribute_name(:guide_id),
+                class: 'font-weight-bold text-uppercase' %><br>
+              <%= @devolution.guide_id %>
+            </p>
+          </div>
+        </div>
 
         <%= render partial: 'take_devolution_form', locals: { devolution: @devolution } %>
+        <%= render partial: 'actions_taken_form', locals: { devolution: @devolution } %>
+        <%= render partial: 'guide_form', locals: { devolution: @devolution } %>
       </div>
     </div>
   </div>

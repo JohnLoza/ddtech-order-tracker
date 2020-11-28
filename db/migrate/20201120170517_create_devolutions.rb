@@ -16,7 +16,7 @@ class CreateDevolutions < ActiveRecord::Migration[6.0]
       t.string :comments
 
       t.string :actions_taken
-      t.integer :guide_id
+      t.string :guide_id
       t.string :parcel
 
       t.timestamps

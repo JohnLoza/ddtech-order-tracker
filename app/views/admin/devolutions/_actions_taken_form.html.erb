@@ -1,0 +1,12 @@
+<div class="row pb-3">
+  <div class="col-12">
+    <%= form_for [:admin, devolution] do |f| %>
+      <div class="form-group">
+        <%= f.label :actions_taken %>
+        <%= f.text_area :actions_taken, class: 'form-control', required: true %>
+      </div>
+      <%= f.submit t('labels.save'), class: 'btn btn-primary', data: { confirm: 'You sure?' } %>
+    <% end if can? :process, devolution %>
+  </div>
+</div>
+

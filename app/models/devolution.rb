@@ -16,7 +16,7 @@ class Devolution < ApplicationRecord
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
   validates :client_name, :telephone, :client_type, :order_id, :products,
     :description, presence: true, length: { maximum: 250 }
-  validates :devolution_address, :comments, :actions_taken, :parcel, length: { maximum: 250 }
+  validates :devolution_address, :comments, :actions_taken, :parcel, :guide_id, length: { maximum: 250 }
 
   scope :by_user, -> (user_id) { where(user_id: user_id) if user_id.present? }
   scope :by_parcel, -> (parcel) { where(parcel: parcel) if parcel.present? }

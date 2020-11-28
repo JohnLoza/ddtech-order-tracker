@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2020_11_20_170517) do
     t.string "devolution_address"
     t.string "comments"
     t.string "actions_taken"
-    t.integer "guide_id"
+    t.string "guide_id"
     t.string "parcel"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
