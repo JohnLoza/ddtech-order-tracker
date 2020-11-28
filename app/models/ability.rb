@@ -32,6 +32,8 @@ class Ability
       digital_guides_permissions(user)
     when User::ROLES[:provider_guides]
       provider_guides_permissions(user)
+    when User::ROLES[:support_and_warranty]
+      support_and_warranty_permissions(user)
     end
 
     cannot %i[update_status update_guide], Order, holding: true # no one can update an order status or guide if it's holded back
@@ -112,5 +114,17 @@ class Ability
 
   def provider_guides_permissions(user)
     can :update_guide, Order
+  end
+
+  def support_and_warranty_permissions(user)
+    can [:read, :create], Devolution
+    can :update, Devolution
+    can :destroy, Devolution, user_id: nil
+
+    can :take, Devolution, user_id: nil
+    can :process, Devolution, user_id: user.id
+    can :resend, Devolution do |devolution|
+      devolution.actions_taken.present? and devolution.user_id == user.id
+    end
   end
 end

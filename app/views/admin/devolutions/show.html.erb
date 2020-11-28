@@ -74,8 +74,14 @@
         </div>
 
         <%= render partial: 'take_devolution_form', locals: { devolution: @devolution } %>
-        <%= render partial: 'actions_taken_form', locals: { devolution: @devolution } %>
-        <%= render partial: 'guide_form', locals: { devolution: @devolution } %>
+        <div class="row">
+          <div class="col-lg-6 col-12">
+            <%= render partial: 'actions_taken_form', locals: { devolution: @devolution } %>
+          </div>
+          <div class="col-lg-6 col-12">
+            <%= render partial: 'guide_form', locals: { devolution: @devolution } %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
