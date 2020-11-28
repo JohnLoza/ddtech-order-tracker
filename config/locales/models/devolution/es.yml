@@ -19,6 +19,7 @@ es:
         devolution_address: Dirección de regreso
         comments: Commentarios
 
+        user_id: Encargado
         actions_taken: Acciones tomadas
         guide_id: Número de guía
         parcel: Paquetería

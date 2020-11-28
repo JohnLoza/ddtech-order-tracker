@@ -1,0 +1,4 @@
+<%= form_for [:admin, devolution] do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.submit t('labels.take'), class: 'btn btn-secondary btn-lg' %>
+<% end if can? :update, devolution %>

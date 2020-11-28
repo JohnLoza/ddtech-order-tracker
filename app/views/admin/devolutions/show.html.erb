@@ -48,6 +48,7 @@
           class: 'font-weight-bold text-uppercase' %>
         <%= simple_format(@devolution.comments) %>
 
+        <%= render partial: 'take_devolution_form', locals: { devolution: @devolution } %>
       </div>
     </div>
   </div>

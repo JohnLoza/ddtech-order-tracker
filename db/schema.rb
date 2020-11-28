@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2020_11_20_170517) do
 
   create_table "devolutions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "user_id_id"
+    t.bigint "user_id"
     t.string "rma"
     t.string "client_name"
     t.string "email"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2020_11_20_170517) do
     t.index ["email"], name: "index_devolutions_on_email"
     t.index ["order_id"], name: "index_devolutions_on_order_id"
     t.index ["rma"], name: "index_devolutions_on_rma", unique: true
-    t.index ["user_id_id"], name: "index_devolutions_on_user_id_id"
+    t.index ["user_id"], name: "index_devolutions_on_user_id"
   end
 
   create_table "movements", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|

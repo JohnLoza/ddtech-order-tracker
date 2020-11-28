@@ -11,7 +11,7 @@ class Devolution < ApplicationRecord
 
   belongs_to :user, optional: true
 
-  validates :rma, presence: true, length: { maximum: 16 }
+  validates :rma, presence: true, length: { is: 10 }, uniqueness: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i.freeze
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
   validates :client_name, :telephone, :client_type, :order_id, :products,

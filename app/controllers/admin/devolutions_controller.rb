@@ -51,12 +51,18 @@ module Admin
         :products,
         :description,
         :devolution_address,
-        :comments
+        :comments,
+        :user_id,
+        :actions_taken,
+        :guide_id,
+        :parcel
       )
     end
 
     def load_devolutions
-      @pagy, @devolutions = pagy(Devolution.all.recent)
+      @pagy, @devolutions = pagy(
+        Devolution.all.recent.includes(:user)
+      )
     end
   end
 end

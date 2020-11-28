@@ -2,8 +2,22 @@
   <td>
     <%= link_to devolution.rma, admin_devolution_path(devolution) %>
   </td>
+  <td>
+    <%= link_to devolution.user, admin_user_path(devolution.user) if devolution.user %>
+  </td>
   <%= content_tag :td, devolution.order_id, class: 'text-uppercase' %>
   <%= content_tag :td, devolution.client_name, class: 'text-uppercase' %>
   <%= content_tag :td, devolution.email %>
-  <td>Actions here!</td>
+  <td>
+    <%= link_to edit_admin_devolution_path(devolution),
+      class: 'btn btn-outline-light btn-sm hidden-action' do %>
+    <i class="fas fa-fw fa-pencil-alt"></i>
+    <% end if can? :update, devolution %>
+
+    <%= link_to admin_devolution_path(devolution),
+      method: :delete, class: 'btn btn-danger btn-sm hidden-action',
+      data: { confirm: t('.are_you_sure_to_delete', devolution: devolution) } do %>
+    <i class="fas fa-fw fa-trash"></i>
+    <% end if can? :destroy, devolution %>
+  </td>
 </tr>
