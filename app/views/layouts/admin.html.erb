@@ -24,15 +24,11 @@
     <!-- wrapper  -->
     <!-- ============================================================== -->
     <div class="dashboard-wrapper">
-      <div class="dashboard-ecommerce">
-        <div class="container-fluid dashboard-content ">
-          <%= render "/shared/admin/page_header.html.erb" %>
+      <div class="container-fluid dashboard-content ">
+        <%= render "/shared/admin/page_header.html.erb" %>
 
-          <div class="ecommerce-widget">
-            <%= render "/shared/alerts.html.erb" %>
-            <%= yield %>
-          </div>
-        </div>
+        <%= render "/shared/alerts.html.erb" %>
+        <%= yield %>
       </div>
       <%= render "/shared/admin/footer.html.erb" %>
     </div>

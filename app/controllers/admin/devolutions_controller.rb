@@ -24,7 +24,7 @@ module Admin
 
     def update
       if @devolution.update_attributes devolution_params
-        redirect_to admin_devolutions_path, flash: { success: t('.success', devolution: @devolution) }
+        redirect_to admin_devolution_path(@devolution), flash: { success: t('.success', devolution: @devolution) }
       else
         render :edit
       end
