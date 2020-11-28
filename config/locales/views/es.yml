@@ -45,6 +45,7 @@ es:
       warehouse_boss: Jefe de Almacén
       warehouse_exit: Encargado de Salidas de Almacén
       warehouse: Almacén
+      support_and_warranty: Soporte y Garantía
       observer: Observador
 
   order:
