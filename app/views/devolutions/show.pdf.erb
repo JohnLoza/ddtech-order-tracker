@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <style>
+    html, body { font-family: sans-serif; }
+    body { padding: 1em; }
+    h1 { font-size: 2em; }
+    hr { color: #eee; }
+    table { width: 100%; }
+    table tr td { padding-bottom: 0.5em; padding-top 0.5em }
+
+    .barcode-container { width: 150px; margin-bottom: 2em; }
+    .barcode-container img { width: 100%; }
+    .barcode-container span { font-size: 0.8em; }
+
+    .d-content { display: contents !important; }
+    .d-flex { display: flex !important; }
+
+    .flex-row { flex-direction: row !important; }
+    .float-right { float: right !important; }
+    .font-weight-bold { font-weight: bold !important; }
+
+    .pr-1em { padding-right: 1em; }
+
+    .text-center { text-align: center !important; }
+
+    .w-50 { width: 50% }
+  </style>
+
+  <%= content_tag :title, @devolution.rma %>
+</head>
+
+<body>
+  <section>
+    <h1 class="text-center float-right d-content">
+      Registro de devolución <%= @devolution.rma %>
+    </h1>
+    <div class="barcode-container text-center">
+      <%= image_tag @barcode %>
+      <%= content_tag :span, @devolution.rma %>
+    </div>
+    <table>
+      <tr>
+        <%= content_tag :td, Devolution.human_attribute_name(:order_id), class: 'font-weight-bold' %>
+        <%= content_tag :td, Devolution.human_attribute_name(:client_name), class: 'font-weight-bold' %>
+        <%= content_tag :td, Devolution.human_attribute_name(:email), class: 'font-weight-bold' %>
+      </tr>
+      <tr>
+        <%= content_tag :td, @devolution.order_id %>
+        <%= content_tag :td, @devolution.client_name %>
+        <%= content_tag :td, @devolution.email %>
+      </tr>
+      <tr>
+        <%= content_tag :td, Devolution.human_attribute_name(:telephone), class: 'font-weight-bold' %>
+        <%= content_tag :td, Devolution.human_attribute_name(:client_type), class: 'font-weight-bold' %>
+      </tr>
+      <tr>
+        <%= content_tag :td, @devolution.telephone %>
+        <%= content_tag :td, @devolution.client_type %>
+      </tr>
+    </table>
+    <hr>
+
+    <section class="d-flex flex-row">
+      <div class="w-50 pr-1em">
+        <%= content_tag :p, Devolution.human_attribute_name(:products), class: 'font-weight-bold' %>
+        <%= simple_format @devolution.products %>
+      </div>
+
+      <div class="w-50 pr-1em">
+        <%= content_tag :p, Devolution.human_attribute_name(:description), class: 'font-weight-bold' %>
+        <%= simple_format @devolution.description %>
+      </div>
+    </section>
+    <hr>
+
+    <section class="d-flex flex-row">
+      <div class="w-50 pr-1em">
+        <%= content_tag :p, Devolution.human_attribute_name(:devolution_address), class: 'font-weight-bold' %>
+        <%= simple_format(@devolution.devolution_address.presence || 'Sin información.') %>
+      </div>
+
+      <div class="w-50 pr-1em">
+        <%= content_tag :p, Devolution.human_attribute_name(:comments), class: 'font-weight-bold' %>
+        <%= simple_format(@devolution.comments.presence || 'Sin comentarios.') %>
+      </div>
+    </section>
+  </section>
+</body>
+
+</html>

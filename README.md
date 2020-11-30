@@ -23,3 +23,14 @@ You can create a symbolic link like so
 4. Precompile Assets
 
   `$ RAILS_ENV=production rails assets:precompile`
+
+5. Install wkhtmltopdf binaries for your server/development system  
+it could be with the gem wkhtmltopdf-binary or from a package for your system
+
+### Ruby Gem
+
+  `$ gem install 'wkhtmltopdf-binary'`
+
+### Fedora / CentOs / RedHat
+
+  `$ sudo dnf -y install wkhtmltopdf-devel`

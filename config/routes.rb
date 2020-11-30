@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root controller: 'sessions', action: 'new'
   resources :sessions, only: [:new, :create, :destroy]
   get '/track', to: 'tracks#index', as: :track
-  resources :devolutions, only: [:new, :create]
+  resources :devolutions, only: [:show, :new, :create]
 
   namespace :admin do
     resources :dashboard, only: :index

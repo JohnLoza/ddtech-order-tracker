@@ -61,7 +61,11 @@ module Admin
 
     def load_devolutions
       @pagy, @devolutions = pagy(
-        Devolution.all.recent.includes(:user)
+        Devolution.search(
+            keywords: filter_params(require: :keywords),
+            fields: [:rma, :order_id, :email]
+          ).by_user(filter_params(require: :user_id))
+          .recent.includes(:user)
       )
     end
   end

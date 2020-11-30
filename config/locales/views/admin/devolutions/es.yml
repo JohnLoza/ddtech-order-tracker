@@ -23,3 +23,6 @@ es:
       # partials
       devolution:
         are_you_sure_to_delete: ¿Estás seguro(a) de eliminar el registro %{devolution}?
+
+      filters:
+        search_by: Buscar por RMA, No Pedido, Email.
