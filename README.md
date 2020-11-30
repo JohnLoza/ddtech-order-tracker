@@ -1,36 +1,36 @@
-# README
+# DDTECH Order Tracker
 
-## Production ##
+## Production
 make sure the mysql socket points to /var/run/mysqld/mysqld.sock  
 in neubox server its located in /usr/local/mysql/data/mysql.sock
 
 You can create a symbolic link like so
 `ln -s /usr/local/mysql/data/mysql.sock /var/run/mysqld/mysqld.sock`
 
-## Basic Setup ##
+## Basic Setup
 1. Create database
 
-  `$ RAILS_ENV=production rails db:create`
+   `$ RAILS_ENV=production rails db:create`
 
 2. Run migrations
 
-  `$ RAILS_ENV=productions rails db:migrate`
+   `$ RAILS_ENV=productions rails db:migrate`
 
 3. Install yarn dependencies.
 
-  `$ yarn install`
+   `$ yarn install`
 
 4. Precompile Assets
 
-  `$ RAILS_ENV=production rails assets:precompile`
+   `$ RAILS_ENV=production rails assets:precompile`
 
 5. Install wkhtmltopdf binaries for your server/development system  
 it could be with the gem wkhtmltopdf-binary or from a package for your system
 
-### Ruby Gem
+   ### Ruby Gem
 
-  `$ gem install 'wkhtmltopdf-binary'`
+   `$ gem install 'wkhtmltopdf-binary'`
 
-### Fedora / CentOs / RedHat
+   ### Fedora / CentOs / RedHat
 
-  `$ sudo dnf -y install wkhtmltopdf-devel`
+   `$ sudo dnf -y install wkhtmltopdf-devel`
