@@ -12,7 +12,7 @@ module Admin
         grouping: filter_params(require: :grouping, default_value: 'user_id')
       }
 
-      @pendant_orders = Order.where.not(status: Order::STATUS[:sent]).where(holding: false).group(:status).count
+      @pendant_orders = Order.where.not(status: Order::STATUS[:sent]).where(holding: false).since(30.days.ago).group(:status).count
       @pendant_orders.keys.each { |key| @pendant_orders[t("order.statuses.#{key}")] = @pendant_orders.delete(key) }
 
       @orders_by_parcel = Order.beetween_dates(@opts[:start_date], @opts[:end_date]).group(:parcel).count

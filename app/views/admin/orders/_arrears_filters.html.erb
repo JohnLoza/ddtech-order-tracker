@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <%= content_tag :h3, t("labels.filters"), class: "card-header" %>
+      <div class="card-body">
+        <%= form_for :filter, method: :get, html: {class: "form-inline"} do |f| %>
+          <div class='form-group mx-sm-3'>
+            <%= f.label :since, t('.since'), class: 'sr-only'  %>
+            <%= f.select :since,
+                [
+                  ['Desde hace 7 días', 07],
+                  ['Desde hace 15 días', 15],
+                  ['Desde hace 30 días', 30],
+                  ['Desde hace 45 días', 45],
+                  ['Desde hace 60 días', 60],
+                  ['Desde hace 90 días', 90],
+                ],
+                { selected: filter_params(require: :since, default: 30) },
+                { class: 'form-control filter mt-3' } %>
+          </div>
+
+          <%= f.submit t('labels.filter'), class: 'btn btn-primary mt-3' %>
+          <%= link_to t('labels.clear_filters'), admin_orders_path, class: 'btn btn-light mt-3 ml-3' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

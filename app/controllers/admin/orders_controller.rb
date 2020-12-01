@@ -13,8 +13,8 @@ module Admin
 
     def arrears
       authorize! :read, Order
-      @arrears = Order.arrears.oldest.limit(50).includes(:user)
-      @assemble_arrears = Order.assemble_arrears.oldest.limit(50).includes(:user)
+      @arrears = Order.arrears.since(30.days.ago).oldest.limit(50).includes(:user)
+      @assemble_arrears = Order.assemble_arrears.since(30.days.ago).oldest.limit(50).includes(:user)
     end
 
     def show
