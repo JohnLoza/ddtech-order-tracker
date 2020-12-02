@@ -15,28 +15,28 @@ module Admin
       @pendant_orders = Order.where.not(status: Order::STATUS[:sent]).where(holding: false).since(30.days.ago).group(:status).count
       @pendant_orders.keys.each { |key| @pendant_orders[t("order.statuses.#{key}")] = @pendant_orders.delete(key) }
 
-      @orders_by_parcel = Order.beetween_dates(@opts[:start_date], @opts[:end_date]).group(:parcel).count
+      @orders_by_parcel = Order.between_dates(@opts[:start_date], @opts[:end_date]).group(:parcel).count
 
-      @orders_by_user = Order.beetween_dates(@opts[:start_date], @opts[:end_date])
+      @orders_by_user = Order.between_dates(@opts[:start_date], @opts[:end_date])
         .custom_group(@opts[:grouping]).count.as_json
       @orders_by_user = replace_id_by_username @orders_by_user if @opts[:grouping] == 'user_id'
 
-      @supplied_orders = Movement.beetween_dates(@opts[:start_date], @opts[:end_date])
+      @supplied_orders = Movement.between_dates(@opts[:start_date], @opts[:end_date])
         .where(description: Movement::DESCRIPTIONS[:warehouse_entry_order])
         .custom_group(@opts[:grouping]).count.as_json
       @supplied_orders = replace_id_by_username @supplied_orders if @opts[:grouping] == 'user_id'
 
-      @assembled_orders = Movement.beetween_dates(@opts[:start_date], @opts[:end_date])
+      @assembled_orders = Movement.between_dates(@opts[:start_date], @opts[:end_date])
         .where(description: Movement::DESCRIPTIONS[:assemble_entry_order])
         .custom_group(@opts[:grouping]).count.as_json
       @assembled_orders = replace_id_by_username @assembled_orders if @opts[:grouping] == 'user_id'
 
-      @packed_orders = Movement.beetween_dates(@opts[:start_date], @opts[:end_date])
+      @packed_orders = Movement.between_dates(@opts[:start_date], @opts[:end_date])
         .where(description: Movement::DESCRIPTIONS[:packed_order])
         .custom_group(@opts[:grouping]).count.as_json
       @packed_orders = replace_id_by_username @packed_orders if @opts[:grouping] == 'user_id'
 
-      @guides_registered = Movement.beetween_dates(@opts[:start_date], @opts[:end_date])
+      @guides_registered = Movement.between_dates(@opts[:start_date], @opts[:end_date])
         .where(description: Movement::DESCRIPTIONS[:sent_order])
         .custom_group(@opts[:grouping]).count.as_json
       @guides_registered = replace_id_by_username @guides_registered if @opts[:grouping] == 'user_id'

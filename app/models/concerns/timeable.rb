@@ -14,7 +14,7 @@ module Timeable
     scope :recent_update, -> { order(updated_at: :desc) }
     scope :oldest_update, -> { order(updated_at: :asc) }
 
-    scope :since, -> (date_time) { beetween_dates(date_time, Time.now) }
+    scope :since, -> (date_time) { between_dates(date_time, Time.now) }
     scope :since_update, -> (date_time) { between_dates(date_time, Time.now, 'updated_at') }
 
     scope :today, -> { where(created_at: Date.today.all_day) }
@@ -27,7 +27,7 @@ module Timeable
       where(updated_at: Ate.parse(date).all_day) if date.present?
     }
 
-    scope :beetween_dates, -> (start_date, end_date, field = 'created_at') {
+    scope :between_dates, -> (start_date, end_date, field = 'created_at') {
       return all unless start_date.present? and end_date.present?
       start_date = start_date.to_date
       end_date = end_date.to_date

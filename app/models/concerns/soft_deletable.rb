@@ -23,8 +23,9 @@ module SoftDeletable
   end
 
   def destroy
-    if really_destroy
+    if self.really_destroy
       super
+      self.really_destroy = nil
     else
       update_attributes(deleted_at: Time.now)
     end
