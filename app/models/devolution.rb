@@ -8,6 +8,7 @@ class Devolution < ApplicationRecord
   before_validation :set_rma, on: :create
   before_save { self.rma = rma.upcase }
   before_save { self.email = email.downcase }
+  after_create { NotifyRmaJob.perform_async(self) }
 
   belongs_to :user, optional: true
 

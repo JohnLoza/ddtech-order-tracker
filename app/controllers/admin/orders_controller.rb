@@ -29,7 +29,7 @@ module Admin
       @order.order_tags.build(tag_id: params[:tag]) if params[:tag].present?
 
       if @order.save
-        NotifyStartOrderJob.perform_async(@order)
+        NotifyNewOrderJob.perform_async(@order)
         redirect_to new_admin_order_path(), flash: { success: t('.success', order: @order) }
       else
         render :new
@@ -58,12 +58,12 @@ module Admin
       end
 
       if @order.update_attributes guide_params
-        NotifySentOrderJob.perform_async(@order, params[:order][:per_package_parcel])
+        NotifyOrderTrackingIdJob.perform_async(@order, params[:order][:per_package_parcel])
         render json: { data: @order.to_json }
       else
         if create_extra_movement(@order)
           render json: { data: @order.to_json }
-          NotifySentOrderJob.perform_async(@order, params[:order][:per_package_parcel])
+          NotifyOrderTrackingIdJob.perform_async(@order, params[:order][:per_package_parcel])
         else
           render status: 400, json: { data: @order.errors.to_json }
         end
@@ -175,9 +175,9 @@ module Admin
       # Only notify the client about the next statuses
       case order.status
       when Order::STATUS[:supplied]
-        NotifySuppliedOrderJob.perform_async(order)
+        NotifyOrderSuppliedJob.perform_async(order)
       when Order::STATUS[:assembled]
-        NotifyAssembledOrderJob.perform_async(order)
+        NotifyOrderAssembledJob.perform_async(order)
       end
     end
 

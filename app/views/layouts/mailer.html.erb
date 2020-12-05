@@ -3,11 +3,96 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style>
-      /* Email styles need to be inline */
+      html, body {
+        font-family: sans-serif !important;
+        line-height: 1.8;
+        padding-top: 2em;
+        padding-bottom: 2em;
+      }
+      h1 { font-size: 3em; }
+      p, a, span { font-size: 14px; }
+
+      .card {
+        background-color: #fefefe;
+        border-radius: 10px;
+      }
+      .card-body, .card-footer, .card-header { padding: 1em }
+      .card-header { border-bottom: 1px solid #e6e6f2; }
+      .card-footer { border-radius: 0 0 10px 10px; }
+
+      .container {
+        margin-right: auto;
+        margin-left: auto;
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+
+      .m-0 { margin: 0; }
+      .pb-1em { padding-bottom: 1em; }
+      .pt-1em { padding-top: 1em; }
+
+      .bg-primary { background-color: #1765be; }
+
+      .btn {
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 0.5em;
+        text-decoration: none;
+      }
+      .btn-success {
+        background-color: #21ae41;
+        color: #fefefe !important;
+      }
+      .btn-lg { font-size: 1.2em !important; }
+
+      .parcel {
+        background-color: #777;
+        border-radius: 3px;
+        color: #fefefe;
+        padding: 0.2em;
+        margin: 0.5em;
+      }
+      .parcel h2 { margin: 0.4em; }
+
+      .estafeta { background-color: #e53935; }
+      .fedex { background-color: #3949ab; }
+      .zmg { background-color: #7cb342; }
+      .dhl {
+        background-color: #fdd835;
+        color: #333
+      }
+
+      .text-center { text-align: center; }
+      .text-left { text-align: left; }
+      .text-primary { color: #1765be !important; }
+      .text-light { color: #fefefe !important; }
+      .text-lowercase { text-transform: lowercase; }
+      .text-uppercase { text-transform: uppercase; }
+
+      @media only screen and (min-width: 576px) {
+        .container { max-width: 540px; }
+      }
+      @media only screen and (min-width: 768px) {
+        .container { max-width: 720px; }
+      }
+      @media only screen and (min-width: 992px) {
+        .container { max-width: 960px; }
+      }
+      @media only screen and (max-width: 576px) {
+        h1 { font-size: 2em; }
+      }
     </style>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <div class="card">
+        <div class="card-header text-center">
+          <%= content_tag :h1, t('labels.brand'), class: 'text-primary text-uppercase m-0' %>
+          <%= content_tag :p, l(Time.now, format: :long), class: 'm-0', style: 'text-align: right;' %>
+        </div>
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

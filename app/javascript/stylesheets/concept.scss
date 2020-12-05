@@ -7191,12 +7191,8 @@ Media Query
   }
 }
 
-
-
-
 /* Custom, iPhone Retina */
 @media only screen and (max-width:320px) {}
-
 
 @media only screen and (max-width:450px) {
   .display-1 { font-size: 3em !important }
@@ -7204,3 +7200,4 @@ Media Query
   .display-3 { font-size: 2.3em !important }
   .display-4 { font-size: 2em !important }
 }
+

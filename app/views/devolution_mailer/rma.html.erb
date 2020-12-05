@@ -1,0 +1,25 @@
+<div class="card-body">
+  <h2 class="text-center text-uppercase m-0">rma: <%= @devolution.rma %></h2>
+  <p class="pb-1em">
+    Buen día, hemos recibido tus datos donde solicitas tu garantía/devolución, quedamos al pendiente de la misma cuando llegue para su revisión. Recordando que el plazo del diagnóstico y/o solución del producto es de 2 a 11 días hábiles (Lunes a Viernes). En este lapso de tiempo el área correspondiente te contactará al email y/o número telefónico proporcionado en el formulario de garantía.
+  </p>
+
+  <p class="pb-1em">
+    Favor de imprimir el siguiente documento almenos 2 veces
+    <%= link_to "ddtech_devolution_#{@devolution.rma}", devolution_url(@devolution, format: :pdf), target: '_blank' %>
+    y pegarlo en varias caras del paquete que se enviará.
+  </p>
+</div>
+<div class="card-footer bg-primary text-light">
+  <strong>
+    <p class="text-center text-uppercase">Nota</p>
+    <p>
+      Si solicitaste guía, eres cliente fuera de GDL y está dentro del proceso para que DD TECH cubra los envíos, tomará entre 24 y 48 horas hábiles el hacerte llegar el formato de guía para que nos mandes el producto. En el caso de que seas residente de Guadalajara en el estado de Jalisco, deberás llevar tu producto a la sucursal
+      <a href="https://ddtech.mx/contacto" class="text-light" target="_blank">Jardines del Bosque</a>.
+    </p>
+    <p>
+      En el caso de que desafortunadamente no califique para el envío gratuito, le recordamos que el envío desde su domicilio hasta nuestras instalaciones corre por su cuenta.
+    </p>
+  </strong>
+</div>
+

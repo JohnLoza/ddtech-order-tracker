@@ -1,11 +1,13 @@
-  <%= render partial: 'order_header', locals: {order: @order} %>
-
+<div class="card-body">
+  <h2 class="m-0 text-center">Pedido: #<%= @order.ddtech_key %></h2>
   <% if @order.assemble %>
-    <p class="text-center">
+    <p>
       Te informamos que tu equipo está iniciando el proceso de ensamblado, una vez esté listo te informaremos vía email el número de rastreo de la paquetería.
     </p>
   <% else %>
-    <p class="text-center">
+    <p>
       Te informamos que tu pedido ya fue surtido por almacén, estará pasando al área de embalaje, una vez que sea enviado te informaremos vía email el número de rastreo de la paquetería.
     </p>
   <% end %>
+</div>
+

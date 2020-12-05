@@ -1,0 +1,36 @@
+<div class="card-body text-center">
+  <h2 class="m-0">Pedido: #<%= @order.ddtech_key %></h2>
+  <h2 class="m-0 pb-1em">¡Hola! le atiende: <%= @order.user %></h2>
+
+  <p class="text-left pb-1em">
+    Es un gusto comentarle que a partir de este momento me encargaré de su compra. Estaremos trabajando en su pedido y tan pronto como este sea enviado,
+    le haremos llegar vía email su número de rastreo de la paquetería (Por favor mantengase pendiente de su bandeja de correo no deseado).
+  </p>
+
+  <% if @order.multiple_packages %>
+  <p class="text-left pb-1em">
+    En caso de ser necesario su pedido se dividirá en 1 o más paquetes con el fin de evitar daños en el trayecto.
+  </p>
+  <% end %>
+
+  <div class="pb-1em">
+    <a href="https://ddtech.mx/rastreo" class="btn btn-success btn-lg">
+      Ver estado de mi pedido
+    </a>
+  </div>
+
+  <p class="text-uppercase" style="color: #ff9900;">
+    <strong>
+      Importante<br>Puedes ver los tiempos estimados de envío actuales aqui:
+      <a href="https://ddtech.mx/blog/noticia/retrasos-en-envios" class="text-primary">Tiempos de espera</a>
+    </strong>
+  </p>
+</div>
+<div class="card-footer bg-primary text-light">
+  <strong>
+    <p class="text-center text-uppercase">Nota</p>
+    <p>
+      En caso de necesitar factura y no haberla solicitado al momento de hacer el pedido, por favor indíquenos los siguientes datos: 1.- Método de pago (Tarjeta de débito, crédito, cheque, transferencia o efectivo) y 2.- El uso de CFDI. Si usted no necesita declarar impuestos ante hacienda, haga caso omiso de esta nota.
+    </p>
+  </strong>
+</div>
