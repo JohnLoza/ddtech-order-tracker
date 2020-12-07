@@ -63,7 +63,8 @@
             <p class="card-text">
               <%= content_tag :span, Devolution.human_attribute_name(:parcel),
                 class: 'font-weight-bold text-uppercase' %><br>
-              <%= @devolution.parcel %>
+              <%= content_tag :span, @devolution.parcel,
+                class: "parcel #{@devolution.parcel.downcase} font-weight-bold" %>
             </p>
             <p class="card-text">
               <%= content_tag :span, Devolution.human_attribute_name(:guide_id),
