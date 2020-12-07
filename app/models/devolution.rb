@@ -8,6 +8,7 @@ class Devolution < ApplicationRecord
   before_validation :set_rma, on: :create
   before_save { self.rma = rma.upcase }
   before_save { self.email = email.downcase }
+  before_update :send_guide_id
   after_create { NotifyRmaJob.perform_async(self) }
 
   belongs_to :user, optional: true
@@ -29,5 +30,11 @@ class Devolution < ApplicationRecord
   private
   def set_rma
     self.rma = Utils.new_alphanumeric_token(7)
+  end
+
+  def send_guide_id
+    if self.guide_id_changed? or self.parcel_changed?
+      NotifyDevolutionTrackingIdJob.perform_async(self)
+    end
   end
 end

@@ -3,7 +3,7 @@
 class OrderMailer < ActionMailer::Base # :nodoc:
   add_template_helper(MailerHelper)
 
-  default from: "DD Tech <noreply@ddtech.mx>"
+  default from: "DD Tech <noreply@ddtechmx.info>"
   default reply_to: "DD Tech <ventas@ddtech.mx>"
   layout "mailer"
 

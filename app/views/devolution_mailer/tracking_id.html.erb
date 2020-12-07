@@ -1,0 +1,22 @@
+<div class="card-body">
+  <h2 class="text-center text-uppercase m-0">rma: <%= @devolution.rma %></h2>
+  <%= content_tag :p, "Hola #{@devolution.client_name}" %>
+  <p>Te comentamos ya hemos resuelto tu garantía y se ha realizado lo siguiente:</p>
+  <%= content_tag :strong, simple_format(@devolution.actions_taken) %>
+
+  <p>Además te hacemos entrega de tu(s) número(s) de rastreo:</p>
+
+  <div class="parcel <%= @devolution.parcel.downcase %> text-center">
+    <%= content_tag :h2, @devolution.parcel %>
+    <%= content_tag :h2, @devolution.guide_id %>
+  </div>
+
+  <p class="text-center pb-1em">Nota: La paquetería puede demorar hasta 24hrs en mostrar información en el rastreo.</p>
+
+  <div class="text-center pb-1em">
+    <%= link_to t('labels.track_your_package'),
+        t("mailer.body.track_urls.#{@devolution.parcel.downcase}"),
+        class: 'btn btn-success btn-lg' %>
+  </div>
+</div>
+

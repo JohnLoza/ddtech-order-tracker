@@ -7,5 +7,9 @@ class DevolutionMailerPreview < ActionMailer::Preview # :nodoc:
     DevolutionMailer.with(devolution: Devolution.first).rma
   end
 
+  def tracking_id
+    DevolutionMailer.with(devolution: Devolution.first).tracking_id
+  end
+
 end
 
