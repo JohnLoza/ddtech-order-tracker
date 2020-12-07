@@ -122,9 +122,9 @@ class Ability
     can :destroy, Devolution, user_id: nil
 
     can :take, Devolution, user_id: nil
-    can :process, Devolution, user_id: user.id
-    can :resend, Devolution do |devolution|
-      devolution.actions_taken.present? and devolution.user_id == user.id
+    can :process, Devolution, user_id: user.id, guide_id: nil
+    can :resend, Devolution do |d|
+      d.actions_taken.present? and d.user_id == user.id and d.guide_id.blank?
     end
   end
 end
