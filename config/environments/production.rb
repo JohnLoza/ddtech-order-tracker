@@ -119,12 +119,11 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => "ddtechmx.info" }
   config.openssl_verify_mode = OpenSSL::SSL::VERIFY_NONE
   config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
+    address:              'mail.ddtechmx.info',
     port:                 587,
-    domain:               'gmail.com',
-    user_name:            ENV['GMAIL_USER'],
-    password:             ENV['GMAIL_PASS'],
+    user_name:            ENV['MAIL_USER'],
+    password:             ENV['MAIL_PASS'],
     authentication:       :plain,
-    enable_starttls_auto: true
+    enable_starttls_auto: false
   }
 end
