@@ -24,8 +24,9 @@ You can create a symbolic link like so
 
    `$ RAILS_ENV=production rails assets:precompile`
 
-5. Install wkhtmltopdf binaries for your server/development system  
-it could be with the gem wkhtmltopdf-binary or from a package for your system
+5. Install wkhtmltopdf binaries for your development system  
+it could be with the gem wkhtmltopdf-binary or from a package for your system  
+gemfile already has wkhtmltopdf-binary for production use.
 
    ### Ruby Gem
 
@@ -34,3 +35,4 @@ it could be with the gem wkhtmltopdf-binary or from a package for your system
    ### Fedora / CentOs / RedHat
 
    `$ sudo dnf -y install wkhtmltopdf-devel`
+
