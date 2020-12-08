@@ -24,7 +24,7 @@ You can create a symbolic link like so
 
    `$ RAILS_ENV=production rails assets:precompile`
 
-5. Set environment variables for the system, these are DB_USER, DB_PASS, MAIL_USER, MAIL_PASS
+5. Set environment variables for the system, these are DB_USER, DB_PASS, MAIL_USER and MAIL_PASS
 
 6. Install wkhtmltopdf binaries for your development system, it could be with the gem wkhtmltopdf-binary or from a package for your system
 
@@ -36,4 +36,3 @@ You can create a symbolic link like so
 
    `$ sudo dnf -y install wkhtmltopdf-devel`
 
-7. Set the environment variable for wkhtmltopdf as WKHTMLTOPDF_PATH
