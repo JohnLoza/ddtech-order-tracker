@@ -1,0 +1,15 @@
+<div class="card-body">
+  <h2 class="text-center text-uppercase m-0">rma: <%= @devolution.rma %></h2>
+  <p class="pb-1em">
+    Buen día <%= @devolution.client_name %>,
+  </p>
+  <p>
+    Queremos informarte que hemos recibido tu paquete, además nuestro agente de soporte
+    <%= content_tag :strong, @devolution.user %> se encargará de darle solución.
+  </p>
+
+  <p class="pb-1em">
+    En un promedio de 11 días hábiles le estaremos respondiendo sobre su estado, en algunos casos poco frecuentes el fabricante solicita el producto para su revisión lo cual puede demorar entre 7 a 20 días.
+  </p>
+</div>
+

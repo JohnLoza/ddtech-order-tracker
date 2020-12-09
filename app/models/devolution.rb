@@ -8,7 +8,10 @@ class Devolution < ApplicationRecord
   before_validation :set_rma, on: :create
   before_save { self.rma = rma.upcase }
   before_save { self.email = email.downcase }
+
+  before_update :notify_package_received
   before_update :send_guide_id
+
   after_create { NotifyRmaJob.perform_async(self) }
 
   belongs_to :user, optional: true
@@ -35,6 +38,12 @@ class Devolution < ApplicationRecord
   def send_guide_id
     if self.guide_id_changed? or self.parcel_changed?
       NotifyDevolutionTrackingIdJob.perform_async(self)
+    end
+  end
+
+  def notify_package_received
+    if self.user_id_changed?
+      NotifyDevolutionPackageReceivedJob.perform_async(self)
     end
   end
 end

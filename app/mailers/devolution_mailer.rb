@@ -14,6 +14,13 @@ class DevolutionMailer < ActionMailer::Base # :nodoc:
     mail(to: @devolution.email, subject: subject)
   end
 
+  def package_received
+    @devolution = params[:devolution]
+    subject = subject_for @devolution
+
+    mail(to: @devolution.email, subject: subject)
+  end
+
   def tracking_id
     @devolution = params[:devolution]
     subject = subject_for @devolution
