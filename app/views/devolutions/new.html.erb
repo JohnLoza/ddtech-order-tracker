@@ -147,17 +147,6 @@
 
           <div class="form-group row">
             <div class="col-lg-3 col-md-4 col-form-label">
-              <i class="fas fa-book"></i>
-              <%= f.label :devolution_address %>
-              <p>* Ingrese aquí la dirección a la que desea le enviemos de regreso su producto
-                después de aplicada la garantia o especifique si desea recojer en alguna sucursal.</p>
-            </div>
-            <%= f.text_area :devolution_address, class: 'form-control form-control-lg col-lg-9 col-md-8',
-              maxlength: 250, rows: 5, placeholder: "Este campo es opcional" %>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-lg-3 col-md-4 col-form-label">
               <i class="fas fa-comments"></i>
               <%= f.label :comments %>
               <p>* Si tu producto falla dentro de los primeros 30 días a partir de su entrega,
@@ -166,6 +155,49 @@
             </div>
             <%= f.text_area :comments, class: 'form-control form-control-lg col-lg-9 col-md-8',
               maxlength: 250, rows: 5, placeholder: "Este campo es opcional" %>
+          </div>
+
+          <div class="bg-primary">
+            <h2 class="text-center font-weight-bold text-light pt-3 pb-3">
+              <i class="fas fa-home mr-2"></i> Domicilio de envío
+            </h2>
+          </div>
+          <p>* Ingrese aquí la dirección a la que desea le enviemos de regreso su producto
+            después de aplicada la garantia o especifique si desea recojer en alguna sucursal.</p>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label text-right">
+              <%= f.label :street, 'Calle' %>
+            </div>
+            <%= f.text_field :street, class: 'form-control form-control-lg col-lg-9 col-md-8', maxlength: 60, required: true %>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label text-right">
+              <%= f.label :colony, 'Colonia' %>
+            </div>
+            <%= f.text_field :colony, class: 'form-control form-control-lg col-lg-9 col-md-8', maxlength: 50, required: true %>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label text-right">
+              <%= f.label :zc, 'Código postal' %>
+            </div>
+            <%= f.text_field :zc, class: 'form-control form-control-lg col-lg-9 col-md-8', minlength: 5, maxlength: 5, required: true %>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label text-right">
+              <%= f.label :city, 'Ciudad' %>
+            </div>
+            <%= f.text_field :city, class: 'form-control form-control-lg col-lg-9 col-md-8', maxlength: 25, required: true %>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label text-right">
+              <%= f.label :state, 'Estado' %>
+            </div>
+            <%= f.text_field :state, class: 'form-control form-control-lg col-lg-9 col-md-8', maxlength: 25, required: true %>
           </div>
           <hr>
 

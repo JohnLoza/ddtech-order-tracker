@@ -5,7 +5,11 @@ class Devolution < ApplicationRecord
   include Searchable
   include Timeable
 
+  attr_accessor :street, :colony, :zc, :city, :state
+
   before_validation :set_rma, on: :create
+  before_validation :set_devolution_address, on: :create
+
   before_save { self.rma = rma.upcase }
   before_save { self.email = email.downcase }
 
@@ -33,6 +37,17 @@ class Devolution < ApplicationRecord
   private
   def set_rma
     self.rma = Utils.new_alphanumeric_token(7)
+  end
+
+  def set_devolution_address
+    return if self.devolution_address.present?
+    self.devolution_address = "
+      #{self.street}
+      #{self.colony}
+      #{self.zc}
+      #{self.city}, #{self.state}
+    ".strip
+    self.devolution_address.gsub!('  ', '')
   end
 
   def send_guide_id

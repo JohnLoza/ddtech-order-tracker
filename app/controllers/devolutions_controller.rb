@@ -40,7 +40,12 @@ class DevolutionsController < ApplicationController
       :products,
       :description,
       :devolution_address,
-      :comments
+      :comments,
+      :street,
+      :colony,
+      :zc,
+      :city,
+      :state
     )
   end
 end
