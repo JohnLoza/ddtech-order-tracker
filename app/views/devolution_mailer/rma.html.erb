@@ -1,25 +1,50 @@
 <div class="card-body">
   <h2 class="text-center text-uppercase m-0">rma: <%= @devolution.rma %></h2>
   <p class="pb-1em">
-    Buen día, hemos recibido tus datos donde solicitas tu garantía/devolución, quedamos al pendiente de la misma cuando llegue para su revisión. Recordando que el plazo del diagnóstico y/o solución del producto es de 2 a 11 días hábiles (Lunes a Viernes). En este lapso de tiempo el área correspondiente te contactará al email y/o número telefónico proporcionado en el formulario de garantía.
-  </p>
+    Buen día, hemos recibido tus datos donde solicitas tu garantía/devolución, quedamos al pendiente de la misma cuando llegue para su revisión.</p>
   <p class="pb-1em">
     La fecha estimada para la resolución de tu garantía es antes del <%= content_tag :strong, l(20.days.from_now, format: :date_only) %>,
     de no haber recibido notificación alguna <strong>vía correo electrónico</strong> favor de comunicarse a <a href="mailto:soporte@ddtech.mx">soporte@ddtech.mx</a>.
   </p>
 
-  <p class="pb-1em">
-    Favor de imprimir el siguiente documento almenos 2 veces
-    <%= link_to "ddtech_devolution_#{@devolution.rma}", devolution_url(@devolution, format: :pdf), target: '_blank' %>
-    y pegarlo en varias caras del paquete que se enviará.
+  <p>
+    Regresa el producto a su caja original junto con los accesorios que vinieran con el mismo y no pegues cinta adhesiva, etiquetas o calcomanías en la caja del producto; en el caso de enviarlo por paquetería te pedimos asegurar el producto lo más posible con protecciones para evitar daños. Además imprime almenos 2 veces el siguiente documento y pégalo en varias caras del paquete, esto con el fin de agilizar el proceso.
   </p>
+  <p class="text-center">
+    <%= link_to devolution_url(@devolution, format: :pdf), class: 'text-secondary', target: '_blank' do %>
+      documento_garantía_ddtech_<%= @devolution.rma %>
+    <% end %>
+  </p>
+  <p class="lead">Posteriormente sigue las instrucciones según sea tu caso:</p>
+  <div class="pb-1em">
+    <h3>Garantía Foranea (Interior de la República)</h3>
+    <p>Una vez empacado, debes enviarnos el producto por paquetería para su revisión a la siguiente dirección:</p>
+    <p>
+      Adrian Ramirez Bucio<br>
+      Av Patria 239<br>
+      Entre calle del Mural y del Matriz<br>
+      Col Manantial<br>
+      CP 44860<br>
+      Guadalajara, Jalisco
+    </p>
+  </div>
+  <div class="pb-1em">
+    <h3>Garantía Local (Residente de Guadalajara)</h3>
+    <p>
+      Puedes traer tú mismo el producto a alguna de nuestras sucursales que encontrarás en el siguiente
+      <%= link_to 'enlace', 'https://ddtech.mx/contacto', target: '_blank' %>.
+    </p>
+  </div>
+
+  <p class="font-weight-bold">Nota: Después de recibir tu producto, el departamento de soporte lo revisará y se pondrá en contacto contigo en un lapso no mayor a 11 días hábiles.</p>
 </div>
+
 <div class="card-footer bg-primary text-light">
   <strong>
     <p class="text-center text-uppercase">Nota</p>
     <p>
-      Si solicitaste guía, eres cliente fuera de GDL y está dentro del proceso para que DD TECH cubra los envíos, tomará entre 24 y 48 horas hábiles el hacerte llegar el formato de guía para que nos mandes el producto. En el caso de que seas residente de Guadalajara en el estado de Jalisco, deberás llevar tu producto a la sucursal
-      <a href="https://ddtech.mx/contacto" class="text-light" target="_blank">Jardines del Bosque</a>.
+      Si solicitaste guía, eres cliente fuera de GDL y está dentro del proceso para que DD TECH cubra los envíos, tomará entre 24 y 48 horas hábiles el hacerte llegar el formato de guía para que nos mandes el producto. En el caso de que seas residente de Guadalajara en el estado de Jalisco, deberás llevar tu producto a alguna de nuestras
+      <a href="https://ddtech.mx/contacto" class="text-light" target="_blank">sucursales</a>.
     </p>
     <p>
       En el caso de que desafortunadamente no califique para el envío gratuito, le recordamos que el envío desde su domicilio hasta nuestras instalaciones corre por su cuenta.
