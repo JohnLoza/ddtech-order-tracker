@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
-class DevolutionMailer < ActionMailer::Base # :nodoc:
-  add_template_helper(MailerHelper)
-
-  default from: "DD Tech <noreply@ddtechmx.info>"
+class DevolutionMailer < ApplicationMailer # :nodoc:
   default reply_to: "DD Tech <soporte@ddtech.mx>"
-  layout "mailer"
 
   def rma
     @devolution = params[:devolution]

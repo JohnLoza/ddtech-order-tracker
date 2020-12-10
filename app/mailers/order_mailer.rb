@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
-class OrderMailer < ActionMailer::Base # :nodoc:
-  add_template_helper(MailerHelper)
-
-  default from: "DD Tech <noreply@ddtechmx.info>"
+class OrderMailer < ApplicationMailer # :nodoc:
   default reply_to: "DD Tech <ventas@ddtech.mx>"
-  layout "mailer"
 
   def new
     @order = params[:order]

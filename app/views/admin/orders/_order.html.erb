@@ -9,7 +9,7 @@
     <%= content_tag :i, nil,  class: 'fas fa-desktop fa-lg ml-2 mr-2' if order.assemble %>
     <%= content_tag :i, nil, class: 'fas fa-boxes fa-lg ml-2 mr-2' if order.multiple_packages %>
   </td>
-  <%= content_tag :td, l(order.created_at, format: :only_date) %>
+  <%= content_tag :td, l(order.created_at, format: :date_only) %>
   <td>
     <%= link_to edit_admin_order_path(order),
       class: 'btn btn-outline-light btn-sm hidden-action' do %>
