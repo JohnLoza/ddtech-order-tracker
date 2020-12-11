@@ -26,6 +26,7 @@ es:
     errors:
       models:
         devolution:
+          #limit_reached: 'Tenemos otra dev reciente en proceso.' # it can also go here for all attributes
           attributes:
             created_at:
               limit_reached: Tenemos otra dev reciente en proceso.
