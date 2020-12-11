@@ -4,7 +4,7 @@
       <div class="form-group">
         <%= f.label :actions_taken %>
         <%= f.text_area :actions_taken, class: 'form-control',
-          rows: 4, required: true %>
+          rows: 4, maxlength: 220, required: true %>
       </div>
       <%= f.submit t('labels.save'), class: 'btn btn-primary',
         data: { confirm: t('labels.are_you_sure_to_proceed') } %>
