@@ -26,6 +26,7 @@ class Devolution < ApplicationRecord
   validates :client_name, :telephone, :client_type, :order_id, :products,
     :description, presence: true, length: { maximum: 250 }
   validates :devolution_address, :comments, :actions_taken, :parcel, :guide_id, length: { maximum: 250 }
+  validate :timeframe_between_devolutions, on: :create
 
   scope :by_user, -> (user_id) { where(user_id: user_id) if user_id.present? }
   scope :by_parcel, -> (parcel) { where(parcel: parcel) if parcel.present? }
@@ -59,6 +60,17 @@ class Devolution < ApplicationRecord
   def notify_package_received
     if self.user_id_changed?
       NotifyDevolutionPackageReceivedJob.perform_async(self)
+    end
+  end
+
+  def timeframe_between_devolutions
+    another_dev = Devolution.where(email: self.email)
+                    .or(Devolution.where(order_id: self.order_id)).last
+    return unless another_dev.present?
+
+    # if the other devolution is less than 1 week old
+    if another_dev.created_at.to_date > 1.week.ago.to_date
+      self.errors.add(:created_at, :limit_reached)
     end
   end
 end

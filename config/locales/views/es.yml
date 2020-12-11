@@ -14,6 +14,7 @@ es:
     filter: Filtrar
     filters: Filtros
     forgot_password: Olvidé mi contraseña
+    form_has_errors: El formulario tiene errores
     hold: Retener
     holding: Retenido
     release: Liberar

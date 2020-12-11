@@ -23,4 +23,10 @@ es:
         actions_taken: Acciones tomadas
         guide_id: Número de guía
         parcel: Paquetería
+    errors:
+      models:
+        devolution:
+          attributes:
+            created_at:
+              limit_reached: Tenemos otra dev reciente en proceso.
 
