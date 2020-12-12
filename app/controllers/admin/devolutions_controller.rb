@@ -65,6 +65,7 @@ module Admin
             keywords: filter_params(require: :keywords),
             fields: [:rma, :order_id, :email]
           ).by_user(filter_params(require: :user_id))
+          .taken(filter_params(require: :taken))
           .recent.includes(:user)
       )
     end

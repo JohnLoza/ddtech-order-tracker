@@ -29,6 +29,14 @@ class Devolution < ApplicationRecord
   validate :timeframe_between_devolutions, on: :create
 
   scope :by_user, -> (user_id) { where(user_id: user_id) if user_id.present? }
+  scope :taken, -> (opt) {
+    return all unless opt
+    if opt == 'not_taken'
+      where(user_id: nil)
+    else
+      where.not(user_id: nil)
+    end
+  }
   scope :by_parcel, -> (parcel) { where(parcel: parcel) if parcel.present? }
 
   def to_s

@@ -17,6 +17,13 @@
                 { class: 'form-control filter mt-3' } %>
           </div>
 
+          <div class='form-group mx-sm-3'>
+            <%= f.label :taken, Devolution.model_name.human(count: 2), class: 'sr-only'  %>
+            <%= f.select :taken, [[t('labels.taken'), :taken],[t('labels.not_taken'), :not_taken]],
+                { prompt: Devolution.model_name.human, selected: filter_params(require: :taken) },
+                { class: 'form-control filter mt-3' } %>
+          </div>
+
           <%= f.submit t('labels.filter'), class: 'btn btn-primary mt-3' %>
           <%= link_to t('labels.clear_filters'), admin_devolutions_path, class: 'btn btn-light mt-3 ml-3' %>
         <% end %>
