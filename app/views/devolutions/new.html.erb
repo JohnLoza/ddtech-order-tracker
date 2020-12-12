@@ -28,18 +28,11 @@
         <img src="/images/ddtech-warranty.jpg", class="img-fluid rounded mx-auto d-block" />
         <h2 class="text-center font-weight-bold mt-4">Revisa los siguientes puntos antes de comenzar</h2>
         <ol>
-          <li>Revisa que sea factible aplicar garantía mediante los siguientes enlaces:</li>
-          <ul>
-            <li><a href="https://ddtech.mx/soporte/page6.html" target="_blank" class="text-primary">¿Cómo saber si necesito garantía?</a></li>
-            <li><a href="https://ddtech.mx/soporte/page3.html" target="_blank" class="text-primary">Mi pedido tiene un daño físico</a></li>
-            <li><a href="https://ddtech.mx/soporte/page7.html" target="_blank" class="text-primary">Garantía en Guadalajara</a></li>
-            <li><a href="https://ddtech.mx/soporte/page8.html" target="_blank" class="text-primary">Garantía foranea</a></li>
-          </ul>
           <li>Revisa que se encuentre en buen estado. (sin partes rotas, golpes, indicios de tinta o rayaduras, etc.)</li>
           <li>Deberá contar con su empaque original, si el producto tenía accesorios también debe incluirlos.</li>
           <li>Si el envío será por paquetería recuerda mandarlo protegido. (Si el producto se rompe en el envío
             no podremos hacer válida tu garantía)</li>
-          <li>Por último no olvides anexar tu ticket de compra y póliza de garantía. (estos pueden ser copias)</li>
+          <li class="font-weight-bold">Por último no olvides anexar tu ticket de compra y póliza de garantía. (estos pueden ser copias)</li>
           <li>Leer detenidamente tu póliza de garatía.</li>
           <li>Leer nuestros Términos y Condiciones apartado
             <a href="https://ddtech.mx/terminos_y_condiciones" target="_blank" class="text-primary">Garantías</a>.
@@ -162,8 +155,7 @@
               <i class="fas fa-home mr-2"></i> Domicilio de envío
             </h2>
           </div>
-          <p>* Ingrese aquí la dirección a la que desea le enviemos de regreso su producto
-            después de aplicada la garantia o especifique si desea recojer en alguna sucursal.</p>
+          <p>* Ingrese aquí la dirección a la que desea le enviemos de regreso su producto después de aplicada la garantía.</p>
 
           <div class="form-group row">
             <div class="col-lg-3 col-md-4 col-form-label text-right">
@@ -201,36 +193,7 @@
           </div>
           <hr>
 
-          <div class="bg-primary">
-            <h2 class="text-center font-weight-bold text-light pt-3 pb-3">
-              <i class="fas fa-truck mr-2"></i> Envía tu producto
-            </h2>
-          </div>
-
-          <div>
-            <h3 class="font-weight-bold"><i class="fas fa-building mr-2"></i>Dirección DDTECH</h3>
-            <p>Debes enviar tu producto a la siguiente dirección o bien
-             si eres de la zona metropolitana de guadalajara puedes traerlo tú mismo.</p>
-            <p>
-              Adrian Ramirez Bucio<br>
-              Av Patria 239<br>
-              Entre calle del Mural y del Matriz<br>
-              Col Manantial<br>
-              CP 44860<br>
-              Guadalajara, Jalisco
-            </p>
-          </div>
-          <hr>
-
-          <div>
-            <h3 class="font-weight-bold">¿Cuándo obtendré respuesta?</h3>
-            <p>En un promedio de 11 días hábiles de haber recibido su producto en nuestra sucursal
-            le estaremos respondiendo sobre su estado, en algunos casos poco frecuentes el fabricante
-            solicita el producto para su revisión lo cual puede demorar entre 7 a 20 días.</p>
-          </div>
-          <hr>
-
-          <%= f.submit t('labels.send'), class: 'btn btn-primary btn-lg btn-block' %>
+          <%= f.submit t('labels.save'), class: 'btn btn-primary btn-lg btn-block' %>
         <% end %>
       </div>
     </div>

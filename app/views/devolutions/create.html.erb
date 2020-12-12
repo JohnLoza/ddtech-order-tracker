@@ -36,10 +36,12 @@
   <div class="container lead text-left pt-5 pb-5">
     <h2 class="display-3 text-center font-weight-bold pb-5">A continuación</h2>
     <p>
-      Regresa el producto a su caja original junto con los accesorios que vinieran con el mismo y no pegues cinta adhesiva, etiquetas o calcomanías en la caja del producto; en el caso de enviarlo por paquetería te pedimos asegurar el producto lo más posible con protecciones para evitar daños. Además imprime almenos 2 veces el siguiente documento y pégalo en varias caras del paquete, esto con el fin de agilizar el proceso.
+      Regresa el producto a su caja original junto con los accesorios que vinieran con el mismo y
+      <span class="text-secondary font-weight-bold">no pegues cinta adhesiva, etiquetas o calcomanías en la caja del producto ya que de hacerlo se podría invalidar tu garantía por parte del fabricante.</span>
+      En el caso de enviarlo por paquetería te pedimos asegurar el producto lo más posible con protecciones para evitar daños. Además imprime almenos 2 veces el siguiente documento y pégalo en varias caras del paquete, esto con el fin de agilizar el proceso.
     </p>
     <p class="text-center">
-      <%= link_to devolution_path(@devolution, format: :pdf), class: 'text-secondary', target: '_blank' do %>
+      <%= link_to devolution_path(@devolution, format: :pdf), class: 'text-secondary font-weight-bold', target: '_blank' do %>
         <i class="fas fa-file-pdf"></i>
         garantía_ddtech_<%= @devolution.rma %>
       <% end %>
@@ -47,8 +49,16 @@
     <p class="lead">Posteriormente sigue las instrucciones según sea tu caso:</p>
     <div class="row">
       <div class="col-md-6 col-12 mb-5">
+        <h3 class="text-center">Garantía Local (Residente de Guadalajara)</h3>
+        <p class="text-center"><i class="fas fa-map-marker-alt fa-3x text-primary pb-2"></i></p>
+        <p>
+          Puedes traer tú mismo el producto y entregarlo en la sucursal
+          <%= link_to 'Jardines', 'https://ddtech.mx/contacto', class: 'text-secondary', target: '_blank' %>.
+        </p>
+      </div>
+      <div class="col-md-6 col-12 mb-5">
         <h3 class="text-center">Garantía Foranea (Interior de la República)</h3>
-        <p class="text-center"><i class="fas fa-globe-americas fa-4x text-primary pb-2"></i></p>
+        <p class="text-center"><i class="fas fa-globe-americas fa-3x text-primary pb-2"></i></p>
         <p>Una vez empacado, debes enviarnos el producto por paquetería para su revisión a la siguiente dirección:</p>
         <p>
           Adrian Ramirez Bucio<br>
@@ -59,44 +69,15 @@
           Guadalajara, Jalisco
         </p>
       </div>
-      <div class="col-md-6 col-12 mb-5">
-        <h3 class="text-center">Garantía Local (Residente de Guadalajara)</h3>
-        <p class="text-center"><i class="fas fa-map-marker-alt fa-4x text-primary pb-2"></i></p>
-        <p>
-          Puedes traer tú mismo el producto a alguna de nuestras sucursales que encontrarás en el siguiente
-          <%= link_to 'enlace', 'https://ddtech.mx/contacto', target: '_blank' %>.
-        </p>
-      </div>
     </div>
     <!-- row end -->
 
-    <p class="font-weight-bold">Nota: Después de recibir tu producto, el departamento de soporte lo revisará y se pondrá en contacto contigo en un lapso no mayor a 11 días hábiles.</p>
-
-    <!--h2 class="display-3 text-center font-weight-bold pb-5">Envío por paquetería</h2>
-    <p>Si envías tu pedido por paquetería toma en cuenta lo siguiente:</p>
-    <hr>
-    <div>
-      <p class="font-weight-bold">Envío ida y regreso</p>
-      <p>
-        DDTECH cubre ambos envíos en los siguientes casos:<br>
-        Recibiste tu producto y este presenta una falla dentro de los primeros 30 días después de haber recibido.
-        Tu producto ha fallado más de dos veces durante su periodo de garantía.<br>
-        Para solicitar tu guía, utiliza el campo "comentarios" del formulario que te enviará el equipo de soporte ingresando los siguientes datos:<br>
-        solicito guia / No. de guia con que te llego producto / por que paqueteria recibiste
-      </p>
-    </div>
-    <hr>
-    <div>
-      <p class="font-weight-bold">Envío solo regreso</p>
-      <p>El cliente cubre el envío hacia DDTECH y la tienda el envío de regreso al cliente en los siguientes casos:</p>
-      <ul>
-        <li>Cuando ya pasaron más de 30 días de que recibiste el producto.</li>
-        <li>Si el producto tiene algun daño fisico.</li>
-        <li>Cuando el cliente solicita un cambio de modelo en el producto a reemplazar por garantía.</li>
-      </ul>
-    </div>
-  </div-->
-  <!-- container end -->
+    <p class="font-weight-bold">
+      La fecha estimada para la resolución de tu garantía es antes del <%= content_tag :strong, l(20.days.from_now, format: :date_only) %>,
+      de no haber recibido notificación alguna <strong>vía correo electrónico</strong> favor de comunicarse a
+      <a href="mailto:soporte@ddtech.mx" class="text-secondary">soporte@ddtech.mx</a>.
+    </p>
+    <!-- container end -->
 
 </body>
 </html>
