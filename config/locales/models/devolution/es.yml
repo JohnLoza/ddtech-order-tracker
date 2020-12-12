@@ -2,8 +2,8 @@ es:
   activerecord:
     models:
       devolution:
-        one: Devolución
-        other: Devoluciones
+        one: Garantía
+        other: Garantías
     attributes:
       devolution:
         id: Clave
