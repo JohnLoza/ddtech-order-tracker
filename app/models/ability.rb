@@ -45,6 +45,7 @@ class Ability
     can :read, Order
     can :create, Note
     can :manage, OrderTag
+    can :read, Devolution
   end
 
   def admin_permissions(user)
