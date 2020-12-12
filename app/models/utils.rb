@@ -19,6 +19,8 @@ class Utils
     token = new_token(n)
     i = SecureRandom.random_number(allowed_chars.size)
     token.gsub!(/[-_]/, allowed_chars[i])
+    token.gsub!(/[iI]/, 1)
+    token.gsub!(/[oO]/, 0)
     return token
   end
 
