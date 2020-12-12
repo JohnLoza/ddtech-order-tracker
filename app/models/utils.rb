@@ -36,9 +36,6 @@ class Utils
 
   private
     def self.allowed_chars
-      # do not use l nor I because they are pretty the same with Roboto Font
-      %w[a b c d e f g h i j k m n o p q r s t u v w x y z
-        A B C D E F G H J K L M N O P Q R S T U V W X Y Z
-        0 1 2 3 4 5 6 7 8 9]
+      %w[a b c d e f g h j k m n p q r s t u v w x y z A B C D E F G H J K L M N P Q R S T U V W X Y Z 0 1 2 3 4 5 6 7 8 9]
     end
 end
