@@ -11,7 +11,7 @@
           <p class="card-text col-lg-4 col-12">
             <%= content_tag :span, Devolution.human_attribute_name(:order_id),
               class: 'font-weight-bold text-uppercase' %><br>
-            <%= @devolution.order_id %>
+            <%= link_to @devolution.order_id, admin_orders_path(filter: {keywords: @devolution.order_id}), target: '_blank' %>
           </p>
           <p class="card-text col-lg-4 col-12">
             <%= content_tag :span, Devolution.human_attribute_name(:client_name),

@@ -7,7 +7,9 @@
   <td>
     <%= link_to devolution.user, admin_user_path(devolution.user) if devolution.user %>
   </td>
-  <%= content_tag :td, devolution.order_id, class: 'text-uppercase' %>
+  <td class="text-uppercase">
+    <%= link_to devolution.order_id, admin_orders_path(filter: {keywords: devolution.order_id}), target: '_blank' %>
+  </td>
   <%= content_tag :td, devolution.client_name, class: 'text-uppercase' %>
   <%= content_tag :td, devolution.email %>
   <td>
