@@ -17,7 +17,7 @@ es:
         products: Productos
         description: Descripción
         devolution_address: Dirección de regreso
-        comments: Commentarios
+        comments: Comentarios
 
         user_id: Encargado
         actions_taken: Acciones tomadas
