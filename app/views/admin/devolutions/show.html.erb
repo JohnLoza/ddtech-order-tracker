@@ -21,7 +21,7 @@
           <p class="card-text col-lg-4 col-12">
             <%= content_tag :span, Devolution.human_attribute_name(:email),
               class: 'font-weight-bold text-uppercase' %><br>
-            <%= @devolution.email %>
+            <%= link_to @devolution.email, admin_orders_path(filter: {keywords: @devolution.email}), target: '_blank' %>
           </p>
           <p class="card-text col-lg-4 col-12">
             <%= content_tag :span, Devolution.human_attribute_name(:telephone),

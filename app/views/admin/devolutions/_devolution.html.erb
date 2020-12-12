@@ -11,7 +11,9 @@
     <%= link_to devolution.order_id, admin_orders_path(filter: {keywords: devolution.order_id}), target: '_blank' %>
   </td>
   <%= content_tag :td, devolution.client_name, class: 'text-uppercase' %>
-  <%= content_tag :td, devolution.email %>
+  <td>
+    <%= link_to devolution.email, admin_orders_path(filter: {keywords: devolution.email}), target: '_blank' %>
+  </td>
   <td>
     <%= link_to edit_admin_devolution_path(devolution),
       class: 'btn btn-outline-light btn-sm hidden-action' do %>
