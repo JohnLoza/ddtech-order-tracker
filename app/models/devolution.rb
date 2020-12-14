@@ -30,7 +30,7 @@ class Devolution < ApplicationRecord
 
   scope :by_user, -> (user_id) { where(user_id: user_id) if user_id.present? }
   scope :taken, -> (opt) {
-    return all unless opt
+    return all unless opt.present?
     if opt == 'not_taken'
       where(user_id: nil)
     else
