@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_20_170517) do
+ActiveRecord::Schema.define(version: 2020_12_16_184611) do
 
   create_table "devolutions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2020_11_20_170517) do
     t.string "actions_taken"
     t.string "guide_id"
     t.string "parcel"
+    t.boolean "free_guide", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_devolutions_on_email"

@@ -12,6 +12,7 @@ class Devolution < ApplicationRecord
 
   before_save { self.rma = rma.upcase }
   before_save { self.email = email.downcase }
+  before_save { self.free_guide = self.free_guide_electible? }
 
   before_update :notify_package_received
   before_update :send_guide_id
@@ -20,11 +21,18 @@ class Devolution < ApplicationRecord
 
   belongs_to :user, optional: true
 
-  validates :rma, presence: true, uniqueness: true
+  validates :rma, presence: true, uniqueness: { case_sensitive: false }
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i.freeze
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
-  validates :client_name, :telephone, :client_type, :order_id, :products,
-    :description, presence: true, length: { maximum: 250 }
+
+  validates :client_name, :telephone, :client_type, :order_id, :products, :description, presence: true
+  validates :client_name, length: { maximum: 60 }
+  validates :email, length: { maximum: 50 }
+  validates :telephone, length: { maximum: 15 }
+  validates :order_id, length: { is: 6 }
+  validates :products, :description, length: { maximum: 250 }
+
   validates :devolution_address, :comments, :actions_taken, :parcel, :guide_id, length: { maximum: 250 }
   validate :timeframe_between_devolutions, on: :create
 
@@ -41,6 +49,21 @@ class Devolution < ApplicationRecord
 
   def to_s
     "##{rma}"
+  end
+
+  def last_order_guide
+    last_guide = Movement.joins(:order)
+                   .where(orders: { ddtech_key: self.order_id })
+                   .where(description: Movement::DESCRIPTIONS[:sent_order])
+                   .order(created_at: :desc).last
+    return last_guide ? {guide: last_guide.data, date: last_guide.created_at} : nil
+  end
+
+  def free_guide_electible?
+    guide = last_order_guide
+    return false unless guide.present?
+
+    return guide[:date] > 40.days.ago ? true : false
   end
 
   private

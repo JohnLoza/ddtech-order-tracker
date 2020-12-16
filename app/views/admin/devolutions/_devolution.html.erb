@@ -9,6 +9,7 @@
   </td>
   <td class="text-uppercase">
     <%= link_to devolution.order_id, admin_orders_path(filter: {keywords: devolution.order_id}), target: '_blank' %>
+    <%= content_tag :i, nil, class: 'fas fa-truck text-success' if devolution.free_guide %>
   </td>
   <%= content_tag :td, devolution.client_name, class: 'text-uppercase' %>
   <td>
