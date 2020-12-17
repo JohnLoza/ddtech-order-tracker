@@ -15,8 +15,7 @@ import 'parsleyjs/dist/i18n/es.js'
 import './concept'
 
 import './notes'
-import './update_order_guide'
-import './update_order_status'
+import './order_processing'
 
 import './on_turbolinks_load'
 

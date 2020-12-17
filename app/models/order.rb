@@ -43,6 +43,7 @@ class Order < ApplicationRecord
   validates :guide, length: { maximum: 250 }
 
   validates :status, inclusion: { in: STATUS.values }
+  validate :not_holding_back, on: :update
   validate :status_change, on: :update
 
   scope :by_user, -> (user_id) { where(user_id: user_id) if user_id.present? }
@@ -93,10 +94,16 @@ class Order < ApplicationRecord
     end
   end
 
+  def not_holding_back
+    if (self.status_changed? or self.guide_changed?) and self.holding
+      self.errors.add(:status, :holding)
+    end
+  end
+
   def status_change
     return if self.force_status_update
     if !self.status_changed?
-      self.errors.add(:status, 'not_next_step') if self.updating_status
+      self.errors.add(:status, :not_next_step) if self.updating_status
       return
     end
 
@@ -116,7 +123,7 @@ class Order < ApplicationRecord
     end
 
     unless new_status_is_ok
-      self.errors.add(:status, 'not_next_step')
+      self.errors.add(:status, :not_next_step)
     end
   end
 end

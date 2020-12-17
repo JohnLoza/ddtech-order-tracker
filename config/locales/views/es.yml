@@ -54,7 +54,7 @@ es:
     statuses:
       new: Nuevo
       warehouse_entry: Entró en Almacén
-      supplied: Suministrado por Almacén
+      supplied: Salió de Almacén
       assemble_entry: Entró a Ensamble
       assembled: Ensamblado
       packed: Empaquetado

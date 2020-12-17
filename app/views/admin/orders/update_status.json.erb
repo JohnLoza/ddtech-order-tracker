@@ -1,0 +1,4 @@
+{
+  data: <%= @order.as_json %>,
+  errors: <%= @order.errors.full_messages if @order.errors.any? %>
+}

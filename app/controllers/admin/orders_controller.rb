@@ -55,23 +55,28 @@ module Admin
       @order = Order.find_by!(ddtech_key: params[:order][:ddtech_key])
       authorize! :update_guide, @order
 
-      if current_user.role?(:provider_guides)
+      if current_user.role?(:provider_guides) # force guide update if current_user captures provider guides
         @order.force_status_update = true
-        @order.multiple_packages = true
+        @order.multiple_packages = true # set multiple packages in case part of the order is sent by ddtech
         @order.notes.build(user_id: current_user.id, message: "Se capturó guía de proveedor: #{params[:order][:guide].join(' ')}")
       end
 
+      status = 200
       if @order.update_attributes guide_params
         NotifyOrderTrackingIdJob.perform_async(@order, params[:order][:per_package_parcel])
-        render json: { data: @order.to_json }
       else
         if create_extra_movement(@order)
-          render json: { data: @order.to_json }
           NotifyOrderTrackingIdJob.perform_async(@order, params[:order][:per_package_parcel])
         else
-          render status: 400, json: { data: @order.errors.to_json }
+          status = 400
         end
       end
+
+      response = {data: @order.as_json(include: {tags: {only: [:name, :css_class]}, notes: {only: :message}})}
+      response[:data][:status_was] = t("order.statuses.#{@order.status_was}")
+      response[:errors] = @order.errors.full_messages if @order.errors.any?
+
+      render status: status, json: response
     end
 
     def update_status
@@ -79,16 +84,20 @@ module Admin
       @order = Order.find_by!(ddtech_key: params[:order][:ddtech_key])
       authorize! :update_status, @order
 
+      status = 200
       if @order.update_attributes status_params
         notify_status_change(@order)
-        render json: { data: @order.to_json }
       else
-        if create_extra_movement(@order)
-          render json: { data: @order.to_json }
-        else
-          render status: 400, json: { data: @order.errors.to_json }
+        unless create_extra_movement(@order)
+          status = 400
         end
       end
+
+      response = {data: @order.as_json(include: {tags: {only: [:name, :css_class]}, notes: {only: :message}})}
+      response[:data][:status_was] = t("order.statuses.#{@order.status_was}")
+      response[:errors] = @order.errors.full_messages if @order.errors.any?
+
+      render status: status, json: response
     end
 
     def destroy

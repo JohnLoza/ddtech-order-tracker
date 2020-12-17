@@ -16,3 +16,10 @@ es:
         assemble: Requiere Ensamble
         multiple_packages: Varios Paquetes
         urgent: Urgente
+    errors:
+      models:
+        order:
+          attributes:
+            status:
+              not_next_step: No es el siguiente proceso a realizar.
+              holding: El pedido se encuentra retenido.

@@ -16,27 +16,16 @@ class Ability
       human_resources_permissions(user)
     when User::ROLES[:shipments]
       shipments_permissions(user)
-    when User::ROLES[:warehouse_boss]
-      warehouse_boss_permissions(user)
-    when User::ROLES[:warehouse_exit]
-      warehouse_exit_permissions(user)
-    when User::ROLES[:assemble_boss]
-      assemble_boss_permissions(user)
-    when User::ROLES[:assemble_exit]
-      assemble_exit_permissions(user)
-    when User::ROLES[:pack_boss]
-      pack_boss_permissions(user)
-    when User::ROLES[:pack_exit]
-      pack_exit_permissions(user)
-    when User::ROLES[:digital_guides]
-      digital_guides_permissions(user)
-    when User::ROLES[:provider_guides]
-      provider_guides_permissions(user)
+    when User::ROLES[:warehouse_boss], User::ROLES[:warehouse_exit], User::ROLES[:pack_boss],
+         User::ROLES[:pack_exit]
+      update_order_status_permission
+    when User::ROLES[:assemble_boss], User::ROLES[:assemble_exit]
+      update_order_assembly_status_permission
+    when User::ROLES[:digital_guides], User::ROLES[:provider_guides]
+      update_order_guide_permission
     when User::ROLES[:support_and_warranty]
       support_and_warranty_permissions(user)
     end
-
-    cannot %i[update_status update_guide], Order, holding: true # no one can update an order status or guide if it's holded back
   end
   # See the wiki for details:
   # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
@@ -46,6 +35,7 @@ class Ability
     can :create, Note
     can :manage, OrderTag
     can :read, Devolution
+    cannot %i[hold release], Order, status: Order::STATUS[:sent]
   end
 
   def admin_permissions(user)
@@ -53,14 +43,6 @@ class Ability
 
     cannot %i[update destroy], User, role: User::ROLES[:admin]
     can :update, User, id: user.id
-
-    cannot :update_status, Order, status: [Order::STATUS[:sent], Order::STATUS[:packed]]
-    can :update_status, Order, multiple_packages: true
-    cannot :update_guide, Order
-    can :update_guide, Order, status: [Order::STATUS[:sent], Order::STATUS[:packed]]
-    can :update_guide, Order, multiple_packages: true
-
-    cannot [:hold, :release], Order, status: Order::STATUS[:sent]
   end
 
   def human_resources_permissions(user)
@@ -70,50 +52,18 @@ class Ability
 
   def shipments_permissions(user)
     can %i[create update hold release], Order
-    cannot %i[hold release], Order, status: Order::STATUS[:sent]
     can :manage, Tag
   end
 
-  def warehouse_boss_permissions(user)
-    can :update_status, Order,
-      status: [Order::STATUS[:new], Order::STATUS[:warehouse_entry]]
-    can :update_status, Order, multiple_packages: true
+  def update_order_status_permission
+    can :update_status, Order
   end
 
-  def warehouse_exit_permissions(user)
-    can :update_status, Order, status: Order::STATUS[:warehouse_entry]
-    can :update_status, Order, multiple_packages: true
+  def update_order_assembly_status_permission
+    can :update_status, Order, assemble: true
   end
 
-  def assemble_boss_permissions(user)
-    can :update_status, Order, assemble: true,
-      status: [Order::STATUS[:supplied], Order::STATUS[:assemble_entry]]
-    can :update_status, Order, assemble: true, multiple_packages: true
-  end
-
-  def assemble_exit_permissions(user)
-    can :update_status, Order, assemble: true, status: Order::STATUS[:assemble_entry]
-    can :update_status, Order, assemble: true, multiple_packages: true
-  end
-
-  def pack_boss_permissions(user)
-    can :update_status, Order, status: Order::STATUS[:assembled], assemble: true
-    can :update_status, Order, status: Order::STATUS[:supplied], assemble: false
-    can :update_status, Order, multiple_packages: true
-  end
-
-  def pack_exit_permissions(user)
-    can :update_status, Order, status: Order::STATUS[:assembled], assemble: true
-    can :update_status, Order, status: Order::STATUS[:supplied], assemble: false
-    can :update_status, Order, multiple_packages: true
-  end
-
-  def digital_guides_permissions(user)
-    can :update_guide, Order, status: [Order::STATUS[:sent], Order::STATUS[:packed]]
-    can :update_guide, Order, multiple_packages: true
-  end
-
-  def provider_guides_permissions(user)
+  def update_order_guide_permission
     can :update_guide, Order
   end
 
