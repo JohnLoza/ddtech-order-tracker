@@ -58,9 +58,10 @@ $(document).on('turbolinks:load', function () {
 
 // update ui with the result
 function updateOrderProcessingResult(event, ddtech_key) {
-  const icon = event.detail[2].status == 200 ? 'fa-check text-success' : 'fa-times text-danger';
-  const msg = event.detail[2].status == 200 ? 'Se procesó el pedido' :
-    event.detail[2].status == 404 ? 'El pedido no existe' : 'Ocurrió un error al procesar el pedido';
+  const status = event.detail[2].status;
+  const icon = status == 200 ? 'fa-check text-success' : 'fa-times text-danger';
+  const msg = status == 200 ? 'Se procesó el pedido' :
+    status == 404 ? 'El pedido no existe' : 'Ocurrió un error al procesar el pedido';
 
   $(".processed-order").html(`
     <p>
@@ -74,13 +75,16 @@ function updateOrderProcessingResult(event, ddtech_key) {
     </p>
   `);
 
-  if ((errors = event.detail[0].errors).length > 0) {
+  const errors = event.detail[0].errors;
+  if (errors && errors.length > 0) {
     const el = $(".result-errors-container");
     el.append(`<p><strong>Estado actual del pedido:</strong> <span class="badge badge-pill badge-primary">${event.detail[0].data.status_was}</span></p>`);
     el.append("<p class='font-weight-bold'>Errores:</p>");
     errors.forEach(error => el.append(`<p>${error}</p>`));
     el.append("<hr>");
   }
+
+  if (status == 404) return; // return now if its a not found response
 
   if ((tags = event.detail[0].data.tags).length > 0) {
     const el = $(".result-tags-container");

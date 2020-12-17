@@ -72,10 +72,7 @@ module Admin
         end
       end
 
-      response = {data: @order.as_json(include: {tags: {only: [:name, :css_class]}, notes: {only: :message}})}
-      response[:data][:status_was] = t("order.statuses.#{@order.status_was}")
-      response[:errors] = @order.errors.full_messages if @order.errors.any?
-
+      response = order_processing_response(@order, status)
       render status: status, json: response
     end
 
@@ -93,10 +90,7 @@ module Admin
         end
       end
 
-      response = {data: @order.as_json(include: {tags: {only: [:name, :css_class]}, notes: {only: :message}})}
-      response[:data][:status_was] = t("order.statuses.#{@order.status_was}")
-      response[:errors] = @order.errors.full_messages if @order.errors.any?
-
+      response = order_processing_response(@order, status)
       render status: status, json: response
     end
 
@@ -195,10 +189,8 @@ module Admin
     end
 
     def create_extra_movement(order)
-      json_e = order.errors.as_json
       # verify the order has multiple packages option active
-      if order.multiple_packages and json_e.has_key? :status and json_e[:status].include? 'not_next_step'
-
+      if order.multiple_packages and !order.holding
         if [Order::STATUS[:assemble_entry], Order::STATUS[:assembled]].include? order.status and
             !order.assemble # do not let to save assemble statuses if it doesnt even has to be assembled
           return false
@@ -216,6 +208,13 @@ module Admin
       else
         false
       end
+    end
+
+    def order_processing_response(order, status)
+      response = {data: @order.as_json(include: {tags: {only: [:name, :css_class]}, notes: {only: :message}})}
+      response[:data][:status_was] = t("order.statuses.#{@order.status_was}")
+      response[:errors] = @order.errors.full_messages if status != 200 and @order.errors.any?
+      return response
     end
 
   end
