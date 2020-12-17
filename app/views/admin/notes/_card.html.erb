@@ -6,7 +6,7 @@
       <i class="fas fa-chevron-up"></i>
     </h2>
   </div>
-  <div class="card-body collapse notes-card">
+  <div class="card-body collapse show notes-card">
     <%= render partial: '/admin/notes/form', locals: {new_note: new_note} %>
 
     <% if notes.size == 0 %>
