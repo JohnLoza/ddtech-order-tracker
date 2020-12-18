@@ -16,7 +16,7 @@ class CreateDevolutions < ActiveRecord::Migration[6.0]
 
       t.string :street
       t.string :colony
-      t.int    :zc
+      t.string :zc
       t.string :city
       t.string :state
 

@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2020_12_17_230045) do
     t.string "comments"
     t.string "street"
     t.string "colony"
-    t.integer "zc"
+    t.string "zc"
     t.string "city"
     t.string "state"
     t.string "actions_taken"

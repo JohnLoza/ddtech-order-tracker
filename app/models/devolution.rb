@@ -26,7 +26,8 @@ class Devolution < ApplicationRecord
   validates :client_name, :telephone, :client_type, :order_id, :products, :description,
     :street, :colony, :zc, :city, :state, presence: true
   validates :client_name, :street, :colony, :city, :state, length: { maximum: 60 }
-  validates :zc, numericality: { only_integer: true, greater_than: 10000, less_than: 99999 }
+  validates :zc, length: { is: 5 }
+
   validates :email, length: { maximum: 50 }
   validates :telephone, length: { maximum: 15 }
   validates :order_id, length: { is: 6 }
