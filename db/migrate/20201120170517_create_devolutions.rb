@@ -23,7 +23,7 @@ class CreateDevolutions < ActiveRecord::Migration[6.0]
       t.string :actions_taken
       t.string :guide_id
       t.string :parcel
-      t.boolean :free_guide default: false
+      t.boolean :free_guide, default: false
 
       t.timestamps
     end
