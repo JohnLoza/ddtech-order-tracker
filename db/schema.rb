@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_17_230045) do
+ActiveRecord::Schema.define(version: 2020_12_18_161013) do
 
   create_table "devolutions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 2020_12_17_230045) do
     t.string "order_id"
     t.string "products"
     t.string "description"
-    t.string "devolution_address"
     t.string "comments"
     t.string "street"
     t.string "colony"
