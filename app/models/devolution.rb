@@ -30,7 +30,7 @@ class Devolution < ApplicationRecord
 
   validates :email, length: { maximum: 50 }
   validates :telephone, length: { maximum: 15 }
-  validates :order_id, length: { is: 6 }
+  validates :order_id, length: { minimum: 5, maximum: 6 }
   validates :products, :description, length: { maximum: 250 }
 
   validates :comments, :actions_taken, :parcel, :guide_id, length: { maximum: 250 }
