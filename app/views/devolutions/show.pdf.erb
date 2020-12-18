@@ -71,21 +71,8 @@
 
     <section class="d-flex flex-row">
       <div class="w-50 pr-1em">
-        <%= content_tag :p, Devolution.human_attribute_name(:products), class: 'font-weight-bold' %>
-        <%= simple_format @devolution.products %>
-      </div>
-
-      <div class="w-50 pr-1em">
-        <%= content_tag :p, Devolution.human_attribute_name(:description), class: 'font-weight-bold' %>
-        <%= simple_format @devolution.description %>
-      </div>
-    </section>
-    <hr>
-
-    <section class="d-flex flex-row">
-      <div class="w-50 pr-1em">
-        <%= content_tag :p, Devolution.human_attribute_name(:devolution_address), class: 'font-weight-bold' %>
-        <%= simple_format(@devolution.devolution_address.presence || 'Sin información.') %>
+        <%= content_tag :p, Devolution.human_attribute_name(:address), class: 'font-weight-bold' %>
+        <%= simple_format(@devolution.address) %>
       </div>
 
       <div class="w-50 pr-1em">

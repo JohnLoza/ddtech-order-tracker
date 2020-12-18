@@ -12,12 +12,18 @@ class CreateDevolutions < ActiveRecord::Migration[6.0]
       t.string :order_id
       t.string :products
       t.string :description
-      t.string :devolution_address
       t.string :comments
+
+      t.string :street
+      t.string :colony
+      t.int    :zc
+      t.string :city
+      t.string :state
 
       t.string :actions_taken
       t.string :guide_id
       t.string :parcel
+      t.boolean :free_guide default: false
 
       t.timestamps
     end

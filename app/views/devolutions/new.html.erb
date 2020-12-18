@@ -76,7 +76,7 @@
               <%= f.label :order_id %>
             </div>
             <%= f.text_field :order_id, class: 'form-control form-control-lg col-lg-9 col-md-8',
-              placeholder: Devolution.human_attribute_name(:order_id), minlength: 6, maxlength: 6, required: true %>
+              placeholder: Devolution.human_attribute_name(:order_id), minlength: 5, maxlength: 6, required: true %>
           </div>
 
           <div class="form-group row">
@@ -168,28 +168,28 @@
             <div class="col-lg-3 col-md-4 col-form-label text-right">
               <%= f.label :colony, 'Colonia' %>
             </div>
-            <%= f.text_field :colony, class: 'form-control form-control-lg col-lg-9 col-md-8', maxlength: 50, required: true %>
+            <%= f.text_field :colony, class: 'form-control form-control-lg col-lg-9 col-md-8', maxlength: 60, required: true %>
           </div>
 
           <div class="form-group row">
             <div class="col-lg-3 col-md-4 col-form-label text-right">
               <%= f.label :zc, 'Código postal' %>
             </div>
-            <%= f.text_field :zc, class: 'form-control form-control-lg col-lg-9 col-md-8', minlength: 5, maxlength: 5, required: true %>
+            <%= f.number_field :zc, class: 'form-control form-control-lg col-lg-9 col-md-8', step: 1, min: 10000, max: 99999, required: true %>
           </div>
 
           <div class="form-group row">
             <div class="col-lg-3 col-md-4 col-form-label text-right">
               <%= f.label :city, 'Ciudad' %>
             </div>
-            <%= f.text_field :city, class: 'form-control form-control-lg col-lg-9 col-md-8', maxlength: 25, required: true %>
+            <%= f.text_field :city, class: 'form-control form-control-lg col-lg-9 col-md-8', maxlength: 60, required: true %>
           </div>
 
           <div class="form-group row">
             <div class="col-lg-3 col-md-4 col-form-label text-right">
               <%= f.label :state, 'Estado' %>
             </div>
-            <%= f.text_field :state, class: 'form-control form-control-lg col-lg-9 col-md-8', maxlength: 25, required: true %>
+            <%= f.text_field :state, class: 'form-control form-control-lg col-lg-9 col-md-8', maxlength: 60, required: true %>
           </div>
           <hr>
 

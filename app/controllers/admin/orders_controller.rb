@@ -204,7 +204,7 @@ module Admin
         })
 
         mvnt.data = order.data if order.data.present?
-        mvnt.save!
+        mvnt.save
       else
         false
       end

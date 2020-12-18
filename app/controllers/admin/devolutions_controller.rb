@@ -50,12 +50,16 @@ module Admin
         :order_id,
         :products,
         :description,
-        :devolution_address,
         :comments,
         :user_id,
         :actions_taken,
         :guide_id,
-        :parcel
+        :parcel,
+        :street,
+        :colony,
+        :zc,
+        :city,
+        :state
       )
     end
 

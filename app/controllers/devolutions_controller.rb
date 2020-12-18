@@ -39,7 +39,6 @@ class DevolutionsController < ApplicationController
       :order_id,
       :products,
       :description,
-      :devolution_address,
       :comments,
       :street,
       :colony,

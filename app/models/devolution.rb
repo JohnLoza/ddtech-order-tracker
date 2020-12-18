@@ -5,10 +5,7 @@ class Devolution < ApplicationRecord
   include Searchable
   include Timeable
 
-  attr_accessor :street, :colony, :zc, :city, :state
-
   before_validation :set_rma, on: :create
-  before_validation :set_devolution_address, on: :create
 
   before_save { self.rma = rma.upcase }
   before_save { self.email = email.downcase }
@@ -26,14 +23,16 @@ class Devolution < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i.freeze
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
 
-  validates :client_name, :telephone, :client_type, :order_id, :products, :description, presence: true
-  validates :client_name, length: { maximum: 60 }
+  validates :client_name, :telephone, :client_type, :order_id, :products, :description,
+    :street, :colony, :zc, :city, :state, presence: true
+  validates :client_name, :street, :colony, :city, :state, length: { maximum: 60 }
+  validates :zc, numericality: { only_integer: true, greater_than: 10000, less_than: 99999 }
   validates :email, length: { maximum: 50 }
   validates :telephone, length: { maximum: 15 }
   validates :order_id, length: { is: 6 }
   validates :products, :description, length: { maximum: 250 }
 
-  validates :devolution_address, :comments, :actions_taken, :parcel, :guide_id, length: { maximum: 250 }
+  validates :comments, :actions_taken, :parcel, :guide_id, length: { maximum: 250 }
   validate :timeframe_between_devolutions, on: :create
 
   scope :by_user, -> (user_id) { where(user_id: user_id) if user_id.present? }
@@ -49,6 +48,15 @@ class Devolution < ApplicationRecord
 
   def to_s
     "##{rma}"
+  end
+
+  def address
+    "
+      #{self.street}
+      #{self.colony}
+      #{self.zc}
+      #{self.city}, #{self.state}
+    "
   end
 
   def last_order_guide
@@ -69,17 +77,6 @@ class Devolution < ApplicationRecord
   private
   def set_rma
     self.rma = Utils.new_alphanumeric_token(5)
-  end
-
-  def set_devolution_address
-    return if self.devolution_address.present?
-    self.devolution_address = "
-      #{self.street}
-      #{self.colony}
-      #{self.zc}
-      #{self.city}, #{self.state}
-    ".strip
-    self.devolution_address.gsub!('  ', '')
   end
 
   def send_guide_id

@@ -80,7 +80,7 @@ function updateOrderProcessingResult(event, ddtech_key) {
     const el = $(".result-errors-container");
     el.append(`<p><strong>Estado actual del pedido:</strong> <span class="badge badge-pill badge-primary">${event.detail[0].data.status_was}</span></p>`);
     el.append("<p class='font-weight-bold'>Errores:</p>");
-    errors.forEach(error => el.append(`<p>${error}</p>`));
+    errors.forEach(error => el.append(`<p>* ${error}</p>`));
     el.append("<hr>");
   }
 
@@ -96,7 +96,7 @@ function updateOrderProcessingResult(event, ddtech_key) {
   if ((notes = event.detail[0].data.notes).length > 0) {
     const el = $(".result-notes-container");
     el.append("<p class='font-weight-bold'>Notas:</p>");
-    notes.forEach(note => el.append(`<p>${note.message}</p>`));
+    notes.forEach(note => el.append(`<p>* ${note.message}</p>`));
     el.append("<hr>");
   }
 }

@@ -43,9 +43,9 @@
             <%= content_tag :span, Devolution.human_attribute_name(:description),
               class: 'font-weight-bold text-uppercase' %>
             <%= simple_format(@devolution.description) %>
-            <%= content_tag :span, Devolution.human_attribute_name(:devolution_address),
+            <%= content_tag :span, Devolution.human_attribute_name(:address),
               class: 'font-weight-bold text-uppercase' %>
-            <%= simple_format(@devolution.devolution_address) %>
+            <%= simple_format(@devolution.address) %>
             <%= content_tag :span, Devolution.human_attribute_name(:comments),
               class: 'font-weight-bold text-uppercase' %>
             <%= simple_format(@devolution.comments) %>

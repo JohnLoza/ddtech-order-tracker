@@ -16,8 +16,14 @@ es:
         order_id: Número de pedido
         products: Productos
         description: Descripción
-        devolution_address: Dirección de regreso
         comments: Comentarios
+
+        street: Calle
+        colony: Colonia
+        zc: C.P.
+        city: Ciudad
+        state: Estado
+        address: Domicilio
 
         user_id: Encargado
         actions_taken: Acciones tomadas
