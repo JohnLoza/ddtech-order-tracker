@@ -8,7 +8,7 @@ module SoftDeletable
   extend ActiveSupport::Concern
 
   included do
-    attr_accessor :really_destroy
+    attr_accessor :force_destroy
 
     scope :active,   -> { where(deleted_at: nil) }
     scope :inactive, -> { where.not(deleted_at: nil) }
@@ -23,20 +23,19 @@ module SoftDeletable
   end
 
   def destroy
-    if self.really_destroy
+    if self.force_destroy
       super
-      self.really_destroy = nil
     else
-      update_attributes(deleted_at: Time.now)
+      update(deleted_at: Time.now)
     end
   end
 
   def restore!
-    update_attributes(deleted_at: nil)
+    update(deleted_at: nil)
   end
 
-  def really_destroy!
-    self.really_destroy = true
+  def really_destroy
+    self.force_destroy = true
     destroy
   end
 

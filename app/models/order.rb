@@ -6,7 +6,7 @@ class Order < ApplicationRecord
   include Timeable
   include CustomGroupable
 
-  PARCELS = %i[ESTAFETA FEDEX ZMG DHL].freeze
+  PARCELS = %w[ESTAFETA FEDEX ZMG DHL].freeze
   # STATUSES have to be in secuence
   STATUS = {
     new: 'new',
@@ -31,15 +31,14 @@ class Order < ApplicationRecord
   has_many :order_tags, dependent: :destroy
   has_many :tags, through: :order_tags
 
-  validates :client_email, :status, :parcel,
-    presence: true,
-    length: { maximum: 50 }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i.freeze
+  validates :client_email, presence: true, length: { maximum: 50 }, format: { with: VALID_EMAIL_REGEX }
 
-  validates :ddtech_key,
-    presence: true,
+  validates :ddtech_key, presence: true,
     length: { minimum: 5, maximum: 12 },
     uniqueness: { case_sensitive: false }
 
+  validates :parcel, inclusion: { in: PARCELS }
   validates :guide, length: { maximum: 250 }
 
   validates :status, inclusion: { in: STATUS.values }
@@ -59,11 +58,11 @@ class Order < ApplicationRecord
   end
 
   def hold
-    self.update_attributes(holding: true)
+    self.update(holding: true)
   end
 
   def release
-    self.update_attributes(holding: false)
+    self.update(holding: false)
   end
 
   def holding?

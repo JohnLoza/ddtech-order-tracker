@@ -43,7 +43,7 @@ module Admin
     def edit; end
 
     def update
-      if @order.update_attributes order_params
+      if @order.update order_params
         redirect_to [:admin, @order], flash: { success: t('.success', order: @order) }
       else
         render :edit
@@ -62,7 +62,7 @@ module Admin
       end
 
       status = 200
-      if @order.update_attributes guide_params
+      if @order.update guide_params
         NotifyOrderTrackingIdJob.perform_async(@order, params[:order][:per_package_parcel])
       else
         if create_extra_movement(@order)
@@ -82,7 +82,7 @@ module Admin
       authorize! :update_status, @order
 
       status = 200
-      if @order.update_attributes status_params
+      if @order.update status_params
         notify_status_change(@order)
       else
         unless create_extra_movement(@order)

@@ -37,8 +37,8 @@ class Tag < ApplicationRecord
 
   before_save { self.name = name.strip }
 
-  validates :name, :css_class, presence: true
-  validates :name, length: { maximum: 25 }
+  validates :name, presence: true, length: { maximum: 25 }
+  validates :css_class, presence: true, length: { maximum: 50 }
 
   def to_s
     name

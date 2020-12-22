@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :dashboard, only: :index
 
     resources :users do
-      post :restore, on: :member
+      put :restore, on: :member
     end
 
     resources :orders do
@@ -30,6 +30,12 @@ Rails.application.routes.draw do
 
     resources :devolutions
     resources :tags, except: :show
+  end
+
+  if Rails.env.test?
+    namespace :test do
+      resources :sessions, only: [:create]
+    end
   end
 
   match '*path', via: :all, to: 'application#render_404'

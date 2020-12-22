@@ -20,10 +20,7 @@ class Movement < ApplicationRecord
   before_validation :set_description, on: :create
   before_save { self.data = data.strip if data.present? }
 
-  validates :description,
-    presence: true,
-    length: { maximum: 200 },
-    inclusion: { in: DESCRIPTIONS.values }
+  validates :description, presence: true, inclusion: { in: DESCRIPTIONS.values }
 
   validates :data, length: { maximum: 250 }
 

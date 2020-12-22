@@ -21,17 +21,22 @@ class Devolution < ApplicationRecord
   validates :rma, presence: true, uniqueness: { case_sensitive: false }
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i.freeze
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
+  validates :email, presence: true, length: { maximum: 50 },
+    format: { with: VALID_EMAIL_REGEX }
 
-  validates :client_name, :telephone, :client_type, :order_id, :products, :description,
-    :street, :colony, :zc, :city, :state, presence: true
-  validates :client_name, :street, :colony, :city, :state, length: { maximum: 60 }
+  validates :client_name, presence: true, length: { maximum: 60 }
+
+  validates :street, presence: true, length: { maximum: 60 }
+  validates :colony, presence: true, length: { maximum: 40 }
   validates :zc, length: { is: 5 }
+  validates :city, presence: true, length: { maximum: 25 }
+  validates :state, presence: true, length: { maximum: 15 }
 
-  validates :email, length: { maximum: 50 }
-  validates :telephone, length: { maximum: 15 }
-  validates :order_id, length: { minimum: 5, maximum: 6 }
-  validates :products, :description, length: { maximum: 250 }
+  validates :telephone, presence: true, length: { maximum: 15 }
+  validates :order_id, presence: true, length: { minimum: 5, maximum: 6 }
+
+  validates :client_type, :products, :description,
+    presence: true, length: { maximum: 250 }
 
   validates :comments, :actions_taken, :parcel, :guide_id, length: { maximum: 250 }
   validate :timeframe_between_devolutions, on: :create
@@ -77,6 +82,7 @@ class Devolution < ApplicationRecord
 
   private
   def set_rma
+    return if self.rma.present?
     self.rma = Utils.new_alphanumeric_token(5)
   end
 

@@ -25,7 +25,7 @@ module Admin
     end
 
     def update
-      if @user.update_attributes user_params
+      if @user.update user_params
         redirect_to [:admin, @user], flash: { success: t('.success', user: @user) }
       else
         render :edit

@@ -23,7 +23,7 @@ module Admin
     def edit; end
 
     def update
-      if @devolution.update_attributes devolution_params
+      if @devolution.update devolution_params
         redirect_to admin_devolution_path(@devolution), flash: { success: t('.success', devolution: @devolution) }
       else
         render :edit

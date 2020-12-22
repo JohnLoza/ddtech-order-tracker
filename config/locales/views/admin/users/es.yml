@@ -17,7 +17,7 @@ es:
         success: El usuario %{user} se actualizó correctamente
 
       destroy:
-        success: El usuario %{user} ha sido eliminado, si te equivocaste puedes <a href="%{url}" data-method="post">restaurarlo</a>
+        success: El usuario %{user} ha sido eliminado, si te equivocaste puedes <a href="%{url}" data-method="put">restaurarlo</a>
         failure: Ocurrió un error al eliminar el usuario %{user}
 
       restore:

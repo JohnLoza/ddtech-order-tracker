@@ -21,7 +21,7 @@ module Admin
     def edit; end
 
     def update
-      if @tag.update_attributes tag_params
+      if @tag.update tag_params
         redirect_to admin_tags_path, flash: { success: t('.success', tag: @tag) }
       else
         render :edit

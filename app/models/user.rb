@@ -35,7 +35,8 @@ class User < ApplicationRecord
   validates :name, :email, presence: true, length: { maximum: 50 }
   validates :role, presence: true, inclusion: { in: ROLES.values }
 
-  validates :password, presence: true, length: { in: 6..20 }, on: :create
+  validates :password, presence: true, length: { in: 6..20 },
+    confirmation: true, if: Proc.new { |u| !u.persisted? or u.password.present? }
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i.freeze
   validates :email, format: { with: VALID_EMAIL_REGEX },
