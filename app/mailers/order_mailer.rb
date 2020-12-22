@@ -40,6 +40,7 @@ class OrderMailer < ApplicationMailer # :nodoc:
     @order = params[:order]
     @guide = params[:guide]
     @order.parcel = params[:parcel] if params[:parcel].present?
+    @guides_count = @order.movements.where(description: Movement::DESCRIPTIONS[:sent_order]).size
 
     subject = t('mailer.subjects.order_status',
       key: @order.ddtech_key, datetime: l(Time.now, format: :long))
