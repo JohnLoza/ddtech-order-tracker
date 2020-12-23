@@ -1,0 +1,11 @@
+<div class="card-body">
+  <h2 class="text-center text-uppercase m-0">rma: <%= @devolution.rma %></h2>
+  <%= content_tag :p, "Hola #{@devolution.client_name}" %>
+  <p>Te comentamos ya hemos resuelto tu garantía y se ha realizado lo siguiente:</p>
+  <%= content_tag :strong, simple_format(@devolution.actions_taken) %>
+
+  <p>De igual manera te comentamos hemos generado para ti un folio de saldo a favor por <strong>$<%= @devolution.voucher_amount %></strong>,
+  cuyo folio es: <%= content_tag :strong, @devolution.voucher_folio %> podrás utilizarlo en tu siguiente compra antes del <%= content_tag :strong, l(6.months.from_now, format: :date) %>
+  proporcionando dicho folio en el campo de información adicional durante la misma compra.</p>
+</div>
+

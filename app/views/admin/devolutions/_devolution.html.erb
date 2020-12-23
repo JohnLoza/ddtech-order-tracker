@@ -15,7 +15,8 @@
   <td>
     <%= link_to devolution.email, admin_orders_path(filter: {keywords: devolution.email}), target: '_blank' %>
   </td>
-    <%= content_tag :td, l(devolution.created_at, format: :date) %>
+  <%= content_tag :td, devolution.zc %>
+  <%= content_tag :td, l(devolution.created_at, format: :date) %>
   <td>
     <%= link_to edit_admin_devolution_path(devolution),
       class: 'btn btn-outline-light btn-sm hidden-action' do %>

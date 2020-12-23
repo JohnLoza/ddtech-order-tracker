@@ -29,11 +29,18 @@ es:
         actions_taken: Acciones tomadas
         guide_id: Número de guía
         parcel: Paquetería
+        voucher_folio: Folio a favor
+        voucher_amount: Valor del folio
     errors:
       models:
         devolution:
           #limit_reached: 'Tenemos otra dev reciente en proceso.' # it can also go here for all attributes
+          missing_parcel: Es necesario capturar la paquetera
+          missing_guide_id: Es necesario capturar el número de guía
+          missing_voucher_folio: Es necesario capturar el folio del voucher
+          missing_voucher_amount: Es necesario capturar el valor del folio
           attributes:
             created_at:
               limit_reached: Tenemos otra dev reciente en proceso.
+
 

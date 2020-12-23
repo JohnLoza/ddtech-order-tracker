@@ -20,7 +20,7 @@
           <table class="table table-bordered table-hover">
             <thead class="bg-light">
               <tr>
-                <%= content_tag :td, pagy_bootstrap_nav(@pagy).html_safe, colspan: 7 %>
+                <%= content_tag :td, pagy_bootstrap_nav(@pagy).html_safe, colspan: 8 %>
               </tr>
               <tr class="border-0">
                 <%= content_tag :th, Devolution.human_attribute_name(:rma), class: 'border-0' %>
@@ -28,6 +28,7 @@
                 <%= content_tag :th, Devolution.human_attribute_name(:order_id), class: 'border-0' %>
                 <%= content_tag :th, Devolution.human_attribute_name(:client_name), class: 'border-0' %>
                 <%= content_tag :th, Devolution.human_attribute_name(:email), class: 'border-0' %>
+                <%= content_tag :th, Devolution.human_attribute_name(:zc), class: 'border-0' %>
                 <%= content_tag :th, t('labels.date'), class: 'border-0' %>
                 <%= content_tag :th, t('labels.actions'), class: 'border-0' %>
               </tr>
@@ -37,7 +38,7 @@
             </tbody>
             <tfoot>
               <tr>
-                <%= content_tag :td, pagy_bootstrap_nav(@pagy).html_safe, colspan: 7 %>
+                <%= content_tag :td, pagy_bootstrap_nav(@pagy).html_safe, colspan: 8 %>
               </tr>
             </tfoot>
           </table>

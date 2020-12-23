@@ -3,11 +3,22 @@
     <%= form_for [:admin, devolution] do |f| %>
       <div class="form-group">
         <%= f.label :parcel %>
-        <%= f.select :parcel, Order::PARCELS, {}, { class: 'form-control', required: true } %>
+        <%= f.select :parcel, Order::PARCELS, { prompt: Devolution.human_attribute_name(:parcel) }, { class: 'form-control' } %>
       </div>
+
       <div class="form-group">
         <%= f.label :guide_id %>
-        <%= f.text_field :guide_id, class: 'form-control', required: true, maxlenght: 100 %>
+        <%= f.text_field :guide_id, class: 'form-control', maxlenght: 100 %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :voucher_folio %>
+        <%= f.text_field :voucher_folio, class: 'form-control', maxlength: 10 %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :voucher_amount %>
+        <%= f.number_field :voucher_amount, class: 'form-control', step: 0.01, min: 1, max: 999999 %>
       </div>
       <%= f.submit t('labels.save'), class: 'btn btn-primary' %>
     <% end if can? :resend, devolution %>

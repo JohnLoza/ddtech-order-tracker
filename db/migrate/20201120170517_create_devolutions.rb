@@ -23,6 +23,8 @@ class CreateDevolutions < ActiveRecord::Migration[6.0]
       t.string :actions_taken
       t.string :guide_id
       t.string :parcel
+      t.string :voucher_folio
+      t.decimal :voucher_amount, precision: 8, scale: 2
       t.boolean :free_guide, default: false
 
       t.timestamps

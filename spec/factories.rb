@@ -126,6 +126,8 @@ FactoryBot.define do
     actions_taken {}
     parcel {}
     guide_id {}
+    voucher_folio {}
+    voucher_amount {}
     free_guide { false }
   end
 end

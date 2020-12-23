@@ -25,6 +25,8 @@ RSpec.describe Devolution, type: :model do
   it { should respond_to :actions_taken }
   it { should respond_to :parcel }
   it { should respond_to :guide_id }
+  it { should respond_to :voucher_folio }
+  it { should respond_to :voucher_amount }
   it { should respond_to :free_guide }
 
   it { should respond_to :address }
@@ -249,5 +251,52 @@ RSpec.describe Devolution, type: :model do
     before { @dev.guide_id = 'a' * 251 }
     it { should_not be_valid }
   end # context when guide_id end
+
+  context 'Parcel & Guide ID' do
+    it 'should be both present or not present' do
+      @dev.parcel = ' '
+      @dev.guide_id = 221234234
+      expect(@dev).not_to be_valid
+
+      @dev.parcel = Order::PARCELS.first
+      @dev.guide_id = ' '
+      expect(@dev).not_to be_valid
+
+      @dev.guide_id = 288374298374
+      expect(@dev).to be_valid
+    end
+  end # context Parcel & Guide ID end
+
+  context 'when voucher_folio is too large' do
+    before { @dev.voucher_folio = '2' * 11 }
+    it { should_not be_valid }
+  end
+
+  context 'when voucher_amount' do
+    context 'is not greater than zero' do
+      before { @dev.voucher_amount = 0 }
+      it { should_not be_valid }
+    end
+
+     context 'is greater than 999,999' do
+       before { @dev.voucher_amount = 1000000 }
+       it { should_not be_valid }
+     end
+  end # context when voucher_amount end
+
+  context 'Voucher Folio & Amount' do
+    it 'should be both present or not present' do
+      @dev.voucher_folio = ' '
+      @dev.voucher_amount = 1200
+      expect(@dev).not_to be_valid
+
+      @dev.voucher_folio = 88923
+      @dev.voucher_amount = nil
+      expect(@dev).not_to be_valid
+
+      @dev.voucher_amount = 3800.99
+      expect(@dev).to be_valid
+    end
+  end # context Voucher Folio & Amount end
 
 end

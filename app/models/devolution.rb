@@ -12,7 +12,7 @@ class Devolution < ApplicationRecord
   before_save { self.free_guide = self.free_guide_electible? }
 
   before_update :notify_package_received
-  before_update :send_guide_id
+  before_update :notificate_resolution
 
   after_create { NotifyRmaJob.perform_async(self) }
 
@@ -35,11 +35,17 @@ class Devolution < ApplicationRecord
   validates :telephone, presence: true, length: { maximum: 15 }
   validates :order_id, presence: true, length: { minimum: 5, maximum: 6 }
 
+  validates :voucher_folio, length: { maximum: 10 }
+  validates :voucher_amount, numericality: { greater_than: 0, lower_or_equal_than: 999999 },
+    if: Proc.new { |d| d.voucher_amount.present? }
+
   validates :client_type, :products, :description,
     presence: true, length: { maximum: 250 }
 
   validates :comments, :actions_taken, :parcel, :guide_id, length: { maximum: 250 }
   validate :timeframe_between_devolutions, on: :create
+  validate :guide_and_parcel, on: :update
+  validate :voucher_folio_and_amount, on: :update
 
   scope :by_user, -> (user_id) { where(user_id: user_id) if user_id.present? }
   scope :taken, -> (opt) {
@@ -86,9 +92,11 @@ class Devolution < ApplicationRecord
     self.rma = Utils.new_alphanumeric_token(5)
   end
 
-  def send_guide_id
-    if self.guide_id_changed? or self.parcel_changed?
+  def notificate_resolution
+    if self.guide_id_changed? and self.guide_id.present?
       NotifyDevolutionTrackingIdJob.perform_async(self)
+    elsif self.voucher_folio_changed? and self.voucher_folio.present?
+      NotifyDevolutionVoucherJob.perform_async(self)
     end
   end
 
@@ -106,6 +114,22 @@ class Devolution < ApplicationRecord
     # if the other devolution is less than 1 week old
     if another_dev.created_at.to_date > 1.week.ago.to_date
       self.errors.add(:created_at, :limit_reached)
+    end
+  end
+
+  def guide_and_parcel
+    if (self.guide_id.present? and !self.parcel.present?)
+      self.errors.add(:guide_id, :missing_parcel)
+    elsif (self.parcel.present? and !self.guide_id.present?)
+      self.errors.add(:parcel, :missing_guide_id)
+    end
+  end
+
+  def voucher_folio_and_amount
+    if (self.voucher_folio.present? and !self.voucher_amount.present?)
+      self.errors.add(:voucher_folio, :missing_voucher_amount)
+    elsif (self.voucher_amount.present? and !self.voucher_folio.present?)
+      self.errors.add(:voucher_amount, :missing_voucher_folio)
     end
   end
 end

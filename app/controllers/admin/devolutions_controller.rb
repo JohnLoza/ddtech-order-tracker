@@ -55,6 +55,8 @@ module Admin
         :actions_taken,
         :guide_id,
         :parcel,
+        :voucher_folio,
+        :voucher_amount,
         :street,
         :colony,
         :zc,

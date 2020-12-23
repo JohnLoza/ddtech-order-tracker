@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_18_161013) do
+ActiveRecord::Schema.define(version: 2020_12_22_181716) do
 
   create_table "devolutions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 2020_12_18_161013) do
     t.string "actions_taken"
     t.string "guide_id"
     t.string "parcel"
+    t.string "voucher_folio"
+    t.decimal "voucher_amount", precision: 8, scale: 2
     t.boolean "free_guide", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

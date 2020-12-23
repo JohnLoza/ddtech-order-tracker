@@ -6,7 +6,6 @@ class DevolutionMailer < ApplicationMailer # :nodoc:
   def rma
     @devolution = params[:devolution]
     subject = subject_for @devolution
-
     mail(to: @devolution.email, subject: subject)
   end
 
@@ -14,14 +13,18 @@ class DevolutionMailer < ApplicationMailer # :nodoc:
     @devolution = params[:devolution]
     @user = @devolution.user
     subject = subject_for @devolution
-
     mail(to: @devolution.email, reply_to: @user.email, subject: subject)
   end
 
   def tracking_id
     @devolution = params[:devolution]
     subject = subject_for @devolution
+    mail(to: @devolution.email, subject: subject)
+  end
 
+  def voucher
+    @devolution = params[:devolution]
+    subject = subject_for @devolution
     mail(to: @devolution.email, subject: subject)
   end
 
