@@ -27,6 +27,9 @@ es:
     take: Tomar
     taken: Tomadas
     not_taken: Sin tomar
+    resolution: Resolución
+    solved: Resuelto
+    not_solved: Sin resolver
     today_statistics: Estadísticas diarias
     track_your_package: Rastrea tu paquete
     updated_at: Última actualización

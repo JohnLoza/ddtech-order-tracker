@@ -57,9 +57,12 @@
               <%= link_to @devolution.user, admin_user_path(@devolution.user),
                 class: 'badge badge-pill badge-primary' if @devolution.user %>
             </p>
-            <%= content_tag :span, Devolution.human_attribute_name(:actions_taken),
-              class: 'font-weight-bold text-uppercase' %>
-            <%= simple_format(@devolution.actions_taken) %>
+            <p class="card-text">
+              <%= content_tag :span, Devolution.human_attribute_name(:actions_taken),
+                class: 'font-weight-bold text-uppercase' %>
+              <%= simple_format(@devolution.actions_taken) %>
+            </p>
+
             <p class="card-text">
               <%= content_tag :span, Devolution.human_attribute_name(:parcel),
                 class: 'font-weight-bold text-uppercase' %><br>
@@ -70,6 +73,17 @@
               <%= content_tag :span, Devolution.human_attribute_name(:guide_id),
                 class: 'font-weight-bold text-uppercase' %><br>
               <%= @devolution.guide_id %>
+            </p>
+
+            <p class="card-text">
+              <%= content_tag :span, Devolution.human_attribute_name(:voucher_folio),
+                class: 'font-weight-bold text-uppercase' %><br>
+              <%= @devolution.voucher_folio %>
+            </p>
+            <p class="card-text">
+              <%= content_tag :span, Devolution.human_attribute_name(:voucher_amount),
+                class: 'font-weight-bold text-uppercase' %><br>
+              $<%= @devolution.voucher_amount %>
             </p>
           </div>
         </div>

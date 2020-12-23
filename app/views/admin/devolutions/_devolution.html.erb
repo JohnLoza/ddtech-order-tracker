@@ -3,6 +3,7 @@
     <%= link_to devolution.rma, admin_devolution_path(devolution) %>
     <%= content_tag :i, nil, class: 'fas fa-file-alt ml-1 mr-1' if devolution.actions_taken? %>
     <%= content_tag :i, nil, class: 'fas fa-truck ml-1 mr-1' if devolution.guide_id.present? %>
+    <%= content_tag :i, nil, class: 'fas fa-dollar-sign ml-1 mr-1' if devolution.voucher_folio.present? %>
   </td>
   <td>
     <%= link_to devolution.user, admin_user_path(devolution.user) if devolution.user %>

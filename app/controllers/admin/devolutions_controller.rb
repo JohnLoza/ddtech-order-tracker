@@ -72,6 +72,7 @@ module Admin
             fields: [:rma, :order_id, :email]
           ).by_user(filter_params(require: :user_id))
           .taken(filter_params(require: :taken))
+          .solved(filter_params(require: :solved))
           .recent.includes(:user)
       )
     end

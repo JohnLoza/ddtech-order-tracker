@@ -56,6 +56,14 @@ class Devolution < ApplicationRecord
       where.not(user_id: nil)
     end
   }
+  scope :solved, -> (opt) {
+    return all unless opt.present?
+    if opt.to_sym == :solved
+      where.not(guide_id: nil).or(where.not(voucher_folio: nil))
+    else
+      where(guide_id: nil, voucher_folio: nil)
+    end
+  }
   scope :by_parcel, -> (parcel) { where(parcel: parcel) if parcel.present? }
 
   def to_s

@@ -5,22 +5,29 @@
       <div class="card-body">
         <%= form_for :filter, method: :get, html: {class: "form-inline"} do |f| %>
           <div class="form-group mx-sm-3">
-            <%= f.label :keywords, t('.search_by'), class: 'sr-only'  %>
+            <%= f.label :keywords, t('.search_by'), class: 'sr-only' %>
             <%= f.text_field :keywords, value: filter_params(require: :keywords),
               class: 'form-control filter text-lowercase mt-3', placeholder: t('.search_by') %>
           </div>
 
           <div class='form-group mx-sm-3'>
-            <%= f.label :user_id, User.model_name.human, class: 'sr-only'  %>
+            <%= f.label :user_id, User.model_name.human, class: 'sr-only' %>
             <%= f.select :user_id, users_for_select(role: User::ROLES[:support_and_warranty]),
                 { prompt: User.model_name.human, selected: filter_params(require: :user_id) },
                 { class: 'form-control filter mt-3' } %>
           </div>
 
           <div class='form-group mx-sm-3'>
-            <%= f.label :taken, Devolution.model_name.human(count: 2), class: 'sr-only'  %>
-            <%= f.select :taken, [[t('labels.taken'), :taken],[t('labels.not_taken'), :not_taken]],
+            <%= f.label :taken, Devolution.model_name.human(count: 2), class: 'sr-only' %>
+            <%= f.select :taken, [[t('labels.taken'), :taken], [t('labels.not_taken'), :not_taken]],
                 { prompt: Devolution.model_name.human, selected: filter_params(require: :taken) },
+                { class: 'form-control filter mt-3' } %>
+          </div>
+
+          <div class='form-group mx-sm-3'>
+            <%= f.label :solved, t('labels.resolution'), class: 'sr-only' %>
+            <%= f.select :solved, [[t('labels.solved'), :solved], [t('labels.not_solved'), :not_solved]],
+                { prompt: t('labels.resolution'), selected: filter_params(require: :solved) },
                 { class: 'form-control filter mt-3' } %>
           </div>
 
