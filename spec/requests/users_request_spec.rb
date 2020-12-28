@@ -32,7 +32,7 @@ RSpec.describe 'Admin user management', type: :request do
 
       expect(response).to have_http_status(:ok)
       expect(response).to render_template(:show)
-      expect(response.body).to include(I18n.t('admin.users.show.title', user: user))
+      expect(response.body).to include(user.name)
     end
   end # context GET show end
 

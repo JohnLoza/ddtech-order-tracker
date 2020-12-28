@@ -230,7 +230,30 @@ RSpec.describe 'Admin order management', type: :request do
     it 'with invalid id' do
       put hold_admin_order_path(0)
       expect(response).to have_http_status(:not_found)
-      expect(resposne).to render_template('shared/404.html.erb')
+      expect(response).to render_template('shared/404.html.erb')
+    end
+
+    it 'wit a valid id' do
+      put hold_admin_order_path(order), params: { movement: { data: 'message' } }
+      expect(response).to redirect_to(admin_order_path(order))
+      follow_redirect!
+      expect(response.body).to include(I18n.t('admin.orders.hold.success', order: order))
     end
   end # context PUT hold end
+
+  context 'PUT release' do
+    it 'with invalid id' do
+      put release_admin_order_path(0)
+      expect(response).to have_http_status(:not_found)
+      expect(response).to render_template('shared/404.html.erb')
+    end
+
+    it 'wit a valid id' do
+      put release_admin_order_path(order), params: { movement: { data: 'message' } }
+      expect(response).to redirect_to(admin_order_path(order))
+      follow_redirect!
+      expect(response.body).to include(I18n.t('admin.orders.release.success', order: order))
+    end
+  end # context PUT release end
+
 end

@@ -14,7 +14,7 @@ module Admin
 
     def create
       if @devolution.save
-        redirect_to admin_devolutions_path, flash: { success: t('.success', devolution: @devolution) }
+        redirect_to admin_devolution_path(@devolution), flash: { success: t('.success', devolution: @devolution) }
       else
         render :new
       end
