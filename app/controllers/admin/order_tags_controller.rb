@@ -11,10 +11,10 @@ module Admin
     end
 
     def destroy
-      @order_tag = OrderTag.find_by(order_id: params[:order_id], tag_id: params[:id])
+      @order_tag = OrderTag.find_by!(order_id: params[:order_id], tag_id: params[:id])
       authorize! :destroy, @order_tag
       @order_tag.destroy
-      render json: { data: @order_tag.to_json }
+      render json: { data: @order_tag.as_json }
     end
 
     private

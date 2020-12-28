@@ -44,8 +44,8 @@ class Devolution < ApplicationRecord
 
   validates :comments, :actions_taken, :parcel, :guide_id, length: { maximum: 250 }
   validate :timeframe_between_devolutions, on: :create
-  validate :guide_and_parcel, on: :update
-  validate :voucher_folio_and_amount, on: :update
+  validate :guide_and_parcel
+  validate :voucher_folio_and_amount
 
   scope :by_user, -> (user_id) { where(user_id: user_id) if user_id.present? }
   scope :taken, -> (opt) {

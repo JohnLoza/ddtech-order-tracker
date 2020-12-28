@@ -4,7 +4,7 @@ module Admin
   # Admin Orders Controller
   class OrdersController < AdminController
     before_action :load_orders, only: :index
-    before_action :set_new_order, only: :create
+    before_action :set_order, only: :create
 
     skip_authorization_check only: [:update_guide, :update_status]
     load_and_authorize_resource except: [:arrears, :update_guide, :update_status]
@@ -29,7 +29,7 @@ module Admin
     def new; end
 
     def create
-      @order.notes.build(message: params[:note][:message], user_id: current_user.id) if params[:note][:message].present?
+      @order.notes.build(message: params[:note][:message], user_id: current_user.id) if params[:note] and params[:note][:message].present?
       @order.order_tags.build(tag_id: params[:tag]) if params[:tag].present?
 
       if @order.save
@@ -174,7 +174,7 @@ module Admin
       )
     end
 
-    def set_new_order
+    def set_order
       @order = current_user.orders.new(order_params)
     end
 

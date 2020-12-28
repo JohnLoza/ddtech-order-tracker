@@ -25,9 +25,14 @@ RSpec.describe Tag, type: :model do
       it { should_not be_valid }
     end
 
-    context 'is too long' do
-      before { @tag.css_class = 'a' * 51 }
+    context 'is not in the styles list' do
+      before { @tag.css_class = 'a different style' }
       it { should_not be_valid }
+    end
+
+    context 'is in the styles list' do
+      before { @tag.css_class = Tag::STYLES.first }
+      it { should be_valid }
     end
   end # context when css_class
 end

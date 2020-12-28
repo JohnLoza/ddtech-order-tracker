@@ -5,7 +5,7 @@
   <%= content_tag :strong, simple_format(@devolution.actions_taken) %>
 
   <p>Además te hacemos entrega de tu(s) número(s) de rastreo:</p>
-  <% if @devolution.voucher_folio %>
+  <% if @devolution.voucher_folio.present? %>
     <p>De igual manera te comentamos hemos generado para ti un folio de saldo a favor por <strong>$<%= @devolution.voucher_amount %></strong>,
     cuyo folio es: <%= content_tag :strong, @devolution.voucher_folio %> podrás utilizarlo en tu siguiente compra antes del <%= content_tag :strong, l(6.months.from_now, format: :date) %>
     proporcionando dicho folio en el campo de información adicional durante la misma compra.</p>

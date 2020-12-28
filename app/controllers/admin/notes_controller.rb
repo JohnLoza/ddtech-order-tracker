@@ -9,9 +9,9 @@ module Admin
 
     def create
       if @note.save
-        render json: { data: @note.to_json, template: render_to_string(@note) }
+        render json: { data: @note.as_json, template: render_to_string(@note) }
       else
-        render status: 400, json: { data: @note.errors.to_json }
+        render status: 400, json: { data: @note.errors.as_json }
       end
     end
 

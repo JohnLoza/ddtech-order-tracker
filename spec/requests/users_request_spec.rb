@@ -16,7 +16,7 @@ RSpec.describe 'Admin user management', type: :request do
 
     expect(response).to have_http_status(:ok)
     expect(response).to render_template(:index)
-    expect(response.body).to match(/<h1.*>Listado de usuarios<\/h1>/im)
+    expect(response.body).to include(I18n.t('admin.users.index.title'))
   end
 
   context 'GET show' do
@@ -32,6 +32,7 @@ RSpec.describe 'Admin user management', type: :request do
 
       expect(response).to have_http_status(:ok)
       expect(response).to render_template(:show)
+      expect(response.body).to include(I18n.t('admin.users.show.title', user: user))
     end
   end # context GET show end
 
@@ -43,6 +44,7 @@ RSpec.describe 'Admin user management', type: :request do
 
     expect(response).to have_http_status(:ok)
     expect(response).to render_template(:new)
+    expect(response.body).to include(I18n.t('admin.users.new.title'))
   end
 
 
@@ -52,7 +54,7 @@ RSpec.describe 'Admin user management', type: :request do
       expect(response).to have_http_status(:unprocessable_entity)
     end
 
-    it 'with incomplete parameters' do
+    it 'with invalid parameters' do
       args = { user: { email: 'email@mail.com' } }
       post admin_users_path, params: args
 
@@ -62,7 +64,7 @@ RSpec.describe 'Admin user management', type: :request do
       expect(response.body).to include(I18n.t('labels.form_has_errors'))
     end
 
-    it 'with complete parameters' do
+    it 'with valid parameters' do
       args = { user: { name: 'a new user', email: 'anemail@mail.com',
         password: 'foobar', password_confirmation: 'foobar',
         role: User::ROLES[:shipments] } }
@@ -89,8 +91,10 @@ RSpec.describe 'Admin user management', type: :request do
       user = FactoryBot.create(:warehouse_user)
       get edit_admin_user_path(user)
 
+      expect(assigns(:user)).to be_instance_of(User)
       expect(response).to have_http_status(:ok)
       expect(response).to render_template(:edit)
+      expect(response.body).to include(I18n.t('admin.users.edit.title', user: user))
     end
   end # context GET edit end
 
