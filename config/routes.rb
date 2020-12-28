@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   get '/track', to: 'tracks#index', as: :track
   resources :devolutions, only: [:show, :new, :create]
+  resources :ml_billings, only: [:new, :create]
 
   namespace :admin do
     resources :dashboard, only: :index

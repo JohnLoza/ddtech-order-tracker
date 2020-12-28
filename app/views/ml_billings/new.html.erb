@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_pack_tag 'sessions', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'sessions', 'data-turbolinks-track': 'reload' %>
+
+  <%= content_tag :title, 'Solicitud de factura ML' %>
+</head>
+
+<body style="height: auto;">
+
+  <div class="container">
+    <%= render '/shared/alerts.html.erb' %>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-stripe bg-primary"></div>
+        <h1 class="card-title display-4 font-weight-bold text-center mt-3">Solicitud de factura para Mercado Libre DDTECH</h1>
+      </div>
+      <div class="card-body">
+        <%= form_for :ml_billing, url: ml_billings_path, html: {autocomplete: :off} do |f| %>
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <i class="fas fa-user"></i>
+              <%= f.label :pseudonym, 'Nombre de usuario ML' %>
+            </div>
+            <%= f.text_field :pseudonym, class: 'form-control form-control-lg col-lg-9 col-md-8',
+              placeholder: 'Nombre de usuario Mercado Libre', maxlength: 100, required: true %>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <i class="fas fa-key"></i>
+              <%= f.label :ml_folio, 'Folio de venta ML' %>
+            </div>
+            <%= f.text_field :ml_folio, class: 'form-control form-control-lg col-lg-9 col-md-8',
+              placeholder: 'Folio de venta Mercado Libre', maxlength: 20, required: true %>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <i class="fas fa-at"></i>
+              <%= f.label :email, 'Correo electrónico' %>
+            </div>
+            <%= f.text_field :email, class: 'form-control form-control-lg col-lg-9 col-md-8',
+              placeholder: 'Correo electrónico', maxlength: 100, required: true %>
+          </div>
+
+          <div class="bg-primary rounded">
+            <h2 class="text-center font-weight-bold text-light pt-3 pb-3">
+              <i class="fas fa-user-tie mr-2"></i> Datos de facturación
+            </h2>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <i class="fas fa-user"></i>
+              <%= f.label :name, 'Nombre / Razón Social' %>
+            </div>
+            <%= f.text_field :name, class: 'form-control form-control-lg col-lg-9 col-md-8',
+              placeholder: 'Nombre / Razón Social', maxlength: 100, required: true %>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <i class="fas fa-key"></i>
+              <%= f.label :rfc, 'RFC' %>
+            </div>
+            <%= f.text_field :rfc, class: 'form-control form-control-lg col-lg-9 col-md-8',
+              placeholder: 'RFC', maxlength: 13, required: true %>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <i class="fas fa-key"></i>
+              <%= f.label :cfdi, 'Uso de CFDI' %>
+            </div>
+            <%= f.text_field :cfdi, class: 'form-control form-control-lg col-lg-9 col-md-8',
+              placeholder: 'Uso de CFDI', maxlength: 60, required: true %>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <i class="fas fa-dollar-sign"></i>
+              <%= f.label :payment_type, 'Forma de pago' %>
+            </div>
+            <div class="col-lg-9 col-md-8">
+              <label class="custom-control custom-radio">
+                <%= f.radio_button :payment_type, 'Fuera de Guadalajara', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_payment_type" %>
+                <span class="custom-control-label">Transferencia Bancaria</span>
+              </label>
+              <label class="custom-control custom-radio">
+                <%= f.radio_button :payment_type, 'Suc. Centro', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_payment_type" %>
+                <span class="custom-control-label">Depósito bancario</span>
+              </label>
+              <label class="custom-control custom-radio">
+                <%= f.radio_button :payment_type, 'Suc. Jardines del bosque', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_payment_type" %>
+                <span class="custom-control-label">Tarjeta de Débito</span>
+              </label>
+              <label class="custom-control custom-radio">
+                <%= f.radio_button :payment_type, 'Suc. Jardines del bosque', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_payment_type" %>
+                <span class="custom-control-label">Tarjeta de Crédito</span>
+              </label>
+              <label class="custom-control custom-radio">
+                <%= f.radio_button :payment_type, 'Suc. Jardines del bosque', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_payment_type" %>
+                <span class="custom-control-label">Efectivo</span>
+              </label>
+              <div class="row">
+                <div class="col-lg-2">
+                  <label class="custom-control custom-radio">
+                    <%= f.radio_button :payment_type, false, class: 'custom-control-input',
+                      "data-enable" => "#ml_billing_payment_type" %>
+                    <span class="custom-control-label">Otro:</span>
+                  </label>
+                </div>
+                <%= f.text_field :payment_type, class: "form-control form-control-lg col-lg-10", maxlength: 60, disabled: true %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <%= f.label :street, 'Calle' %>
+            </div>
+            <%= f.text_field :street, class: 'form-control form-control-lg col-lg-9 col-md-8',
+              placeholder: 'Calle', maxlength: 60, required: true %>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <%= f.label :ext_number, 'Número exterior' %>
+            </div>
+            <%= f.text_field :ext_number, class: 'form-control form-control-lg col-lg-9 col-md-8',
+              placeholder: 'Número exterior', maxlength: 6, required: true %>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <%= f.label :int_number, 'Número interior' %>
+            </div>
+            <%= f.text_field :int_number, class: 'form-control form-control-lg col-lg-9 col-md-8',
+              placeholder: 'Número interior', maxlength: 6 %>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <%= f.label :colony, 'Colonia' %>
+            </div>
+            <%= f.text_field :colony, class: 'form-control form-control-lg col-lg-9 col-md-8',
+              placeholder: 'Colonia', maxlength: 60, required: true %>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <%= f.label :zc, 'C.P.' %>
+            </div>
+            <%= f.text_field :zc, class: 'form-control form-control-lg col-lg-9 col-md-8',
+              placeholder: 'C.P.', minlength: 5, maxlength: 5, required: true %>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <%= f.label :city, 'Ciudad' %>
+            </div>
+            <%= f.text_field :city, class: 'form-control form-control-lg col-lg-9 col-md-8',
+              placeholder: 'Ciudad', maxlength: 30, required: true %>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <%= f.label :state, 'Estado' %>
+            </div>
+            <%= f.text_field :state, class: 'form-control form-control-lg col-lg-9 col-md-8',
+              placeholder: 'Estado', maxlength: 30, required: true %>
+          </div>
+
+          <%= f.submit t('labels.save'), class: 'btn btn-primary btn-lg btn-block' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<div class="card-body">
+  <h2 class="text-center text-uppercase m-0">Solicitud de factura ML</h2>
+  <p><strong>Seudónimo:</strong> <%= content_tag :span, @ml_billing[:pseudonym], class: 'text-uppercase' %></p>
+  <p><strong>Folio ML:</strong> <%= content_tag :span, @ml_billing[:ml_folio], class: 'text-uppercase' %></p>
+  <p><strong>Email:</strong> <%= content_tag :span, @ml_billing[:email] %></p>
+  <p><strong>Nombre / Razón Social:</strong> <%= content_tag :span, @ml_billing[:name], class: 'text-uppercase' %></p>
+  <p><strong>RFC:</strong> <%= content_tag :span, @ml_billing[:rfc], class: 'text-uppercase' %></p>
+  <p><strong>CFDI:</strong> <%= content_tag :span, @ml_billing[:cfdi], class: 'text-uppercase' %></p>
+  <p><strong>Método de pago:</strong> <%= content_tag :span, @ml_billing[:payment_type], class: 'text-uppercase' %></p>
+  <p><strong>Calle:</strong> <%= content_tag :span, @ml_billing[:street], class: 'text-uppercase' %></p>
+  <p><strong>Número ext:</strong> <%= content_tag :span, @ml_billing[:ext_number], class: 'text-uppercase' %></p>
+  <p><strong>Número int:</strong> <%= content_tag :span, @ml_billing[:int_number], class: 'text-uppercase' %></p>
+  <p><strong>Colonia:</strong> <%= content_tag :span, @ml_billing[:colony], class: 'text-uppercase' %></p>
+  <p><strong>C.P.:</strong> <%= content_tag :span, @ml_billing[:zc], class: 'text-uppercase' %></p>
+  <p><strong>Ciudad:</strong> <%= content_tag :span, @ml_billing[:city], class: 'text-uppercase' %></p>
+  <p><strong>Estado:</strong> <%= content_tag :span, @ml_billing[:state], class: 'text-uppercase' %></p>
+</div>
+
+<div class="card-footer bg-primary text-light">
+  <strong>
+    <p class="text-center text-uppercase">Nota</p>
+    <p class="text-center">Este mensaje es automático y no está pensado para ser respondido.</p>
+  </strong>
+</div>
+
