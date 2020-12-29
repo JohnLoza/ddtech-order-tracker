@@ -22,7 +22,12 @@ import './bootstrap_custom.js'
 import '@fortawesome/fontawesome-free/js/fontawesome.min.js'
 import '@fortawesome/fontawesome-free/js/solid.min.js'
 
+import 'parsleyjs/dist/parsley.min.js'
+import 'parsleyjs/dist/i18n/es.js'
+
 $(document).ready(function() {
+  $('form').parsley(); // initialize parsley
+
   $("[data-disable]").on("change", function(event) {
     const target = $(this).attr("data-disable");
     $(target).val("");

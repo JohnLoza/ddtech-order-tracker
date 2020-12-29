@@ -29,19 +29,10 @@
           <div class="form-group row">
             <div class="col-lg-3 col-md-4 col-form-label">
               <i class="fas fa-user"></i>
-              <%= f.label :pseudonym, 'Nombre de usuario ML' %>
+              <%= f.label :pseudonym, 'Seudónimo ML' %>
             </div>
             <%= f.text_field :pseudonym, class: 'form-control form-control-lg col-lg-9 col-md-8',
-              placeholder: 'Nombre de usuario Mercado Libre', maxlength: 100, required: true %>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-lg-3 col-md-4 col-form-label">
-              <i class="fas fa-key"></i>
-              <%= f.label :ml_folio, 'Folio de venta ML' %>
-            </div>
-            <%= f.text_field :ml_folio, class: 'form-control form-control-lg col-lg-9 col-md-8',
-              placeholder: 'Folio de venta Mercado Libre', maxlength: 20, required: true %>
+              placeholder: 'Seudónimo ML', maxlength: 100, required: true %>
           </div>
 
           <div class="form-group row">
@@ -49,14 +40,53 @@
               <i class="fas fa-at"></i>
               <%= f.label :email, 'Correo electrónico' %>
             </div>
-            <%= f.text_field :email, class: 'form-control form-control-lg col-lg-9 col-md-8',
+            <%= f.email_field :email, class: 'form-control form-control-lg col-lg-9 col-md-8',
               placeholder: 'Correo electrónico', maxlength: 100, required: true %>
           </div>
 
           <div class="bg-primary rounded">
             <h2 class="text-center font-weight-bold text-light pt-3 pb-3">
-              <i class="fas fa-user-tie mr-2"></i> Datos de facturación
+                <i class="fas fa-user-tie mr-2"></i> Datos fiscales
             </h2>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <i class="fas fa-dollar-sign"></i>
+              <%= f.label :cfdi, 'Uso de CFDI' %>
+            </div>
+            <div class="col-lg-9 col-md-8">
+              <label class="custom-control custom-radio">
+                <%= f.radio_button :cfdi, '01 Adquisición de Mercancia', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_cfdi" %>
+                <span class="custom-control-label">Adquisición de Mercancia</span>
+              </label>
+              <label class="custom-control custom-radio">
+                <%= f.radio_button :cfdi, 'G03 Gastos en General', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_cfdi" %>
+                <span class="custom-control-label">Gastos en General</span>
+              </label>
+              <label class="custom-control custom-radio">
+                <%= f.radio_button :cfdi, 'I04 Equipo de Cómputo y Accesorios', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_cfdi" %>
+                <span class="custom-control-label">Equipo de Cómputo y Accesorios</span>
+              </label>
+              <label class="custom-control custom-radio">
+                <%= f.radio_button :cfdi, 'P01 Por definir', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_cfdi" %>
+                <span class="custom-control-label">Por definir</span>
+              </label>
+              <div class="row">
+                <div class="col-lg-2">
+                  <label class="custom-control custom-radio">
+                    <%= f.radio_button :cfdi, false, class: 'custom-control-input',
+                      "data-enable" => "#ml_billing_cfdi" %>
+                    <span class="custom-control-label">Otro:</span>
+                  </label>
+                </div>
+                <%= f.text_field :cfdi, class: "form-control form-control-lg col-lg-10", maxlength: 60, disabled: true %>
+              </div>
+            </div>
           </div>
 
           <div class="form-group row">
@@ -79,41 +109,32 @@
 
           <div class="form-group row">
             <div class="col-lg-3 col-md-4 col-form-label">
-              <i class="fas fa-key"></i>
-              <%= f.label :cfdi, 'Uso de CFDI' %>
-            </div>
-            <%= f.text_field :cfdi, class: 'form-control form-control-lg col-lg-9 col-md-8',
-              placeholder: 'Uso de CFDI', maxlength: 60, required: true %>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-lg-3 col-md-4 col-form-label">
               <i class="fas fa-dollar-sign"></i>
               <%= f.label :payment_type, 'Forma de pago' %>
             </div>
             <div class="col-lg-9 col-md-8">
               <label class="custom-control custom-radio">
-                <%= f.radio_button :payment_type, 'Fuera de Guadalajara', class: 'custom-control-input',
+                <%= f.radio_button :payment_type, 'Transferencia Bancaria', class: 'custom-control-input',
                   required: true, "data-disable" => "#ml_billing_payment_type" %>
                 <span class="custom-control-label">Transferencia Bancaria</span>
               </label>
               <label class="custom-control custom-radio">
-                <%= f.radio_button :payment_type, 'Suc. Centro', class: 'custom-control-input',
+                <%= f.radio_button :payment_type, 'Depósito bancario', class: 'custom-control-input',
                   required: true, "data-disable" => "#ml_billing_payment_type" %>
                 <span class="custom-control-label">Depósito bancario</span>
               </label>
               <label class="custom-control custom-radio">
-                <%= f.radio_button :payment_type, 'Suc. Jardines del bosque', class: 'custom-control-input',
+                <%= f.radio_button :payment_type, 'Tarjeta de Débito', class: 'custom-control-input',
                   required: true, "data-disable" => "#ml_billing_payment_type" %>
                 <span class="custom-control-label">Tarjeta de Débito</span>
               </label>
               <label class="custom-control custom-radio">
-                <%= f.radio_button :payment_type, 'Suc. Jardines del bosque', class: 'custom-control-input',
+                <%= f.radio_button :payment_type, 'Tarjeta de Crédito', class: 'custom-control-input',
                   required: true, "data-disable" => "#ml_billing_payment_type" %>
                 <span class="custom-control-label">Tarjeta de Crédito</span>
               </label>
               <label class="custom-control custom-radio">
-                <%= f.radio_button :payment_type, 'Suc. Jardines del bosque', class: 'custom-control-input',
+                  <%= f.radio_button :payment_type, 'Efectivo', class: 'custom-control-input',
                   required: true, "data-disable" => "#ml_billing_payment_type" %>
                 <span class="custom-control-label">Efectivo</span>
               </label>

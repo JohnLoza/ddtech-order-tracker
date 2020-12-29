@@ -13,7 +13,6 @@ class MlBillingsController < ApplicationController
   def ml_billing_params
     params.require(:ml_billing).permit(
       :pseudonym,
-      :ml_folio,
       :email,
       :name,
       :rfc,
