@@ -55,17 +55,16 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Rubik', sans-serif !important; }
   margin: 0.5em;
 }
 
-.ESTAFETA { background-color: #e53935; }
-.FEDEX { background-color: #3949ab; }
-.ZMG { background-color: #7cb342; }
-.DHL {
+.parcel.estafeta { background-color: #e53935; }
+.parcel.fedex, .parcel.paquete_express { background-color: #3949ab; }
+.parcel.zmg { background-color: #7cb342; }
+.parcel.dhl {
   background-color: #fdd835;
   color: #333;
 }
 
 .progressbar li {
   list-style-type: none;
-  width: 25%;
   float: left;
   font-size: 12px;
   position: relative;

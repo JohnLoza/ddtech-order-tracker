@@ -1,3 +1,4 @@
+<% assembled = false %>
 <div class="card">
   <div class="card-header bg-primary text-center">
     <h1 class="card-title font-weigh-bold text-light mt-3">
@@ -6,28 +7,27 @@
   </div>
   <div class="card-body">
 
-    <div class="row">
-      <div class="col-12">
-        <ul class="progressbar text-center">
-          <li class="active">Órden creada</li>
-          <li class="<%= 'active' if movements_include?(@movements, Movement::DESCRIPTIONS[:supplied_order]) %>">
-            Surtida
-          </li>
-          <% if @order.assemble %>
-            <li class="<%= 'active' if movements_include?(@movements, Movement::DESCRIPTIONS[:assembled_order]) %>">
-              Ensamble finalizado
-            </li>
-          <% end %>
-          <li class="<%= 'active' if movements_include?(@movements, Movement::DESCRIPTIONS[:sent_order]) %>">
-            Enviado
-          </li>
-        </ul>
-      </div>
-    </div>
+    <ul class="row progressbar text-center">
+      <li class="col active">Órden creada</li>
+      <li class="col <%= 'active' if movements_include?(@movements, Movement::DESCRIPTIONS[:supplied_order]) %>">
+        Surtida
+      </li>
+      <% if @order.assemble %>
+        <% assembled = true if movements_include?(@movements, Movement::DESCRIPTIONS[:assembled_order]) %>
+        <li class="col <%= 'active' if assembled %>">
+          Ensamble finalizado
+        </li>
+      <% end %>
+      <% includes_guide = movements_include?(@movements, Movement::DESCRIPTIONS[:sent_order]) %>
+      <% sent = true if (@order.assemble and assembled and includes_guide) or (!@order.assemble and includes_guide) %>
+      <li class="col <%= 'active' if sent %>">
+        Enviado
+      </li>
+    </ul>
 
     <% if @order.guide.present? %>
     <div class="text-center mt-5">
-      <%= content_tag :h2, @order.parcel, class: "parcel #{@order.parcel} font-weight-bold" %>
+      <%= content_tag :h2, @order.parcel, class: "parcel #{@order.parcel.downcase} font-weight-bold" %>
       <%= content_tag :h2, @order.guide %>
     </div>
     <% end %>

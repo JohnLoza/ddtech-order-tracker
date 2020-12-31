@@ -6,7 +6,7 @@ class Order < ApplicationRecord
   include Timeable
   include CustomGroupable
 
-  PARCELS = %w[ESTAFETA FEDEX ZMG DHL].freeze
+  PARCELS = %w[ESTAFETA FEDEX ZMG DHL PAQUETE_EXPRESS].freeze
   # STATUSES have to be in secuence
   STATUS = {
     new: 'new',
