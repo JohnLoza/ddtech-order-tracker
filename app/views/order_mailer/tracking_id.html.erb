@@ -1,5 +1,5 @@
 <div class="card-body text-center">
-  <h2 class="m-0">Pedido: #<%= @order.ddtech_key %></h2>
+  <h2 class="m-0">Pedido: <%= @order.ddtech_key %></h2>
 
   <% if @order.multiple_packages and @guides_count == 1  %>
     <p style="text-align: left;">
