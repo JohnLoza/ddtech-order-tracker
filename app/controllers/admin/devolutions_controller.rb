@@ -69,7 +69,7 @@ module Admin
       @pagy, @devolutions = pagy(
         Devolution.search(
             keywords: filter_params(require: :keywords),
-            fields: [:rma, :order_id, :email]
+            fields: [:rma, :order_id, :client_name, :email]
           ).by_user(filter_params(require: :user_id))
           .taken(filter_params(require: :taken))
           .solved(filter_params(require: :solved))

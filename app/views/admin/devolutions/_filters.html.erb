@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-md-12">
     <div class="card">
-      <%= content_tag :h3, t("labels.filters"), class: "card-header" %>
+      <%= content_tag :h3, t('labels.filters'), class: 'card-header' %>
       <div class="card-body">
-        <%= form_for :filter, method: :get, html: {class: "form-inline"} do |f| %>
+        <%= form_for :filter, method: :get, html: {class: 'form-inline mb-3'} do |f| %>
           <div class="form-group mx-sm-3">
             <%= f.label :keywords, t('.search_by'), class: 'sr-only' %>
             <%= f.text_field :keywords, value: filter_params(require: :keywords),
@@ -34,6 +34,8 @@
           <%= f.submit t('labels.filter'), class: 'btn btn-primary mt-3' %>
           <%= link_to t('labels.clear_filters'), admin_devolutions_path, class: 'btn btn-light mt-3 ml-3' %>
         <% end %>
+
+        <span class="font-italic">* El campo de busqueda filtra solamente por RMA, No Pedido, Email y Nombre.</span>
       </div>
     </div>
   </div>

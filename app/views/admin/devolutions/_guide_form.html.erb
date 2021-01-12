@@ -1,6 +1,19 @@
 <div class="row pb-3">
   <div class="col-12">
     <%= form_for [:admin, devolution] do |f| %>
+
+      <ul>
+        <li class="font-italic">
+          Capturar solamente <strong>paquetería</strong> y <strong>guía</strong> para enviar producto.
+        </li>
+        <li class="font-italic">
+          Capturar solamente <strong>folio</strong> y <strong>valor del folio</strong> para dar un folio a favor.
+        </li>
+        <li class="font-italic">
+          Capturar todo el formulario solo cuando vamos a enviar producto al cliente y además darle un saldo a favor.
+        </li>
+      </ul>
+
       <div class="form-group">
         <%= f.label :parcel %>
         <%= f.select :parcel, Order::PARCELS, { prompt: Devolution.human_attribute_name(:parcel) }, { class: 'form-control' } %>
