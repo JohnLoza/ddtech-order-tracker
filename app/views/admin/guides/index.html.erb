@@ -1,0 +1,44 @@
+<% provide :title, t('.title')  %>
+
+<%= render 'filters' %>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <%= content_tag :h2, t('.title'), class: 'card-title' %>
+      </div>
+      <div class="card-body">
+
+        <div class="table-responsive">
+
+          <table class="table table-bordered table-hover">
+            <thead class="bg-light">
+              <tr>
+                <%= content_tag :td, pagy_bootstrap_nav(@pagy).html_safe, colspan: 6 %>
+              </tr>
+              <tr class="border-0">
+                <%= content_tag :th, Order.human_attribute_name(:ddtech_key), class: 'border-0' %>
+                <%= content_tag :th, User.model_name.human, class: 'border-0' %>
+                <%= content_tag :th, Order.human_attribute_name(:parcel), class: 'border-0' %>
+                <%= content_tag :th, Order.human_attribute_name(:guide), class: 'border-0' %>
+                <%= content_tag :th, t('labels.created_at'), class: 'border-0' %>
+              </tr>
+            </thead>
+            <tbody>
+              <% @guides.each do |guide| %>
+                <%= render partial: 'guide', locals: { guide: guide } %>
+              <% end %>
+            </tbody>
+            <tfoot>
+              <tr>
+                <%= content_tag :td, pagy_bootstrap_nav(@pagy).html_safe, colspan: 6 %>
+              </tr>
+            </tfoot>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

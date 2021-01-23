@@ -1,6 +1,7 @@
 class Movement < ApplicationRecord
   include Timeable
   include CustomGroupable
+  include Searchable
 
   belongs_to :user
   belongs_to :order
@@ -23,6 +24,10 @@ class Movement < ApplicationRecord
   validates :description, presence: true, inclusion: { in: DESCRIPTIONS.values }
 
   validates :data, length: { maximum: 250 }
+
+  scope :sent, -> { where(description: Movement::DESCRIPTIONS[:sent_order]) }
+  scope :by_user, -> (user_id) { where(user_id: user_id) if user_id.present? }
+  scope :by_parcel, -> (parcel) { joins(:order).where(orders: { parcel: parcel }) if parcel.present? }
 
   private
 

@@ -1,0 +1,8 @@
+es:
+  admin:
+    guides:
+      index:
+        title: Reporte de Guías
+
+      filters:
+        search_by: No de Guía

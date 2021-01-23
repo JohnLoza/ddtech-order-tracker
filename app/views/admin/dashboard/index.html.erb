@@ -6,12 +6,12 @@
   <div class="card-body">
     <%= form_for :filter, method: :get, html: {class: "form-inline"} do |f| %>
       <div class="form-group mx-sm-3">
-        <%= f.label :start_date, 'fecha de inicio',  class: 'sr-only' %>
+        <%= f.label :start_date, t('labels.start_date'),  class: 'sr-only' %>
         <%= f.text_field :start_date, value: @opts[:start_date],
           placeholder: 'Fecha de inicio', class: 'form-control filter datepicker', required: true %>
       </div>
       <div class="form-group mx-sm-3">
-        <%= f.label :end_date, 'fecha de fin', class: 'sr-only' %>
+        <%= f.label :end_date, t('end_date'), class: 'sr-only' %>
         <%= f.text_field :end_date, value: @opts[:end_date],
           placeholder: 'Fecha de fin', class: 'form-control filter datepicker', required: true %>
       </div>

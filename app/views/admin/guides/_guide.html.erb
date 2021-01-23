@@ -1,0 +1,14 @@
+<tr>
+  <td>
+    <%= link_to guide.order.ddtech_key, admin_order_path(guide.order) %>
+  </td>
+  <td>
+    <%= link_to guide.user, admin_user_path(guide.user), class: 'badge badge-primary badge-pill' %>
+  </td>
+  <td>
+    <%= content_tag :span, guide.order.parcel,
+      class: "parcel #{guide.order.parcel.downcase}" %>
+  </td>
+  <%= content_tag :td, guide.data %>
+  <%= content_tag :td, l(guide.created_at, format: :long) %>
+</tr>

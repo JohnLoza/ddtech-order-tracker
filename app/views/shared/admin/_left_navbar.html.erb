@@ -36,6 +36,14 @@
           </li>
 
           <li class="nav-item">
+            <%= link_to admin_guides_path,
+              class: "nav-link #{active_class_for('admin/guides')}" do %>
+            <i class="fas fa-fw fa-truck mr-2"></i>
+            <%= t('admin.guides.index.title') %>
+            <% end %>
+          </li>
+
+          <li class="nav-item">
             <%= link_to admin_devolutions_path,
               class: "nav-link #{active_class_for('admin/devolutions')}" do %>
             <i class="fas fa-fw fa-undo-alt mr-2"></i>

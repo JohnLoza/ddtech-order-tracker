@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <%= content_tag :h3, t('labels.filters'), class: 'card-header' %>
+      <div class="card-body">
+        <%= form_for :filter, method: :get, html: {class: 'form-inline mb-3'} do |f| %>
+
+          <div class="form-group mx-sm-3">
+            <%= f.label :keywords, t('.search_by'), class: 'sr-only'  %>
+            <%= f.text_field :keywords, value: filter_params(require: :keywords),
+              class: 'form-control filter text-lowercase mt-3', placeholder: t('.search_by') %>
+          </div>
+
+          <div class='form-group mx-sm-3'>
+            <%= f.label :user_id, User.model_name.human, class: 'sr-only'  %>
+            <%= f.select :user_id, users_for_select(role: User::ROLES[:digital_guides]),
+                { prompt: User.model_name.human, selected: filter_params(require: :user_id) },
+                { class: 'form-control filter mt-3' } %>
+          </div>
+
+          <div class='form-group mx-sm-3'>
+            <%= f.label :parcel, Order.human_attribute_name(:parcel), class: 'sr-only'  %>
+            <%= f.select :parcel, Order::PARCELS,
+                {
+                  prompt: Order.human_attribute_name(:parcel),
+                  selected: filter_params(require: :parcel)
+                },
+                { class: 'form-control filter mt-3' } %>
+          </div>
+
+          <div class="form-group mx-sm-3">
+            <%= f.label :start_date, t('labels.start_date'), class: 'sr-only' %>
+            <%= f.text_field :start_date, value: filter_params(require: :start_date),
+              class: 'form-control filter datepicker mt-3', placeholder: t('labels.end_date') %>
+          </div>
+
+          <div class="form-group mx-sm-3">
+            <%= f.label :end_date, t('labels.end_date'), class: 'sr-only' %>
+            <%= f.text_field :end_date, value: filter_params(require: :end_date),
+              class: 'form-control filter datepicker mt-3', placeholder: t('labels.end_date') %>
+          </div>
+
+          <%= f.submit t('labels.filter'), class: 'btn btn-primary mt-3' %>
+          <%= link_to t('labels.clear_filters'), admin_guides_path, class: 'btn btn-light mt-3 ml-3' %>
+
+        <% end %>
+
+        <span class="font-italic">* Buscar por número de guía.</span>
+      </div>
+    </div>
+  </div>
+</div>
+

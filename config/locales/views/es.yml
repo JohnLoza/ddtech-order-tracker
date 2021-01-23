@@ -9,6 +9,8 @@ es:
     clear_filters: Limpiar filtros
     close: Cerrar
     created_at: Fecha
+    start_date: Fecha de Inicio
+    end_date: Fecha de Fin
     dashboard: Tablero de Inicio
     devolution_form: Formulario para devoluciones
     filter: Filtrar

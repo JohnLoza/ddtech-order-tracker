@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :dashboard, only: :index
+    resources :guides, only: :index
 
     resources :users do
       put :restore, on: :member
