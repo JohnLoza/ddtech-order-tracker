@@ -1,0 +1,18 @@
+es:
+  admin:
+    shipment_destinations:
+      new:
+        title: Nuevo destino de envíos
+
+      create:
+        success: Se guardo el destino
+
+      edit:
+        title: Editar destino
+
+      update:
+        success: Destino actualizado
+
+      destroy:
+        success: Se eliminó el destino
+        failure: Ocurrió un error al eliminar el destino

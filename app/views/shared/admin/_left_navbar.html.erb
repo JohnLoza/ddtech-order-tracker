@@ -30,7 +30,7 @@
           <li class="nav-item">
             <%= link_to admin_orders_path,
               class: "nav-link #{active_class_for('admin/orders')}" do %>
-            <i class="fas fa-fw fa-cash-register mr-2"></i>
+            <i class="fas fa-fw fa-cubes mr-2"></i>
             <%= Order.model_name.human(count: 2) %>
             <% end if can? :read, Order %>
           </li>
@@ -38,7 +38,7 @@
           <li class="nav-item">
             <%= link_to admin_guides_path,
               class: "nav-link #{active_class_for('admin/guides')}" do %>
-            <i class="fas fa-fw fa-truck mr-2"></i>
+            <i class="fas fa-fw fa-box-open mr-2"></i>
             <%= t('admin.guides.index.title') %>
             <% end %>
           </li>
@@ -49,6 +49,14 @@
             <i class="fas fa-fw fa-undo-alt mr-2"></i>
             <%= Devolution.model_name.human(count: 2) %>
             <% end if can? :read, Devolution %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to admin_shipments_path,
+              class: "nav-link #{active_class_for(['admin/shipments', 'admin/suppliers', 'admin/origin_states', 'admin/shipment_destinations'])}" do %>
+            <i class="fas fa-fw fa-shipping-fast mr-2"></i>
+            <%= Shipment.model_name.human(count: 2) %>
+            <% end if can? :read, Shipment %>
           </li>
 
           <li class="nav-item">

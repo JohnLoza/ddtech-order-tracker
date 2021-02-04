@@ -1,11 +1,10 @@
 FactoryBot.define do
-
   factory :user, class: :User do
     sequence(:name) { |n| "user #{n}" }
     sequence(:email) { |n| "user_#{n}@mail.com" }
     password { 'foobar' }
     password_confirmation { 'foobar' }
-    role {}
+    role { nil }
 
     factory :admin_user do
       role { User::ROLES[:admin] }
@@ -73,39 +72,39 @@ FactoryBot.define do
   end # factory :user end
 
   factory :order do
-    user {}
+    user { nil }
     sequence(:ddtech_key) { |n| "1212#{n}" }
     client_email { 'lozabucio.jony@gmail.com' }
-    status {}
+    status { nil }
     assemble { false }
     multiple_packages { false }
     urgent { false }
     holding { false }
     parcel { Order::PARCELS.first }
-    guide {}
-  end
+    guide { nil }
+  end # factory :order end
 
   factory :note, class: :Note do
-    user {}
-    order {}
+    user { nil }
+    order { nil }
     message { 'This is a new note' }
   end # factory :note end
 
   factory :movement, class: :Movement do
-    user {}
-    order {}
+    user { nil }
+    order { nil }
     description { Movement::DESCRIPTIONS[:new_order] }
-    data {}
-  end
+    data { nil }
+  end # factory :movement end
 
   factory :tag do
     sequence(:name) { |n| "tag #{n}" }
     css_class { Tag::STYLES[Random.rand(Tag::STYLES.size - 1).to_i] }
-  end
+  end # factory :tag end
 
   factory :devolution do
-    rma {}
-    user {}
+    rma { nil }
+    user { nil }
 
     sequence(:client_name) { |n| "Client #{n}" }
     sequence(:email) { |n| "client_#{n}@mail.com" }
@@ -122,12 +121,41 @@ FactoryBot.define do
     city { 'city name' }
     state { 'state' }
 
-    comments {}
-    actions_taken {}
-    parcel {}
-    guide_id {}
-    voucher_folio {}
-    voucher_amount {}
+    comments { nil }
+    actions_taken { nil }
+    parcel { nil }
+    guide_id { nil }
+    voucher_folio { nil }
+    voucher_amount { nil }
     free_guide { false }
-  end
+  end # factory :devolution end
+
+  factory :shipment_product_destination do
+    shipment_product { nil }
+    destination { 'some destination' }
+    units { 1 }
+  end # factory :shipment_product_destination end
+
+  factory :shipment_product do
+    shipment { nil }
+    ddtech_id { "mo-en-001" }
+  end # factory :shipment_product end
+
+  factory :shipment do
+    sequence(:hash_id) { |n| "a8a1sd8#{n}" }
+    estimated_arrival { 5.days.from_now }
+    comments { nil }
+    status { Shipment::STATUSES.first }
+    origin_state { nil }
+    supplier { nil }
+  end # factory :shipment end
+
+  factory :supplier do
+    name { "a great supplier" }
+  end # factory :supplier end
+
+  factory :origin_state do
+    name { "some origin" }
+    estimated_shipment_days { 1 }
+  end # factory :origin_state end
 end

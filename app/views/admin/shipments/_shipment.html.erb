@@ -1,0 +1,37 @@
+<div class="card col-lg-3 col-12 m-4">
+  <h3 class="card-header text-center font-weight-bold">
+    <%= link_to shipment.hash_id, admin_shipment_path(shipment) %>
+  </h3>
+
+  <div class="card-body">
+    <p>
+      <%= content_tag :span, shipment.supplier.name, class: 'badge badge-pill badge-primary' %>
+      <%= content_tag :span, shipment.origin_state.name, class: 'badge badge-pill badge-success' %>
+    </p>
+
+    <p>
+      <%= content_tag :span, t("shipment.statuses.#{shipment.status}"),
+        class: "badge badge-pill badge-#{ shipment.status == 'processed' ? 'secondary' : 'primary' }" %>
+    </p>
+
+    <p>
+      <%= content_tag :strong, 'Fecha de registro' %>
+      <%= content_tag :span, l(shipment.created_at, format: :short) %>
+    </p>
+
+    <p>
+      <%= content_tag :strong, 'Última actualización' %>
+      <%= content_tag :span, l(shipment.updated_at, format: :short) %>
+    </p>
+
+    <p>
+      <%= content_tag :strong, Shipment.human_attribute_name(:estimated_arrival) %>
+      <%= content_tag :span, l(shipment.estimated_arrival, format: :date) %>
+    </p>
+
+    <p>
+      <%= content_tag :strong, Shipment.human_attribute_name(:comments) %>
+      <%= content_tag :span, shipment.comments %>
+    </p>
+  </div>
+</div>

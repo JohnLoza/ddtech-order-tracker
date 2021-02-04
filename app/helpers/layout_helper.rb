@@ -44,6 +44,18 @@ module LayoutHelper
     Order::PARCELS.map { |value| [value, value] }
   end
 
+  def suppliers_for_select()
+    Supplier.active.order_by_name.map{ |sup| [sup.name, sup.id] }
+  end
+
+  def origin_states_for_select()
+    OriginState.all.map{ |os| [os.name, os.id, {'data-estimated-shipment-days' => os.estimated_shipment_days}] }
+  end
+
+  def shipment_statuses_for_select()
+    Shipment::STATUSES.map{ |status| [I18n.t("shipment.statuses.#{status}"), status] }
+  end
+
   def status_badge(order)
     badge_class = order.status == Order::STATUS[:sent] ? 'success' : 'primary'
 

@@ -13,11 +13,10 @@ import 'parsleyjs/dist/parsley.min.js'
 import 'parsleyjs/dist/i18n/es.js'
 
 import './concept'
-
 import './notes'
 import './order_processing'
-
 import './on_turbolinks_load'
+import './shipments'
 
 window.toggleChevron = function(trigger) {
   $(trigger).find('svg').toggleClass('fa-chevron-up fa-chevron-down');

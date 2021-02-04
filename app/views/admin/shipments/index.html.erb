@@ -1,0 +1,34 @@
+<% provide :title, Shipment.model_name.human(count: 2) %>
+
+<%= render 'filters' %>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">
+          <%= yield :title %>
+          <%= link_to new_admin_shipment_path do %>
+          <i class="fas fa-fw fa-plus-circle fa-lg float-right text-secondary"></i>
+          <% end if can? :create, Shipment %>
+        </h2>
+      </div>
+      <div class="card-body">
+
+        <div class="text-center mb-3">
+          <%= link_to Supplier.model_name.human(count: 2), admin_suppliers_path,
+            class: 'btn btn-primary' if can? :read, Supplier %>
+
+          <%= link_to OriginState.model_name.human(count: 2), admin_origin_states_path,
+            class: 'btn btn-primary' if can? :read, OriginState %>
+        </div>
+
+        <section class="d-flex flex-wrap justify-content-around mb-5">
+          <%= render @shipments %>
+        </section>
+
+        <%= content_tag :div, pagy_bootstrap_nav(@pagy).html_safe %>
+      </div>
+    </div>
+  </div>
+</div>

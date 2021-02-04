@@ -12,7 +12,10 @@ module Searchable
       return all unless options[:keywords].present?
       raise ArgumentError, "No fields to search were given" unless options[:fields].present?
       raise ArgumentError, "fields option must be an Array" unless options[:fields].kind_of? Array
-      raise ArgumentError, "joins options must be a Hash" if options[:joins].present? and !options[:joins].kind_of? Hash
+
+      if options[:joins].present? and (!options[:joins].kind_of? Hash and !options[:joins].kind_of? Symbol)
+        raise ArgumentError, "joins options must be a Hash or a Symbol"
+      end
 
       query = Array.new
 

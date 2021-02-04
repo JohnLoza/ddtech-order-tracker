@@ -17,4 +17,4 @@ const images = require.context('../images', true)
 
 import '../stylesheets/application.scss'
 
-import './custom.js'
+import './custom'

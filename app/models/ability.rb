@@ -25,6 +25,8 @@ class Ability
       update_order_guide_permission
     when User::ROLES[:support_and_warranty]
       support_and_warranty_permissions(user)
+    when User::ROLES[:supplier_shipments]
+      supplier_shipments_permissions(user)
     end
   end
   # See the wiki for details:
@@ -35,6 +37,7 @@ class Ability
     can :create, Note
     can :manage, OrderTag
     can :read, Devolution
+    can :read, Shipment
     cannot %i[hold release], Order, status: Order::STATUS[:sent]
   end
 
@@ -77,5 +80,11 @@ class Ability
     can :resend, Devolution do |d|
       d.actions_taken.present? and d.user_id == user.id and d.guide_id.blank?
     end
+  end
+
+  def supplier_shipments_permissions(user)
+    can :manage, Shipment
+    can :manage, OriginState
+    can :manage, Supplier
   end
 end

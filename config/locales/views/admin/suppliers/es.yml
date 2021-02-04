@@ -1,0 +1,18 @@
+es:
+  admin:
+    suppliers:
+      new:
+        title: Nuevo Proveedor
+
+      create:
+        success: Nuevo proveedor guardado
+
+      edit:
+        title: Editar Proveedor - %{supplier}
+
+      update:
+        success: Proveedor actualizado
+
+      destroy:
+        success: Se eliminó al proveedor, si lo haz hecho por accidente consulta al encargado de TI
+        failure: Ocurrió un error al eliminar el proveedor.

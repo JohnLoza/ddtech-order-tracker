@@ -1,0 +1,10 @@
+es:
+  activerecord:
+    models:
+      origin_state:
+        one: Estado Origen
+        other: Estados de Origen
+    attributes:
+      origin_state:
+        name: Nombre
+        estimated_shiping_days: Días estimados en tránsito de paquetes

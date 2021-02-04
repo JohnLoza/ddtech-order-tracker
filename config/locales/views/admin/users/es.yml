@@ -1,9 +1,6 @@
 es:
   admin:
     users:
-      index:
-        title: Listado de usuarios
-
       new:
         title: Nuevo usuario
 

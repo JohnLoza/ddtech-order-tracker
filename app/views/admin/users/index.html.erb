@@ -1,4 +1,4 @@
-<% provide :title, t('.title') %>
+<% provide :title, User.model_name.human(count: 2) %>
 
 <%= render 'filters' %>
 
@@ -7,9 +7,9 @@
     <div class="card">
       <div class="card-header">
         <h2 class="card-title">
-          <%= t(".title") %>
+          <%= yield :title %>
           <%= link_to new_admin_user_path do %>
-          <i class="fas fa-fw fa-plus-circle fa-lg float-right"></i>
+          <i class="fas fa-fw fa-plus-circle fa-lg float-right text-secondary"></i>
           <% end if can? :create, User %>
         </h2>
       </div>

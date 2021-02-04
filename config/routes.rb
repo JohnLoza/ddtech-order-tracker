@@ -32,6 +32,9 @@ Rails.application.routes.draw do
 
     resources :devolutions
     resources :tags, except: :show
+    resources :shipments
+    resources :suppliers
+    resources :origin_states
   end
 
   if Rails.env.test?

@@ -1,9 +1,6 @@
 es:
   admin:
     devolutions:
-      index:
-        title: Listado de Garantías
-
       new:
         title: Nueva Garantía
 

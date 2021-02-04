@@ -1,0 +1,14 @@
+es:
+  activerecord:
+    models:
+      shipment:
+        one: Envío de proveedor
+        other: Envíos de proveedor
+    attributes:
+      shipment:
+        hash_id: Clave
+        estimated_arrival: Estimación de llegada
+        comments: Comentarios
+        status: Estado
+        supplier_id: Proveedor
+        origin_state_id: Origen

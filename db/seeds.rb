@@ -5,28 +5,51 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-if User.all.empty?
-  (1..3).each do |subfix|
-    User::ROLES.keys.each do |role|
-      User.create(
-        name: "#{I18n.t("user.roles.#{role}")}_#{subfix}",
-        email: "#{role}#{subfix}@mail.com",
-        role: role,
-        password: 'foobar',
-        password_confirmation: 'foobar'
-      )
-    end
-  end
-end
+User.first_or_create(
+  name: 'admin',
+  email: 'admin@ddtechmx.info',
+  role: :admin,
+  password: 'foobar',
+  password_confirmation: 'foobar'
+)
 
-5.times do
-  Order::PARCELS.each do |parcel|
-    Order.create(
-      user_id: 1,
-      ddtech_key: rand(111111..999999).to_s,
-      client_email: 'lozabucio.jony@gmail.com',
-      parcel: parcel,
-      urgent: rand() <= 0.25 ? true : false
-    )
+ORIGIN_STATE_NAMES = [
+  'Aguascalientes',
+  'Baja California',
+  'Baja California Sur',
+  'Campeche',
+  'Chiapas',
+  'Chihuahua',
+  'Ciudad de México',
+  'Coahuila',
+  'Colima',
+  'Durango',
+  'Estado de México',
+  'Guanajuato',
+  'Guerrero',
+  'Hidalgo',
+  'Jalisco',
+  'Michoacán',
+  'Morelos',
+  'Nayarit',
+  'Nuevo León',
+  'Oaxaca',
+  'Puebla',
+  'Querétaro',
+  'Quintana Roo',
+  'San Luis Potosí',
+  'Sinaloa',
+  'Sonora',
+  'Tabasco',
+  'Tamaulipas',
+  'Tlaxcala',
+  'Veracruz',
+  'Yucatán',
+  'Zacatecas'
+]
+
+unless OriginState.all.any?
+  ORIGIN_STATE_NAMES.each do |osn|
+    OriginState.create(name: osn, estimated_shipment_days: 5)
   end
 end

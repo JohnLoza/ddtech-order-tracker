@@ -1,0 +1,88 @@
+<% provide :title, @shipment.hash_id %>
+
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title text-center font-weight-bold"><%= yield :title %></h2>
+      </div>
+      <div class="card-body">
+        <div class="row">
+
+          <div class="col-lg-4 col-12 mb-5">
+            <p>
+              <%= content_tag :span, @shipment.supplier.name, class: 'badge badge-pill badge-primary' %>
+              <%= content_tag :span, @shipment.origin_state.name, class: 'badge badge-pill badge-success' %>
+            </p>
+
+            <p>
+              <%= content_tag :span, t("shipment.statuses.#{@shipment.status}"),
+                class: "badge badge-pill badge-#{ @shipment.status == 'processed' ? 'secondary' : 'primary' }" %>
+            </p>
+
+            <p>
+              <%= content_tag :strong, 'Fecha de registro' %>
+              <%= content_tag :span, l(@shipment.created_at, format: :short) %>
+            </p>
+
+            <p>
+              <%= content_tag :strong, 'Última actualización' %>
+              <%= content_tag :span, l(@shipment.updated_at, format: :short) %>
+            </p>
+
+            <p>
+              <%= content_tag :strong, Shipment.human_attribute_name(:estimated_arrival) %>
+              <%= content_tag :span, l(@shipment.estimated_arrival, format: :date) %>
+            </p>
+
+            <p>
+              <%= content_tag :strong, Shipment.human_attribute_name(:comments) %>
+              <%= content_tag :span, @shipment.comments %>
+            </p>
+
+            <div class="mt-5">
+              <%= form_for [:admin, @shipment] do |f| %>
+                <div class="form-group">
+                  <%= f.label :status %>
+                  <%= f.select :status, shipment_statuses_for_select,
+                    { selected: @shipment.status }, { class: 'form-control', required: true } %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :estimated_arrival %>
+                  <%= f.text_field :estimated_arrival, class: 'form-control datepicker', required: true %>
+                </div>
+
+                <%= f.submit t('labels.save'), class: 'btn btn-primary btn-lg' %>
+              <% end if can? :update, @shipment %>
+            </div>
+          </div>
+
+          <div class="col-lg-8 col-12 mb-5">
+            <%= content_tag :h3, 'Productos', class: 'bg-primary text-light text-center m-0 p-3 rounded font-weight-bold' %>
+            <% @shipment.shipment_products.each do |sp| %>
+              <div class='m-4'>
+                <p>
+                  <strong>Clave Interna:</strong>
+                  <%= content_tag :span, sp.ddtech_id %>
+                </p>
+
+                <% sp.shipment_product_destinations.each do |spd| %>
+                  <div>
+                    <p>
+                      <%= content_tag :strong, spd.destination %>
+                      <%= content_tag :span, "(#{spd.units})" %>
+                    </p>
+                    <hr>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+

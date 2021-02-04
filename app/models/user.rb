@@ -22,6 +22,7 @@ class User < ApplicationRecord
     provider_guides: 'provider_guides',
     human_resources: 'human_resources',
     support_and_warranty: 'support_and_warranty',
+    supplier_shipments: 'supplier_shipments',
     observer: 'observer'
   }.freeze
 

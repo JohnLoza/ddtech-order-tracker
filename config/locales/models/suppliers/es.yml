@@ -1,0 +1,10 @@
+es:
+  activerecord:
+    models:
+      supplier:
+        one: Proveedor
+        other: Proveedores
+    attributes:
+      supplier:
+        name: Nombre
+

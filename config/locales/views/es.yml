@@ -2,7 +2,7 @@ es:
   labels:
     account: Cuenta
     actions: Acciones
-    are_you_sure_to_proceed: ¿Estás seguro de proceder? Esto no se puede deshacer
+    are_you_sure_to_proceed: ¿Estás seguro de proceder?
     badge: Insignia
     brand: Dd tech
     change_password: Cambiar contraseña
@@ -36,6 +36,13 @@ es:
     track_your_package: Rastrea tu paquete
     updated_at: Última actualización
 
+  shipment:
+    statuses:
+      remissioned: Remisionado
+      sent: En tránsito
+      received: Recibido
+      processed: Procesado
+
   user:
     roles:
       admin: Administrador
@@ -53,6 +60,7 @@ es:
       warehouse_exit: Encargado de Salidas de Almacén
       warehouse: Almacén
       support_and_warranty: Soporte y Garantía
+      supplier_shipments: Encargado de Ingresos Proveedor
       observer: Observador
 
   order:

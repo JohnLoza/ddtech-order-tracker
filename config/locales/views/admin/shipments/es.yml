@@ -1,0 +1,15 @@
+es:
+  admin:
+    shipments:
+      new:
+        title: 'Registrar envío de proveedor'
+
+      create:
+        success: 'Envío de proveedor registrado'
+
+      update:
+        success: 'Información actualizada'
+
+      destroy:
+        success: 'Envío eliminado'
+        failure: 'Ocurrió un error al eliminar'

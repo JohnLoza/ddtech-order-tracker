@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_22_181716) do
+ActiveRecord::Schema.define(version: 2021_01_29_163026) do
 
   create_table "devolutions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
@@ -89,6 +89,50 @@ ActiveRecord::Schema.define(version: 2020_12_22_181716) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "origin_states", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.integer "estimated_shipment_days"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "shipment_product_destinations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "shipment_product_id", null: false
+    t.string "destination"
+    t.integer "units"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["shipment_product_id"], name: "index_shipment_product_destinations_on_shipment_product_id"
+  end
+
+  create_table "shipment_products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "shipment_id", null: false
+    t.string "ddtech_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["shipment_id"], name: "index_shipment_products_on_shipment_id"
+  end
+
+  create_table "shipments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "hash_id"
+    t.bigint "origin_state_id", null: false
+    t.bigint "supplier_id", null: false
+    t.datetime "estimated_arrival"
+    t.string "comments"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["origin_state_id"], name: "index_shipments_on_origin_state_id"
+    t.index ["supplier_id"], name: "index_shipments_on_supplier_id"
+  end
+
+  create_table "suppliers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.datetime "deleted_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "css_class"
@@ -109,4 +153,8 @@ ActiveRecord::Schema.define(version: 2020_12_22_181716) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "shipment_product_destinations", "shipment_products"
+  add_foreign_key "shipment_products", "shipments"
+  add_foreign_key "shipments", "origin_states"
+  add_foreign_key "shipments", "suppliers"
 end

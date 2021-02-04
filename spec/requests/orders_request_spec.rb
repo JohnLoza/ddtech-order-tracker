@@ -16,7 +16,6 @@ RSpec.describe 'Admin order management', type: :request do
 
     expect(response).to have_http_status(:ok)
     expect(response).to render_template(:index)
-    expect(response.body).to include(I18n.t('admin.orders.index.title'))
   end
 
   context 'GET show' do

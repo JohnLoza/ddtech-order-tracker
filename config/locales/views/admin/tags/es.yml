@@ -1,9 +1,6 @@
 es:
   admin:
     tags:
-      index:
-        title: Listado de Etiquetas
-
       new:
         title: Nueva etiqueta
 

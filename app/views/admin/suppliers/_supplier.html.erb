@@ -1,0 +1,12 @@
+<div class="btn-group m-3" role="group" aria-label="supplier">
+
+  <%= link_to supplier.name, edit_admin_supplier_path(supplier),
+    class: 'btn btn-outline-primary btn-lg rounded-left' %>
+
+  <%= link_to admin_supplier_path(supplier),
+    class: 'btn btn-outline-danger btn-lg rounded-right flex-grow-0', method: :delete,
+    data: { confirm: t('labels.are_you_sure_to_proceed') } do %>
+    <i class="fas fa-times"></i>
+  <% end %>
+
+</div>

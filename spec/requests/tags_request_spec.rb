@@ -16,7 +16,6 @@ RSpec.describe 'Admin tag management', type: :request do
 
     expect(response).to have_http_status(:ok)
     expect(response).to render_template(:index)
-    expect(response.body).to match(/<h1.*>Listado de etiquetas<\/h1>/im)
   end
 
   it 'GET new' do

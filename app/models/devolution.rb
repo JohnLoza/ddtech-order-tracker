@@ -7,7 +7,6 @@ class Devolution < ApplicationRecord
 
   before_validation :set_rma, on: :create
 
-  before_save { self.rma = rma.upcase }
   before_save { self.email = email.downcase }
   before_save { self.free_guide = self.free_guide_electible? }
 
@@ -97,7 +96,7 @@ class Devolution < ApplicationRecord
   private
   def set_rma
     return if self.rma.present?
-    self.rma = Utils.new_alphanumeric_token(5)
+    self.rma = Utils.new_alphanumeric_token(5).upcase
   end
 
   def notificate_resolution

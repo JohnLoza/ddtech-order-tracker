@@ -1,0 +1,9 @@
+es:
+  admin:
+    origin_states:
+      edit:
+        title: Editar Estado
+
+      update:
+        success: Estado origen actualizado
+

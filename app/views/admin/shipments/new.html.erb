@@ -1,0 +1,66 @@
+<%= provide :title, t('.title') %>
+
+<div class="card">
+  <h2 class="card-header"><%= yield :title %></h2>
+  <div class="card-body">
+    <%= form_for [:admin, @shipment] do |f| %>
+    <%= render partial: '/shared/form_errors.html.erb', locals: {obj: @shipment} %>
+
+    <div class="form-group">
+      <%= f.label :supplier_id %>
+      <%= f.select :supplier_id, suppliers_for_select(),
+        {prompt: t('labels.select')}, {class: 'form-control', required: true} %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :origin_state_id %>
+      <%= f.select :origin_state_id, origin_states_for_select(), {prompt: t('labels.select')},
+        {
+          class: 'form-control', required: true,
+          'data-calculate-arrival-onchange' => true,
+          'data-target' => 'shipment_estimated_arrival'
+        } %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :estimated_arrival %>
+      <span>(yyyy-mm-dd)</span>
+      <%= f.text_field :estimated_arrival, class: 'datepicker form-control', required: true %>
+    </div>
+
+    <div class="bg-primary mt-4 mb-4 p-3 rounded">
+      <h3 class="text-light m-0 d-inline-block">
+        <i class="fas fa-box-open"></i>
+        Productos
+      </h3>
+
+      <h3 class="text-light m-0 d-inline-block" data-append-shipment-product="true"
+          data-target="shipment_products_container">
+        <i class="fas fa-plus ml-3 pointer"></i>
+      </h3>
+    </div>
+
+    <section id="shipment_products_container"></section>
+    <hr>
+
+    <div class="bg-primary mt-4 mb-4 p-3 rounded">
+      <h3 class="text-light m-0">
+        <i class="fas fa-file"></i>
+        <%= Shipment.human_attribute_name(:comments) %>
+      </h3>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :comments, class: 'd-none' %>
+      <%= f.text_area :comments, maxlength: 99, class: 'form-control' %>
+    </div>
+
+    <%= f.submit t('labels.save'), class: 'btn btn-primary btn-lg' %>
+    <span class="btn btn-success btn-lg font-weight-bold"
+      data-append-shipment-product="true" data-target="shipment_products_container">
+      Agregar Producto
+    </span>
+    <% end %>
+  </div>
+</div>
+
