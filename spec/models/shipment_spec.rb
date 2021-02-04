@@ -37,7 +37,7 @@ RSpec.describe Shipment, type: :model do
   end # context when hash_id end
 
   it 'when comments is too long' do
-    @shipment.comments = 'b' * 100
+    @shipment.comments = 'b' * 251
     expect(@shipment).not_to be_valid
   end
 

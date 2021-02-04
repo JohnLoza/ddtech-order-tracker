@@ -15,7 +15,7 @@ class Shipment < ApplicationRecord
   validates :hash_id, presence: true, length: { maximum: 12 },
     uniqueness: { case_sensitive: false }
   validates :estimated_arrival, presence: true
-  validates :comments, length: { maximum: 99 }
+  validates :comments, length: { maximum: 250 }
   validates :status, inclusion: { in: STATUSES }
 
   scope :by_supplier, ->(id) { where(supplier_id: id) if id.present? }
