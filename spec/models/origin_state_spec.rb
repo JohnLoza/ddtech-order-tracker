@@ -6,6 +6,7 @@ RSpec.describe OriginState, type: :model do
 
   it { should respond_to :name }
   it { should respond_to :estimated_shipment_days }
+  it { should respond_to :deleted_at }
   it { should be_valid }
 
   it 'name is not present' do

@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-header">
+    <%= content_tag :h1, yield(:title), class: 'card-title' %>
+  </div>
+  <div class="card-body">
+    <%= form_for [:admin, @origin_state] do |f| %>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, autofocus: true,
+          class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :estimated_shipment_days %>
+        <%= f.number_field :estimated_shipment_days, class: 'form-control',
+          step: 1, min: 1, max: 99, required: true %>
+      </div>
+
+      <%= f.submit t('labels.save'), class: 'btn btn-primary btn-lg' %>
+    <% end %>
+  </div>
+</div>

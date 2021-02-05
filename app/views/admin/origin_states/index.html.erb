@@ -4,7 +4,12 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <%= content_tag :h2, yield(:title), class: 'card-title' %>
+        <h2 class="card-title">
+          <%= yield :title %>
+          <%= link_to new_admin_origin_state_path do %>
+          <i class="fas fa-fw fa-plus-circle fa-lg float-right text-secondary"></i>
+          <% end if can? :create, OriginState %>
+        </h2>
       </div>
       <div class="card-body">
         <div class="d-flex flex-wrap flex-md-row flex-column mb-4">

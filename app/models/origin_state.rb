@@ -1,4 +1,6 @@
 class OriginState < ApplicationRecord
+  include SoftDeletable
+
   has_many :shipments
 
   validates :name, presence: true

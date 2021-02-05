@@ -1,7 +1,15 @@
 <div class="btn-group m-3" role="group" aria-label="origin_state">
-  <%= link_to origin_state.name, edit_admin_origin_state_path(origin_state),
-    class: 'btn btn-outline-primary btn-lg rounded-left' %>
-  <%= link_to origin_state.estimated_shipment_days, edit_admin_origin_state_path(origin_state),
-    class: 'btn btn-outline-success btn-lg rounded-right' %>
+  <%= link_to edit_admin_origin_state_path(origin_state),
+    class: 'btn btn-outline-primary btn-lg rounded-left' do %>
+    <%= content_tag :span, origin_state.name %>
+    (<%= origin_state.estimated_shipment_days %>)
+  <% end %>
+
+
+  <%= link_to admin_origin_state_path(origin_state),
+    class: 'btn btn-outline-danger btn-lg rounded-right',
+    data: { confirm: t('labels.are_you_sure_to_proceed') }, method: :delete do %>
+    <i class="fas fa-times"></i>
+  <% end %>
 </div>
 

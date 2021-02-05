@@ -49,7 +49,8 @@ module LayoutHelper
   end
 
   def origin_states_for_select()
-    OriginState.all.map{ |os| [os.name, os.id, {'data-estimated-shipment-days' => os.estimated_shipment_days}] }
+    OriginState.active.order(name: :asc)
+      .map{ |os| [os.name, os.id, {'data-estimated-shipment-days' => os.estimated_shipment_days}] }
   end
 
   def shipment_statuses_for_select()

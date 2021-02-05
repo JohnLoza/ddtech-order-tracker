@@ -1,9 +1,19 @@
 es:
   admin:
     origin_states:
+      new:
+        title: Nuevo estado de origen
+
+      create:
+        success: Nuevo estado ingresado
+
       edit:
         title: Editar Estado
 
       update:
         success: Estado origen actualizado
+
+      destroy:
+        success: Estado eliminado
+        failure: Ocurrió un error al eliminar el estado
 
