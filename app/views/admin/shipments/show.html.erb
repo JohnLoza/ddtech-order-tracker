@@ -50,7 +50,13 @@
 
                 <div class="form-group">
                   <%= f.label :estimated_arrival %>
-                  <%= f.text_field :estimated_arrival, class: 'form-control datepicker', required: true %>
+                  <%= f.text_field :estimated_arrival, value: l(@shipment.estimated_arrival, format: :db_date),
+                    class: 'form-control datepicker', required: true %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :comments %>
+                  <%= f.text_area :comments, class: 'form-control', maxlength: 250 %>
                 </div>
 
                 <%= f.submit t('labels.save'), class: 'btn btn-primary btn-lg' %>

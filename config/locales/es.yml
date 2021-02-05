@@ -216,4 +216,5 @@ es:
       long: "%-d de %B de %Y %H:%M:%S"
       short: "%-d de %b %H:%M"
       date: "%d/%b/%y"
+      db_date: "%Y-%m-%d"
     pm: pm
