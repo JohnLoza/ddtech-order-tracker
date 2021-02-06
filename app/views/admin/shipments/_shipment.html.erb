@@ -1,6 +1,10 @@
 <div class="card col-lg-3 col-12 m-4">
   <h3 class="card-header text-center font-weight-bold">
     <%= link_to shipment.hash_id, admin_shipment_path(shipment) %>
+    <%= link_to admin_shipment_path(shipment), method: :delete,
+          data: { confirm: t('labels.are_you_sure_to_proceed') } do %>
+      <i class="fas fa-fw fa-times fa-lg float-right text-danger"></i>
+    <% end if can? :destroy, shipment %>
   </h3>
 
   <div class="card-body">
