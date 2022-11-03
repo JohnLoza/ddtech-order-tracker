@@ -6,7 +6,7 @@ class MlBillingMailer < ApplicationMailer # :nodoc:
   def billing
     @ml_billing = params[:ml_billing]
 
-    recipient = Rails.env.production? ? 'facturacion@ddtech.mx' : 'ventas7@ddtech.mx'
+    recipient = Rails.env.production? ? 'facturacion@ddtech.mx' : 'lozabucio.jony@gmail.com'
     subject = "Solicita Factura ML #{@ml_billing[:pseudonym]} | #{l(Time.now, format: :long)}"
 
     mail(to: recipient, subject: subject)

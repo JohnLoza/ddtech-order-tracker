@@ -39,5 +39,32 @@ $(document).ready(function() {
     $(target).removeAttr("disabled");
     $(target).focus();
   });
+
+  function clearFiscalRegimenRadios() {
+    for(let option of $('label.fiscal-regimen')) {
+      option.children[0].checked = false;
+    }
+  }
+
+  $("#ml_billing_person_type").on("change", function(event) {
+    const target = $(this);
+    if (target.val() == 'Moral') {
+      clearFiscalRegimenRadios();
+      for(let option of $('label.fiscal-regimen.physical')) {
+        option.classList.add('d-none');
+      }
+      for(let option of $('label.fiscal-regimen.moral')) {
+        option.classList.remove('d-none');
+      }
+    } else if (target.val() == 'Física') {
+      clearFiscalRegimenRadios();
+      for(let option of $('label.fiscal-regimen.physical')) {
+        option.classList.remove('d-none');
+      }
+      for(let option of $('label.fiscal-regimen.moral')) {
+        option.classList.add('d-none');
+      }
+    }
+  });
 });
 

@@ -109,6 +109,129 @@
 
           <div class="form-group row">
             <div class="col-lg-3 col-md-4 col-form-label">
+              <%= f.label :person_type, 'Tipo de persona' %>
+            </div>
+            <%= f.select :person_type, ['Física', 'Moral'],
+              { prompt: 'Selecciona una opción...' },
+              class: 'form-control form-control-lg col-lg-9 col-md-8', required: true %>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
+              <i class="fas fa-dollar-sign"></i>
+              <%= f.label :fiscal_regimen, 'Regimen Fiscal' %>
+            </div>
+            <div class="col-lg-9 col-md-8 fiscal-regimen-options">
+              <label class="custom-control custom-radio fiscal-regimen moral">
+                <%= f.radio_button :fiscal_regimen, '601 - General de ley personas morales', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_fiscal_regimen" %>
+                <span class="custom-control-label">601 - General de ley personas morales</span>
+              </label>
+              <label class="custom-control custom-radio fiscal-regimen moral">
+                <%= f.radio_button :fiscal_regimen, '603 - Personas morales con fines no lucrativos', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_fiscal_regimen" %>
+                <span class="custom-control-label">603 - Personas morales con fines no lucrativos</span>
+              </label>
+              <label class="custom-control custom-radio fiscal-regimen physical">
+                <%= f.radio_button :fiscal_regimen, '605 - Sueldos y salarios e ingresos asimilados', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_fiscal_regimen" %>
+                <span class="custom-control-label">605 - Sueldos y salarios e ingresos asimilados</span>
+              </label>
+              <label class="custom-control custom-radio fiscal-regimen physical">
+                <%= f.radio_button :fiscal_regimen, '606 - Arrendamiento', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_fiscal_regimen" %>
+                <span class="custom-control-label">606 - Arrendamiento</span>
+              </label>
+              <label class="custom-control custom-radio fiscal-regimen physical">
+                <%= f.radio_button :fiscal_regimen, '607 - Regimen de enajenación', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_fiscal_regimen" %>
+                <span class="custom-control-label">607 - Regimen de enajenación</span>
+              </label>
+              <label class="custom-control custom-radio fiscal-regimen physical">
+                <%= f.radio_button :fiscal_regimen, '608 - Demás ingresos', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_fiscal_regimen" %>
+                <span class="custom-control-label">608 - Demás ingresos</span>
+              </label>
+              <label class="custom-control custom-radio fiscal-regimen">
+                <%= f.radio_button :fiscal_regimen, '610 - Residentes en el extranjero', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_fiscal_regimen" %>
+                <span class="custom-control-label">610 - Residentes en el extranjero</span>
+              </label>
+              <label class="custom-control custom-radio fiscal-regimen physical">
+                <%= f.radio_button :fiscal_regimen, '611 - Ingresos por dividendo socios y accionistas', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_fiscal_regimen" %>
+                <span class="custom-control-label">611 - Ingresos por dividendo socios y accionistas</span>
+              </label>
+              <label class="custom-control custom-radio fiscal-regimen physical">
+                <%= f.radio_button :fiscal_regimen, '612 - Personas físicas con actividad empresarial', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_fiscal_regimen" %>
+                <span class="custom-control-label">612 - Personas físicas con actividad empresarial</span>
+              </label>
+              <label class="custom-control custom-radio fiscal-regimen physical">
+                <%= f.radio_button :fiscal_regimen, '614 - Ingresos por intereses', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_fiscal_regimen" %>
+                <span class="custom-control-label">614 - Ingresos por intereses</span>
+              </label>
+              <label class="custom-control custom-radio fiscal-regimen physical">
+                <%= f.radio_button :fiscal_regimen, '615 - Regimen de los ingresos', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_fiscal_regimen" %>
+                <span class="custom-control-label">615 - Regimen de los ingresos</span>
+              </label>
+              <label class="custom-control custom-radio fiscal-regimen physical">
+                <%= f.radio_button :fiscal_regimen, '616 - Sin obligaciones fiscales', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_fiscal_regimen" %>
+                <span class="custom-control-label">616 - Sin obligaciones fiscales</span>
+              </label>
+              <label class="custom-control custom-radio fiscal-regimen moral">
+                <%= f.radio_button :fiscal_regimen, '620 - Sociedades cooperativas de producción', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_fiscal_regimen" %>
+                <span class="custom-control-label">620 - Sociedades cooperativas de producción</span>
+              </label>
+              <label class="custom-control custom-radio fiscal-regimen physical">
+                <%= f.radio_button :fiscal_regimen, '621 - Incorporación fiscal', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_fiscal_regimen" %>
+                <span class="custom-control-label">621 - Incorporación fiscal</span>
+              </label>
+              <label class="custom-control custom-radio fiscal-regimen moral">
+                <%= f.radio_button :fiscal_regimen, '622 - Actividades agrícolas', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_fiscal_regimen" %>
+                <span class="custom-control-label">622 - Actividades agrícolas</span>
+              </label>
+              <label class="custom-control custom-radio fiscal-regimen moral">
+                <%= f.radio_button :fiscal_regimen, '623 - Opcional para grupos de sociedades', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_fiscal_regimen" %>
+                <span class="custom-control-label">623 - Opcional para grupos de sociedades</span>
+              </label>
+              <label class="custom-control custom-radio fiscal-regimen moral">
+                <%= f.radio_button :fiscal_regimen, '624 - Coordinados', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_fiscal_regimen" %>
+                <span class="custom-control-label">624 - Coordinados</span>
+              </label>
+              <label class="custom-control custom-radio fiscal-regimen physical">
+                <%= f.radio_button :fiscal_regimen, '625 - Regimen de las actividades empresariales', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_fiscal_regimen" %>
+                <span class="custom-control-label">625 - Regimen de las actividades empresariales</span>
+              </label>
+              <label class="custom-control custom-radio fiscal-regimen">
+                <%= f.radio_button :fiscal_regimen, '626 - Regimen simplificado de confianza', class: 'custom-control-input',
+                  required: true, "data-disable" => "#ml_billing_fiscal_regimen" %>
+                <span class="custom-control-label">626 - Regimen simplificado de confianza</span>
+              </label>
+              <div class="row">
+                <div class="col-lg-2">
+                  <label class="custom-control custom-radio">
+                    <%= f.radio_button :fiscal_regimen, false, class: 'custom-control-input',
+                      "data-enable" => "#ml_billing_fiscal_regimen" %>
+                    <span class="custom-control-label">Otro:</span>
+                  </label>
+                </div>
+                <%= f.text_field :fiscal_regimen, class: "form-control form-control-lg col-lg-10", maxlength: 60, disabled: true %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-lg-3 col-md-4 col-form-label">
               <i class="fas fa-dollar-sign"></i>
               <%= f.label :payment_type, 'Forma de pago' %>
             </div>
@@ -207,7 +330,7 @@
               placeholder: 'Estado', maxlength: 30, required: true %>
           </div>
 
-          <%= f.submit t('labels.save'), class: 'btn btn-primary btn-lg btn-block' %>
+          <%= f.submit t('labels.save'), class: 'btn btn-primary btn-lg btn-block mt-4' %>
         <% end %>
       </div>
     </div>

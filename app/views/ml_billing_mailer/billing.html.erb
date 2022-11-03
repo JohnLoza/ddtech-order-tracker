@@ -4,6 +4,8 @@
   <p><strong>Email:</strong> <%= content_tag :span, @ml_billing[:email] %></p>
   <p><strong>Nombre / Razón Social:</strong> <%= content_tag :span, @ml_billing[:name], class: 'text-uppercase' %></p>
   <p><strong>RFC:</strong> <%= content_tag :span, @ml_billing[:rfc], class: 'text-uppercase' %></p>
+  <p><strong>Tipo de persona:</strong> <%= content_tag :span, @ml_billing[:person_type], class: 'text-uppercase' %></p>
+  <p><strong>Regimen fiscal:</strong> <%= content_tag :span, @ml_billing[:fiscal_regimen], class: 'text-uppercase' %></p>
   <p><strong>CFDI:</strong> <%= content_tag :span, @ml_billing[:cfdi], class: 'text-uppercase' %></p>
   <p><strong>Método de pago:</strong> <%= content_tag :span, @ml_billing[:payment_type], class: 'text-uppercase' %></p>
   <p><strong>Calle:</strong> <%= content_tag :span, @ml_billing[:street], class: 'text-uppercase' %></p>
