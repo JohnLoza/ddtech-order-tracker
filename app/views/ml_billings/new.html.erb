@@ -57,7 +57,7 @@
             </div>
             <div class="col-lg-9 col-md-8">
               <label class="custom-control custom-radio">
-                <%= f.radio_button :cfdi, '01 Adquisición de Mercancia', class: 'custom-control-input',
+                <%= f.radio_button :cfdi, 'G01 Adquisición de Mercancia', class: 'custom-control-input',
                   required: true, "data-disable" => "#ml_billing_cfdi" %>
                 <span class="custom-control-label">Adquisición de Mercancia</span>
               </label>
@@ -70,11 +70,6 @@
                 <%= f.radio_button :cfdi, 'I04 Equipo de Cómputo y Accesorios', class: 'custom-control-input',
                   required: true, "data-disable" => "#ml_billing_cfdi" %>
                 <span class="custom-control-label">Equipo de Cómputo y Accesorios</span>
-              </label>
-              <label class="custom-control custom-radio">
-                <%= f.radio_button :cfdi, 'P01 Por definir', class: 'custom-control-input',
-                  required: true, "data-disable" => "#ml_billing_cfdi" %>
-                <span class="custom-control-label">Por definir</span>
               </label>
               <div class="row">
                 <div class="col-lg-2">
