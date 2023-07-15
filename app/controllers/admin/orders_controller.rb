@@ -76,6 +76,39 @@ module Admin
       render status: status, json: response
     end
 
+    def import_guides
+      @errors = []
+      (2..first_sheet.last_row).each do |row_num|
+        next if first_sheet.row(row_num) == [nil, nil, nil]
+
+        ddtech_key, tracking_num, carrier = first_sheet.row(row_num)
+        @order = Order.find_by(ddtech_key: ddtech_key.strip)
+        unless @order
+          @errors << "No se encontró el pedido: ##{ddtech_key}"
+          next
+        end
+
+        if @order.update import_guides_params(tracking_num)
+          NotifyOrderTrackingIdJob.perform_async(@order, carrier)
+        else
+          if create_extra_movement(@order)
+            NotifyOrderTrackingIdJob.perform_async(@order, carrier)
+          elsif @order.errors.any?
+            @order.errors.full_messages.each do |msg|
+              @errors << "##{order.ddtech_key}: #{msg}"
+            end
+          end
+        end
+      end
+      flash.now[:success] = t('.success') if @errors.empty?
+      render :update_guide
+    end
+
+    def download_import_template
+      file_path = Rails.root.join('public/carga-masiva-guias.xlsx')
+      send_file(file_path, type: 'application/xlsx')
+    end
+
     def update_status
       return unless params[:order].present?
       @order = Order.find_by!(ddtech_key: params[:order][:ddtech_key])
@@ -161,6 +194,15 @@ module Admin
       return hash
     end
 
+    def import_guides_params(tracking_num)
+      hash = { status: Order::STATUS[:sent] }
+      hash[:guide] = tracking_num
+      hash[:data] = hash[:guide]
+      hash[:urgent] = false
+      hash[:updater_id] = current_user.id
+      hash
+    end
+
     def load_orders
       @pagy, @orders = pagy(
         Order.search(
@@ -217,5 +259,11 @@ module Admin
       return response
     end
 
+    def first_sheet
+      return @first_sheet if @first_sheet
+
+      @roo_file = Roo::Spreadsheet.open(params[:import][:file])
+      @first_sheet = @roo_file.sheet(0)
+    end
   end
 end

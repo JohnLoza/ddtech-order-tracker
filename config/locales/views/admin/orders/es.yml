@@ -7,7 +7,7 @@ es:
         arrears: Retrasos
 
       arrears:
-        title: Los pedidos más atrasados
+        title: Lo pedidos más atrasados
         assemble_arrears: Ensambles atrasados
         arrears: Pedidos atrasados
 
@@ -28,6 +28,9 @@ es:
 
       update_guide:
         add_guide: Agregar una guía
+
+      import_guides:
+        success: Carga masiva finalizada
 
       update_status:
         select_a_process: Selecciona un proceso

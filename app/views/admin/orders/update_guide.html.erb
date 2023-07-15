@@ -5,8 +5,26 @@
     <div class="card">
       <div class="card-header">
         <h2 class="card-title"><%= yield :title %></h2>
+        <div class="float-right">
+          <%= form_for(:import, url: import_guides_admin_orders_path, html: { class: 'form-inline' }) do |f| %>
+            <div class="form-group">
+              <%= link_to download_import_template_admin_orders_path, alt: 'Descargar plantilla',
+                  target: '_blank', class: 'btn btn-sm btn-secondary rounded' do %>
+                <i class="fa fa-file"></i>
+              <% end %>
+            </div>
+            <div class="form-group ml-2">
+              <%= f.file_field :file, required: true %>
+            </div>
+            <div class="form-group ml-2">
+              <%= f.submit 'Cargar', class: 'btn btn-sm btn-primary' %>
+            </div>
+          <% end %>
+        </div>
       </div>
       <div class="card-body">
+        <%= render partial: 'import_errors', locals: {errors: @errors} if @errors&.any? %>
+
         <%= form_with(model: Order.new, method: :put,
             url: update_guide_admin_orders_path,
             html: {id: 'update_order_guide'}) do |f| %>

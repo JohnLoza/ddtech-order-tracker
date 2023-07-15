@@ -39,7 +39,7 @@ class OrderMailer < ApplicationMailer # :nodoc:
   def tracking_id
     @order = params[:order]
     @guide = params[:guide]
-    @order.parcel = params[:parcel] if params[:parcel].present?
+    @order.parcel = params[:parcel].upcase if params[:parcel].present?
     @guides_count = @order.movements.where(description: Movement::DESCRIPTIONS[:sent_order]).size
 
     subject = t('mailer.subjects.order_status',

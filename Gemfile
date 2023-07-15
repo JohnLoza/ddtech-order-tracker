@@ -35,6 +35,8 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'pg', '~> 1.1'
   gem 'dotenv-rails'
+  gem 'pry'
+  gem 'pry-nav'
 end
 
 group :development do
@@ -71,4 +73,5 @@ gem 'barby', '~> 0.6.0' # Barcodes library
 gem 'chunky_png', '~> 1.3.0' # Barby dependency
 
 gem 'wicked_pdf', '~> 2.1.0' # Wicked pdf
+gem 'roo', '~> 2.10'
 

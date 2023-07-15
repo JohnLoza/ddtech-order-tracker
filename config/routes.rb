@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
       get :update_guide, on: :collection
       put :update_guide, on: :collection
+      post :import_guides, on: :collection
+      get :download_import_template, on: :collection
 
       resources :notes, only: :create
       resources :order_tags, only: [:create, :destroy]

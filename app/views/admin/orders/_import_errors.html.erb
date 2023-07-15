@@ -1,0 +1,15 @@
+<div class="alert alert-danger alert-dismissible fade show">
+  <p class="font-bold">
+    Nos encontramos con algunos errores en la carga del archivo,
+    el resto del archivo se procesó correctamente.
+  </p>
+  <ul>
+    <% errors.each do |error| %>
+      <%= content_tag :li, error %>
+    <% end %>
+  </ul>
+
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>

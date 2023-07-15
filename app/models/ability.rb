@@ -67,7 +67,7 @@ class Ability
   end
 
   def update_order_guide_permission
-    can :update_guide, Order
+    can %i[update_guide import_guides download_import_template], Order
   end
 
   def support_and_warranty_permissions(user)
