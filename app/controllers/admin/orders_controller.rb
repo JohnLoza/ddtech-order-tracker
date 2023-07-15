@@ -95,7 +95,7 @@ module Admin
             NotifyOrderTrackingIdJob.perform_async(@order, carrier)
           elsif @order.errors.any?
             @order.errors.full_messages.each do |msg|
-              @errors << "##{order.ddtech_key}: #{msg}"
+              @errors << "##{@order.ddtech_key}: #{msg}"
             end
           end
         end
