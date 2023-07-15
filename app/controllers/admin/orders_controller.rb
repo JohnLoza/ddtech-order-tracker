@@ -83,7 +83,7 @@ module Admin
 
         ddtech_key, tracking_num, carrier = first_sheet.row(row_num)
         @order = Order.find_by(ddtech_key: ddtech_key.to_s.strip)
-        if @order
+        if @order.blank?
           @errors << "No se encontró el pedido: ##{ddtech_key}"
           next
         elsif @order && tracking_num.blank?
