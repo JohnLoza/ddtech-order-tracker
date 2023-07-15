@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2021_02_05_151914) do
 
-  create_table "devolutions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "devolutions", force: :cascade do |t|
     t.bigint "user_id"
     t.string "rma"
     t.string "client_name"
@@ -33,7 +36,7 @@ ActiveRecord::Schema.define(version: 2021_02_05_151914) do
     t.string "parcel"
     t.string "voucher_folio"
     t.decimal "voucher_amount", precision: 8, scale: 2
-    t.boolean "free_guide", default: false, null: false
+    t.boolean "free_guide", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_devolutions_on_email"
@@ -42,7 +45,7 @@ ActiveRecord::Schema.define(version: 2021_02_05_151914) do
     t.index ["user_id"], name: "index_devolutions_on_user_id"
   end
 
-  create_table "movements", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "movements", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "order_id"
     t.string "description"
@@ -53,7 +56,7 @@ ActiveRecord::Schema.define(version: 2021_02_05_151914) do
     t.index ["user_id"], name: "index_movements_on_user_id"
   end
 
-  create_table "notes", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "notes", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "order_id"
     t.text "message"
@@ -63,14 +66,14 @@ ActiveRecord::Schema.define(version: 2021_02_05_151914) do
     t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
-  create_table "order_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "order_tags", force: :cascade do |t|
     t.bigint "order_id"
     t.bigint "tag_id"
     t.index ["order_id"], name: "index_order_tags_on_order_id"
     t.index ["tag_id"], name: "index_order_tags_on_tag_id"
   end
 
-  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "orders", force: :cascade do |t|
     t.bigint "user_id"
     t.string "ddtech_key"
     t.string "client_email"
@@ -89,15 +92,15 @@ ActiveRecord::Schema.define(version: 2021_02_05_151914) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table "origin_states", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "origin_states", force: :cascade do |t|
     t.string "name"
     t.integer "estimated_shipment_days"
-    t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
   end
 
-  create_table "shipment_product_destinations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "shipment_product_destinations", force: :cascade do |t|
     t.bigint "shipment_product_id", null: false
     t.string "destination"
     t.integer "units"
@@ -106,7 +109,7 @@ ActiveRecord::Schema.define(version: 2021_02_05_151914) do
     t.index ["shipment_product_id"], name: "index_shipment_product_destinations_on_shipment_product_id"
   end
 
-  create_table "shipment_products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "shipment_products", force: :cascade do |t|
     t.bigint "shipment_id", null: false
     t.string "ddtech_id"
     t.datetime "created_at", precision: 6, null: false
@@ -114,7 +117,7 @@ ActiveRecord::Schema.define(version: 2021_02_05_151914) do
     t.index ["shipment_id"], name: "index_shipment_products_on_shipment_id"
   end
 
-  create_table "shipments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "shipments", force: :cascade do |t|
     t.string "hash_id"
     t.bigint "origin_state_id", null: false
     t.bigint "supplier_id", null: false
@@ -127,21 +130,21 @@ ActiveRecord::Schema.define(version: 2021_02_05_151914) do
     t.index ["supplier_id"], name: "index_shipments_on_supplier_id"
   end
 
-  create_table "suppliers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "suppliers", force: :cascade do |t|
     t.string "name"
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "tags", force: :cascade do |t|
     t.string "name"
     t.string "css_class"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "role"

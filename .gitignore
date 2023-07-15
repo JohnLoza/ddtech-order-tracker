@@ -38,3 +38,6 @@ yarn-debug.log*
 /vendor/bundle
 
 *.swp
+
+# Ignore env variables file
+.env

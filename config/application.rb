@@ -23,5 +23,10 @@ module DdtechOrderTracker
 
     # load locales subfolders
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+
+
+    if %w[development test].include?(Rails.env)
+      Dotenv::Railtie.load
+    end
   end
 end

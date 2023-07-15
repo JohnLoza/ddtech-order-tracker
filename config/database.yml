@@ -18,6 +18,8 @@ default: &default
 
 development:
   <<: *default
+  adapter: postgresql
+  encoding: utf8
   database: ddtech_order_tracker_development
 
 # Warning: The database defined as "test" will be erased and
@@ -25,6 +27,8 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  adapter: postgresql
+  encoding: utf8
   database: ddtech_order_tracker_test
 
 # As with config/credentials.yml, you never want to store sensitive information,

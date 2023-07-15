@@ -5,8 +5,6 @@ ruby '2.7.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
-# Use mysql as the database for Active Record
-gem 'mysql2', '>= 0.4.4'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
@@ -35,6 +33,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0.1' # use rspec for testing
   gem 'factory_bot_rails', '~> 6.1.0' # replace fixtures
   gem 'rails-controller-testing'
+  gem 'pg', '~> 1.1'
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -52,6 +52,11 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+end
+
+group :production do
+  # Use mysql as the database for Active Record
+  gem 'mysql2', '>= 0.4.4'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
