@@ -83,8 +83,11 @@ module Admin
 
         ddtech_key, tracking_num, carrier = first_sheet.row(row_num)
         @order = Order.find_by(ddtech_key: ddtech_key.strip)
-        unless @order
+        if @order
           @errors << "No se encontró el pedido: ##{ddtech_key}"
+          next
+        elsif @order && tracking_num.blank?
+          @errors << "Número de guía en blanco para el pedido ##{ddtech_key}"
           next
         end
 
