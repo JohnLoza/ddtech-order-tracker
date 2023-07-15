@@ -82,7 +82,7 @@ module Admin
         next if first_sheet.row(row_num) == [nil, nil, nil]
 
         ddtech_key, tracking_num, carrier = first_sheet.row(row_num)
-        @order = Order.find_by(ddtech_key: ddtech_key.strip)
+        @order = Order.find_by(ddtech_key: ddtech_key.to_s.strip)
         if @order
           @errors << "No se encontró el pedido: ##{ddtech_key}"
           next
