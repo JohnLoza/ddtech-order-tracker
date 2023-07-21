@@ -86,8 +86,8 @@ module Admin
         if @order.blank?
           @errors << "No se encontró el pedido: ##{ddtech_key}"
           next
-        elsif @order && tracking_num.blank?
-          @errors << "Número de guía en blanco para el pedido ##{ddtech_key}"
+        elsif tracking_num.blank? || !tracking_num.to_s.match?(/[0-9]{6}/)
+          @errors << "Número de guía inválido para el pedido ##{ddtech_key} debe contener al menos 6 dígitos"
           next
         end
 
